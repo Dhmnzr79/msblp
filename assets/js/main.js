@@ -263,32 +263,7 @@
         });
     }
 
-    /**
-     * Слайдер отзывов
-     */
-    function initTestimonialsSlider() {
-        const $slider = $('.testimonials-slider');
-        
-        if ($slider.length) {
-            $slider.slick({
-                dots: true,
-                arrows: false,
-                autoplay: true,
-                autoplaySpeed: 5000,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                responsive: [
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    }
-                ]
-            });
-        }
-    }
+
 
     /**
      * Слайдер курсов
@@ -341,12 +316,263 @@
         }
     }
 
+
+
+    /**
+     * Слайдер преподавателей
+     */
+    function initTeachersSlider() {
+        const wrap = document.getElementById('teachers-slider');
+        if (!wrap) return;
+        
+        const track = wrap.querySelector('.slider-track');
+        const cards = () => Array.from(track.children);
+        const prevBtn = wrap.querySelector('[data-dir="prev"]');
+        const nextBtn = wrap.querySelector('[data-dir="next"]');
+        const dotsBox = wrap.querySelector('.slider-dots');
+
+        let index = 0;
+        let itemsPerView = getItemsPerView();
+        let pages = calcPages();
+
+        function getItemsPerView() {
+            if (window.matchMedia('(max-width: 680px)').matches) return 1;
+            if (window.matchMedia('(max-width: 960px)').matches) return 2;
+            return 3;
+        }
+        
+        function calcPages() {
+            const total = cards().length;
+            return Math.max(1, Math.ceil(total / itemsPerView));
+        }
+
+        function update() {
+            const gap = parseFloat(getComputedStyle(track).gap) || 0;
+            const viewport = wrap.querySelector('.slider-viewport');
+            const viewportWidth = viewport.clientWidth;
+
+            const offset = index * (viewportWidth + 0);
+            track.style.transform = `translate3d(${-offset}px,0,0)`;
+
+            const onMobile = window.matchMedia('(max-width: 680px)').matches;
+            if (!onMobile) {
+                prevBtn.disabled = index <= 0;
+                nextBtn.disabled = index >= pages - 1;
+            }
+
+            updateDots();
+        }
+
+        function go(to) {
+            index = Math.max(0, Math.min(pages - 1, to));
+            update();
+        }
+
+        // Стрелки
+        prevBtn.addEventListener('click', () => go(index - 1));
+        nextBtn.addEventListener('click', () => go(index + 1));
+
+        // Точки (для мобилки)
+        function renderDots() {
+            dotsBox.innerHTML = '';
+            for (let i = 0; i < pages; i++) {
+                const b = document.createElement('button');
+                b.className = 'slider-dot';
+                b.type = 'button';
+                b.role = 'tab';
+                b.setAttribute('aria-label', `Страница ${i+1}`);
+                b.addEventListener('click', () => go(i));
+                dotsBox.appendChild(b);
+            }
+        }
+        
+        function updateDots() {
+            const dots = Array.from(dotsBox.children);
+            dots.forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
+        }
+
+        // Свайп (мобилка)
+        let startX = 0, currentX = 0, dragging = false, startTransform = 0;
+
+        track.addEventListener('pointerdown', (e) => {
+            if (!window.matchMedia('(max-width: 680px)').matches) return;
+            dragging = true;
+            track.setPointerCapture(e.pointerId);
+            startX = e.clientX;
+            const m = /translate3d\((-?\d+\.?\d*)px/.exec(getComputedStyle(track).transform);
+            startTransform = m ? parseFloat(m[1]) : 0;
+            track.style.transition = 'none';
+        });
+        
+        track.addEventListener('pointermove', (e) => {
+            if (!dragging) return;
+            currentX = e.clientX;
+            const dx = currentX - startX;
+            track.style.transform = `translate3d(${startTransform + dx}px,0,0)`;
+        });
+        
+        const endDrag = (e) => {
+            if (!dragging) return;
+            dragging = false;
+            track.style.transition = 'transform .35s ease';
+            const dx = (currentX || startX) - startX;
+            const threshold = 40;
+            if (dx < -threshold) go(index + 1);
+            else if (dx > threshold) go(index - 1);
+            else update();
+        };
+        
+        track.addEventListener('pointerup', endDrag);
+        track.addEventListener('pointercancel', endDrag);
+        track.addEventListener('pointerleave', endDrag);
+
+        // Пересчёт при ресайзе
+        const reflow = () => {
+            itemsPerView = getItemsPerView();
+            pages = calcPages();
+            index = Math.min(index, pages - 1);
+            renderDots();
+            update();
+        };
+        
+        window.addEventListener('resize', reflow);
+
+        // Инициализация
+        reflow();
+    }
+
+    /**
+     * Слайдер отзывов
+     */
+    function initTestimonialsSlider() {
+        const wrap = document.getElementById('testimonials-slider');
+        if (!wrap) return;
+        
+        const track = wrap.querySelector('.slider-track');
+        const cards = () => Array.from(track.children);
+        const prevBtn = wrap.querySelector('[data-dir="prev"]');
+        const nextBtn = wrap.querySelector('[data-dir="next"]');
+        const dotsBox = wrap.querySelector('.slider-dots');
+
+        let index = 0;
+        let itemsPerView = getItemsPerView();
+        let pages = calcPages();
+
+        function getItemsPerView() {
+            if (window.matchMedia('(max-width: 680px)').matches) return 1;
+            if (window.matchMedia('(max-width: 960px)').matches) return 2;
+            return 3;
+        }
+        
+        function calcPages() {
+            const total = cards().length;
+            return Math.max(1, Math.ceil(total / itemsPerView));
+        }
+
+        function update() {
+            const gap = parseFloat(getComputedStyle(track).gap) || 0;
+            const viewport = wrap.querySelector('.slider-viewport');
+            const viewportWidth = viewport.clientWidth;
+
+            const offset = index * (viewportWidth + 0);
+            track.style.transform = `translate3d(${-offset}px,0,0)`;
+
+            const onMobile = window.matchMedia('(max-width: 680px)').matches;
+            if (!onMobile) {
+                prevBtn.disabled = index <= 0;
+                nextBtn.disabled = index >= pages - 1;
+            }
+
+            updateDots();
+        }
+
+        function go(to) {
+            index = Math.max(0, Math.min(pages - 1, to));
+            update();
+        }
+
+        // Стрелки
+        prevBtn.addEventListener('click', () => go(index - 1));
+        nextBtn.addEventListener('click', () => go(index + 1));
+
+        // Точки (для мобилки)
+        function renderDots() {
+            dotsBox.innerHTML = '';
+            for (let i = 0; i < pages; i++) {
+                const b = document.createElement('button');
+                b.className = 'slider-dot';
+                b.type = 'button';
+                b.role = 'tab';
+                b.setAttribute('aria-label', `Страница ${i+1}`);
+                b.addEventListener('click', () => go(i));
+                dotsBox.appendChild(b);
+            }
+        }
+        
+        function updateDots() {
+            const dots = Array.from(dotsBox.children);
+            dots.forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
+        }
+
+        // Свайп (мобилка)
+        let startX = 0, currentX = 0, dragging = false, startTransform = 0;
+
+        track.addEventListener('pointerdown', (e) => {
+            if (!window.matchMedia('(max-width: 680px)').matches) return;
+            dragging = true;
+            track.setPointerCapture(e.pointerId);
+            startX = e.clientX;
+            const m = /translate3d\((-?\d+\.?\d*)px/.exec(getComputedStyle(track).transform);
+            startTransform = m ? parseFloat(m[1]) : 0;
+            track.style.transition = 'none';
+        });
+        
+        track.addEventListener('pointermove', (e) => {
+            if (!dragging) return;
+            currentX = e.clientX;
+            const dx = currentX - startX;
+            track.style.transform = `translate3d(${startTransform + dx}px,0,0)`;
+        });
+        
+        const endDrag = (e) => {
+            if (!dragging) return;
+            dragging = false;
+            track.style.transition = 'transform .35s ease';
+            const dx = (currentX || startX) - startX;
+            const threshold = 40;
+            if (dx < -threshold) go(index + 1);
+            else if (dx > threshold) go(index - 1);
+            else update();
+        };
+        
+        track.addEventListener('pointerup', endDrag);
+        track.addEventListener('pointercancel', endDrag);
+        track.addEventListener('pointerleave', endDrag);
+
+        // Пересчёт при ресайзе
+        const reflow = () => {
+            itemsPerView = getItemsPerView();
+            pages = calcPages();
+            index = Math.min(index, pages - 1);
+            renderDots();
+            update();
+        };
+        
+        window.addEventListener('resize', reflow);
+
+        // Инициализация
+        reflow();
+    }
+
+
+
     // Инициализация дополнительных функций при загрузке
     $(window).on('load', function() {
         initLazyLoading();
         initCounters();
-        initTestimonialsSlider();
         initCoursesSlider();
+        initTeachersSlider();
+        initTestimonialsSlider();
     });
 
 })(jQuery);

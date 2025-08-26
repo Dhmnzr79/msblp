@@ -296,3 +296,211 @@ function psych_school_security() {
     });
 }
 add_action('init', 'psych_school_security');
+
+/**
+ * Кастомный тип записи для преподавателей
+ */
+function psych_school_teachers_post_type() {
+    register_post_type('teachers', array(
+        'labels' => array(
+            'name'               => __('Преподаватели', 'psych-school'),
+            'singular_name'      => __('Преподаватель', 'psych-school'),
+            'menu_name'          => __('Преподаватели', 'psych-school'),
+            'add_new'            => __('Добавить преподавателя', 'psych-school'),
+            'add_new_item'       => __('Добавить нового преподавателя', 'psych-school'),
+            'edit_item'          => __('Редактировать преподавателя', 'psych-school'),
+            'new_item'           => __('Новый преподаватель', 'psych-school'),
+            'view_item'          => __('Просмотреть преподавателя', 'psych-school'),
+            'search_items'       => __('Искать преподавателей', 'psych-school'),
+            'not_found'          => __('Преподаватели не найдены', 'psych-school'),
+            'not_found_in_trash' => __('В корзине преподавателей не найдено', 'psych-school'),
+        ),
+        'public'       => true,
+        'has_archive'  => true,
+        'menu_icon'    => 'dashicons-groups',
+        'supports'     => array('title', 'editor', 'thumbnail'),
+        'rewrite'      => array('slug' => 'teachers'),
+    ));
+}
+add_action('init', 'psych_school_teachers_post_type');
+
+/**
+ * Мета-поля для преподавателей
+ */
+function psych_school_teachers_meta_boxes() {
+    add_meta_box(
+        'teacher_details',
+        __('Детали преподавателя', 'psych-school'),
+        'psych_school_teacher_meta_box_callback',
+        'teachers',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'psych_school_teachers_meta_boxes');
+
+/**
+ * Callback для мета-полей преподавателя
+ */
+function psych_school_teacher_meta_box_callback($post) {
+    wp_nonce_field('psych_school_teacher_meta_box', 'psych_school_teacher_meta_box_nonce');
+    
+    $short_description = get_post_meta($post->ID, '_teacher_short_description', true);
+    $show_in_slider = get_post_meta($post->ID, '_teacher_show_in_slider', true);
+    
+    ?>
+    <table class="form-table">
+        <tr>
+            <th scope="row">
+                <label for="teacher_short_description"><?php _e('Краткое описание для слайдера', 'psych-school'); ?></label>
+            </th>
+            <td>
+                <textarea id="teacher_short_description" name="teacher_short_description" rows="3" cols="50" style="width: 100%;"><?php echo esc_textarea($short_description); ?></textarea>
+                <p class="description"><?php _e('Краткое описание, которое будет отображаться в слайдере (максимум 150 символов)', 'psych-school'); ?></p>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                <label for="teacher_show_in_slider"><?php _e('Отображать в слайдере', 'psych-school'); ?></label>
+            </th>
+            <td>
+                <input type="checkbox" id="teacher_show_in_slider" name="teacher_show_in_slider" value="1" <?php checked($show_in_slider, '1'); ?> />
+                <label for="teacher_show_in_slider"><?php _e('Показывать этого преподавателя в слайдере на главной странице', 'psych-school'); ?></label>
+            </td>
+        </tr>
+    </table>
+    <?php
+}
+
+/**
+ * Сохранение мета-полей преподавателя
+ */
+function psych_school_save_teacher_meta($post_id) {
+    if (!isset($_POST['psych_school_teacher_meta_box_nonce'])) {
+        return;
+    }
+    
+    if (!wp_verify_nonce($_POST['psych_school_teacher_meta_box_nonce'], 'psych_school_teacher_meta_box')) {
+        return;
+    }
+    
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+    
+    if (isset($_POST['teacher_short_description'])) {
+        update_post_meta($post_id, '_teacher_short_description', sanitize_textarea_field($_POST['teacher_short_description']));
+    }
+    
+    $show_in_slider = isset($_POST['teacher_show_in_slider']) ? '1' : '0';
+    update_post_meta($post_id, '_teacher_show_in_slider', $show_in_slider);
+}
+add_action('save_post', 'psych_school_save_teacher_meta');
+
+/**
+ * Кастомный тип записи для отзывов
+ */
+function psych_school_testimonials_post_type() {
+    register_post_type('testimonials', array(
+        'labels' => array(
+            'name'               => __('Отзывы', 'psych-school'),
+            'singular_name'      => __('Отзыв', 'psych-school'),
+            'menu_name'          => __('Отзывы', 'psych-school'),
+            'add_new'            => __('Добавить отзыв', 'psych-school'),
+            'add_new_item'       => __('Добавить новый отзыв', 'psych-school'),
+            'edit_item'          => __('Редактировать отзыв', 'psych-school'),
+            'new_item'           => __('Новый отзыв', 'psych-school'),
+            'view_item'          => __('Просмотреть отзыв', 'psych-school'),
+            'search_items'       => __('Искать отзывы', 'psych-school'),
+            'not_found'          => __('Отзывы не найдены', 'psych-school'),
+            'not_found_in_trash' => __('В корзине отзывов не найдено', 'psych-school'),
+        ),
+        'public'       => true,
+        'has_archive'  => true,
+        'menu_icon'    => 'dashicons-format-quote',
+        'supports'     => array('title', 'editor', 'thumbnail'),
+        'rewrite'      => array('slug' => 'testimonials'),
+    ));
+}
+add_action('init', 'psych_school_testimonials_post_type');
+
+/**
+ * Мета-поля для отзывов
+ */
+function psych_school_testimonials_meta_boxes() {
+    add_meta_box(
+        'testimonial_details',
+        __('Детали отзыва', 'psych-school'),
+        'psych_school_testimonial_meta_box_callback',
+        'testimonials',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'psych_school_testimonials_meta_boxes');
+
+/**
+ * Callback для мета-полей отзыва
+ */
+function psych_school_testimonial_meta_box_callback($post) {
+    wp_nonce_field('psych_school_testimonial_meta_box', 'psych_school_testimonial_meta_box_nonce');
+    
+    $author_name = get_post_meta($post->ID, '_testimonial_author_name', true);
+    $show_in_slider = get_post_meta($post->ID, '_testimonial_show_in_slider', true);
+    
+    ?>
+    <table class="form-table">
+        <tr>
+            <th scope="row">
+                <label for="testimonial_author_name"><?php _e('Имя автора отзыва', 'psych-school'); ?></label>
+            </th>
+            <td>
+                <input type="text" id="testimonial_author_name" name="testimonial_author_name" value="<?php echo esc_attr($author_name); ?>" class="regular-text" />
+                <p class="description"><?php _e('Имя человека, который оставил отзыв', 'psych-school'); ?></p>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                <label for="testimonial_show_in_slider"><?php _e('Отображать в слайдере', 'psych-school'); ?></label>
+            </th>
+            <td>
+                <input type="checkbox" id="testimonial_show_in_slider" name="testimonial_show_in_slider" value="1" <?php checked($show_in_slider, '1'); ?> />
+                <label for="testimonial_show_in_slider"><?php _e('Показывать этот отзыв в слайдере на главной странице', 'psych-school'); ?></label>
+            </td>
+        </tr>
+    </table>
+    <?php
+}
+
+/**
+ * Сохранение мета-полей отзыва
+ */
+function psych_school_save_testimonial_meta($post_id) {
+    if (!isset($_POST['psych_school_testimonial_meta_box_nonce'])) {
+        return;
+    }
+    
+    if (!wp_verify_nonce($_POST['psych_school_testimonial_meta_box_nonce'], 'psych_school_testimonial_meta_box')) {
+        return;
+    }
+    
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+    
+    if (isset($_POST['testimonial_author_name'])) {
+        update_post_meta($post_id, '_testimonial_author_name', sanitize_text_field($_POST['testimonial_author_name']));
+    }
+    
+    $show_in_slider = isset($_POST['testimonial_show_in_slider']) ? '1' : '0';
+    update_post_meta($post_id, '_testimonial_show_in_slider', $show_in_slider);
+}
+add_action('save_post', 'psych_school_save_testimonial_meta');

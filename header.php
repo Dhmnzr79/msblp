@@ -42,12 +42,12 @@
                             <i class="icon-phone"></i>
                             <span>+7 (999) 123-45-67</span>
                         </div>
-                        <a href="#contact" class="btn-secondary">
+                        <button type="button" class="btn-secondary">
                             <span class="btn-text">Бесплатная консультация</span>
                             <svg class="btn-arrow" width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 6H15M15 6L10 1M15 6L10 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>

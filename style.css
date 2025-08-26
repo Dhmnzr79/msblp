@@ -183,40 +183,78 @@ a:hover {
   }
 }
 
-/* Кнопки */
+/* Тестовый блок с кнопками */
+.buttons-test-section {
+    background: var(--bg-color);
+    padding: 60px 0;
+}
+
+.buttons-test-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Основная кнопка */
 .btn {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: var(--primary-color);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    border-radius: 10px;
     color: var(--white);
-    border: none;
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-    font-weight: 600;
-    text-align: center;
-    cursor: pointer;
-    transition: var(--transition);
     text-decoration: none;
+    background: var(--pink-color);
+    border: 2px solid var(--pink-color);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    box-sizing: border-box;
+    font-family: 'Manrope', sans-serif;
+}
+
+.btn .btn-text {
+    transition: color 0.3s ease;
+}
+
+.btn .btn-arrow {
+    width: 16px;
+    height: 12px;
+    transition: all 0.3s ease;
+}
+
+.btn .btn-arrow path {
+    transition: stroke 0.3s ease;
+    stroke: var(--white);
 }
 
 .btn:hover {
-    background-color: var(--secondary-color);
-    color: var(--white);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow);
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
 }
 
-/* Универсальная вторичная кнопка с анимацией */
+.btn:hover .btn-text {
+    color: var(--white);
+}
+
+.btn:hover .btn-arrow path {
+    stroke: var(--white);
+}
+
+/* Дополнительная кнопка */
 .btn-secondary {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    padding: 25px 40px;
+    padding: 20px;
     border-radius: 10px;
-    color: var(--pink-color);
+    color: var(--blue-color);
     text-decoration: none;
     background: transparent;
-    border: 2px solid var(--pink-color);
+    border: 2px solid var(--blue-color);
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -224,6 +262,8 @@ a:hover {
     z-index: 1;
     font-weight: 600;
     font-size: 1rem;
+    box-sizing: border-box;
+    font-family: 'Manrope', sans-serif;
 }
 
 .btn-secondary .btn-text {
@@ -237,8 +277,8 @@ a:hover {
 }
 
 .btn-secondary .btn-arrow path {
-    transition: fill 0.3s ease;
-    fill: var(--pink-color);
+    transition: stroke 0.3s ease;
+    stroke: var(--blue-color);
 }
 
 .btn-secondary::before {
@@ -248,7 +288,7 @@ a:hover {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: var(--pink-color);
+    background: var(--blue-color);
     transition: left 0.3s ease;
     z-index: -1;
 }
@@ -262,7 +302,7 @@ a:hover {
 }
 
 .btn-secondary:hover .btn-arrow path {
-    fill: #fff;
+    stroke: #fff;
 }
 
 .btn-secondary:hover::before {
@@ -1028,13 +1068,7 @@ a:hover {
     box-shadow: var(--shadow);
 }
 
-.stat-number {
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-    font-family: 'Manrope', sans-serif;
-}
+
 
 .stat-label {
     font-size: 1rem;
@@ -1080,7 +1114,9 @@ a:hover {
     font-family: 'Manrope', sans-serif;
 }
 
-
+.course-description {
+    margin-bottom: 20px;
+}
 
 .course-meta {
     display: flex;
@@ -1088,6 +1124,7 @@ a:hover {
     font-size: 13px;
     color: var(--blue-color);
     font-weight: 500;
+    margin-top: auto;
 }
 
 .course-meta-item {
@@ -1334,51 +1371,320 @@ a:hover {
     stroke: var(--blue-color);
 }
 
-/* Преподаватели */
-.teachers-grid {
+
+
+/* Слайдер преподавателей */
+:root {
+    --gap: 16px;
+    --card-radius: 14px;
+    --arrow-size: 40px;
+}
+
+.teachers-section {
+}
+
+/* Обёртка для позиционирования стрелок над слайдером */
+.slider-wrap {
+    position: relative;
+    margin: 80px auto 40px;
+}
+
+/* Стрелки — над слайдером, прижаты вправо */
+.slider-controls {
+    position: absolute;
+    top: -56px;
+    right: 0;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.slider-btn {
+    width: var(--arrow-size);
+    height: var(--arrow-size);
+    border-radius: 999px;
+    border: 1px solid var(--blue-color);
+    background: #fff;
+    cursor: pointer;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    place-items: center;
+    transition: transform .15s ease, background .15s ease, opacity .2s ease;
 }
 
-.teacher-card {
-    text-align: center;
+.slider-btn:hover {
+    background: rgba(0, 132, 254, 0.12);
+    transform: scale(1.1);
 }
 
-.teacher-image {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 1.5rem;
-    border-radius: 50%;
+.slider-btn[disabled] {
+    opacity: .4;
+    cursor: default;
+    transform: none;
+}
+
+.slider-btn svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--blue-color);
+    stroke-width: 2;
+    fill: none;
+    transition: stroke 0.3s ease;
+}
+
+.slider-btn:hover svg {
+    stroke: var(--blue-color);
+}
+
+/* Слайдер */
+.slider {
     overflow: hidden;
 }
 
-.teacher-image img {
+.slider-viewport {
+    overflow: hidden;
+}
+
+.slider-track {
+    display: flex;
+    gap: var(--gap);
+    will-change: transform;
+    transition: transform .35s ease;
+    touch-action: pan-y;
+}
+
+/* Карточка */
+.teacher-card {
+    flex: 0 0 calc((100% - 2*var(--gap)) / 3);
+    background: #fff;
+    /* border: 1px solid #e9e9f2; */
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    padding: 30px;
+}
+
+.teacher-media {
     width: 100%;
-    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 0;
+    gap: -28px;
+    margin-bottom: 20px;
+}
+
+.teacher-media img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
     object-fit: cover;
 }
 
+.teacher-icon {
+    width: 48px;
+    height: 48px;
+    margin-left: -28px;
+}
+
+.teacher-body {
+    padding: 0;
+}
+
 .teacher-name {
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
+    font-weight: 700;
+    font-size: 18px;
+    margin: 0 0 6px;
+    color: var(--text-color);
+    font-family: 'Manrope', sans-serif;
 }
 
-.teacher-position {
-    color: var(--secondary-color);
+.teacher-role {
+    font-size: 16px;
+    margin: 0 0 10px;
+}
+
+.teacher-meta {
+    font-size: 13px;
+    color: #8a8aa3;
+    line-height: 1.4;
+}
+
+/* Пагинация (мобилка) */
+.slider-dots {
+    display: none;
+    margin-top: 12px;
+    justify-content: center;
+    gap: 8px;
+}
+
+.slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #cfcfe6;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-dot[aria-current="true"] {
+    background: var(--blue-color);
+    transform: scale(1.2);
+}
+
+/* ====== Адаптив ====== */
+@media (max-width: 960px) {
+    .teacher-card {
+        flex-basis: calc((100% - var(--gap)) / 2);
+    }
+}
+
+@media (max-width: 680px) {
+    .teacher-card {
+        flex-basis: 100%;
+    }
+    
+    .slider-controls {
+        display: none;
+    }
+    
+    .slider-dots {
+        display: flex;
+    }
+}
+
+/* Слайдер отзывов */
+
+/* Карточка отзыва */
+.testimonial-card {
+    flex: 0 0 calc((100% - 2*var(--gap)) / 3);
+    background: #fff;
+    border: 1px solid #e9e9f2;
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.testimonial-media {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 0;
+    gap: -28px;
+    margin-bottom: 20px;
+}
+
+.testimonial-media img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.testimonial-icon {
+    width: 48px;
+    height: 48px;
+    margin-left: -28px;
+}
+
+.testimonial-body {
+    padding: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonial-text {
+    font-size: 14px;
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-bottom: 15px;
+    flex: 1;
+}
+
+.testimonial-text p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.testimonial-author {
+    margin-top: auto;
+}
+
+.testimonial-name {
+    font-weight: 700;
+    font-size: 16px;
+    margin: 0 0 4px;
+    color: var(--text-color);
+    font-family: 'Manrope', sans-serif;
+}
+
+.testimonial-role {
+    font-size: 12px;
+    color: var(--blue-color);
+    margin: 0;
     font-weight: 600;
-    margin-bottom: 1rem;
 }
 
-.teacher-excerpt {
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
+/* Статистика */
+.statistics-section {
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 80px;
+}
+
+.stat-card {
+    border: 1px solid var(--blue-color);
+    border-radius: var(--card-radius);
+    padding: 30px;
+    text-align: left;
+}
+
+.stat-icon {
+    width: 36px;
+    height: 39px;
+    margin-bottom: 20px;
+}
+
+.stat-card h3 {
+    font-size: 48px;
+    font-weight: 700;
+    color: #0084FE;
+    margin: 0 0 16px;
+    font-family: 'Manrope', sans-serif;
+    display: block;
+}
+
+.stat-text {
+    font-size: 16px;
+    color: var(--text-color);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Адаптив для статистики */
+@media (max-width: 960px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 680px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Отзывы */
-.testimonials-section {
-    background: var(--neutral-color);
-}
 
 .testimonials-slider {
     display: grid;
@@ -1596,11 +1902,7 @@ a:hover {
         padding: 60px 0;
     }
     
-    /* Кнопки */
-    .btn-secondary {
-        padding: 20px 30px;
-        font-size: 0.9rem;
-    }
+
     
     /* Шапка */
     .header-top {
@@ -1656,15 +1958,7 @@ a:hover {
     h1 { font-size: 1.75rem; }
     h2 { font-size: 1.5rem; }
     
-    .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-    
-    .btn-secondary {
-        padding: 15px 25px;
-        font-size: 0.85rem;
-    }
+
     
     .mobile-menu {
         width: 100%;
