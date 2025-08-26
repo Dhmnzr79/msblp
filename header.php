@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <?php wp_head(); ?>
+</head>
+
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+
+<div id="page" class="site">
+    <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Перейти к содержимому', 'psych-school'); ?></a>
+
+    <header id="masthead" class="site-header">
+        <!-- Первая строка шапки -->
+        <div class="header-top">
+            <div class="container">
+                <div class="header-top-content">
+                    <!-- Контакты -->
+                    <div class="header-contacts">
+                        <div class="contact-item">
+                            <i class="icon-location"></i>
+                            <span>г. Москва, ул. Примерная, д. 123</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="icon-email"></i>
+                            <span>info@psych-school.ru</span>
+                        </div>
+                    </div>
+
+                    <!-- Звонок и кнопка -->
+                    <div class="header-call">
+                        <div class="contact-item">
+                            <i class="icon-phone"></i>
+                            <span>+7 (999) 123-45-67</span>
+                        </div>
+                        <a href="#contact" class="btn-secondary">
+                            <span class="btn-text">Бесплатная консультация</span>
+                            <svg class="btn-arrow" width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 6H15M15 6L10 1M15 6L10 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вторая строка шапки -->
+        <div class="header-main">
+            <div class="container">
+                <div class="header-content">
+                    <!-- Логотип -->
+                    <div class="site-branding">
+                        <a href="<?php echo esc_url(home_url('/')); ?>" rel="home" class="logo-link">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/logo.svg" alt="Meneghetti School for Business Psychology and Leadership" class="logo">
+                        </a>
+                    </div>
+
+                    <!-- Главное меню -->
+                    <nav id="site-navigation" class="main-navigation">
+                        <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+                            <span class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                            <span class="screen-reader-text"><?php esc_html_e('Меню', 'psych-school'); ?></span>
+                        </button>
+                        
+                        <ul class="nav-menu">
+                            <li><a href="<?php echo esc_url(home_url('/')); ?>">Главная</a></li>
+                            
+                            <li class="menu-item-has-children">
+                                <a href="#">О Школе</a>
+                                <ul class="sub-menu">
+                                    <li><a href="#">Миссия, Цели, Задачи</a></li>
+                                    <li><a href="#">Аудитория</a></li>
+                                    <li><a href="#">Теория и методика</a></li>
+                                    <li><a href="#">Интегральная онтопсихология</a></li>
+                                    <li><a href="#">Как работает интегральная онтопсихология</a></li>
+                                    <li><a href="#">Принципы (Наши приоритеты)</a></li>
+                                    <li><a href="#">Основатели</a></li>
+                                    <li><a href="#">Преподаватели</a></li>
+                                    <li><a href="#">Сведения об образовательной организации</a></li>
+                                </ul>
+                            </li>
+                            
+                            <li class="menu-item-has-children">
+                                <a href="#">Программы</a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item-has-children">
+                                        <a href="#">Школа бизнес-психологии</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="#">Интегральная онтопсихология в практике бизнеса. Курс для руководителей. Профессиональная переподготовка</a></li>
+                                            <li><a href="#">Forma mentis предпринимателя: ключевые факторы успеха. Тренинг-интенсив</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="#">Школа интегральной онтопсихологии</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="#">Интегральная онтопсихология: теория и практика. Профессиональная переподготовка</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="#">Школа лидерства</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="#">«Метафизика и практика лидерства». Семинар-резиденс</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            <li><a href="#">Расписание</a></li>
+                            
+                            <li class="menu-item-has-children">
+                                <a href="#">Консультирование</a>
+                                <ul class="sub-menu">
+                                    <li><a href="#">Индивидуальное консультирование и коучинг</a></li>
+                                    <li><a href="#">Управленческий консалтинг и трекинг</a></li>
+                                    <li><a href="#">Развивающие корпоративные мероприятия</a></li>
+                                </ul>
+                            </li>
+                            
+                            <li class="menu-item-has-children">
+                                <a href="#">Публикации</a>
+                                <ul class="sub-menu">
+                                    <li><a href="#">Новости</a></li>
+                                    <li><a href="#">Статьи</a></li>
+                                    <li><a href="#">Исследования</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu-overlay">
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <button class="mobile-menu-close">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav class="mobile-navigation">
+                <ul class="mobile-nav-menu">
+                    <li><a href="<?php echo esc_url(home_url('/')); ?>">Главная</a></li>
+                    
+                    <li class="mobile-menu-item-has-children">
+                        <a href="#" class="mobile-menu-toggle">О Школе</a>
+                        <ul class="mobile-sub-menu">
+                            <li><a href="#">Миссия, Цели, Задачи</a></li>
+                            <li><a href="#">Аудитория</a></li>
+                            <li><a href="#">Теория и методика</a></li>
+                            <li><a href="#">Интегральная онтопсихология</a></li>
+                            <li><a href="#">Как работает интегральная онтопсихология</a></li>
+                            <li><a href="#">Принципы (Наши приоритеты)</a></li>
+                            <li><a href="#">Основатели</a></li>
+                            <li><a href="#">Преподаватели</a></li>
+                            <li><a href="#">Сведения об образовательной организации</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="mobile-menu-item-has-children">
+                        <a href="#" class="mobile-menu-toggle">Программы</a>
+                        <ul class="mobile-sub-menu">
+                            <li class="mobile-menu-item-has-children">
+                                <a href="#" class="mobile-menu-toggle">Школа бизнес-психологии</a>
+                                <ul class="mobile-sub-menu">
+                                    <li><a href="#">Интегральная онтопсихология в практике бизнеса. Курс для руководителей. Профессиональная переподготовка</a></li>
+                                    <li><a href="#">Forma mentis предпринимателя: ключевые факторы успеха. Тренинг-интенсив</a></li>
+                                </ul>
+                            </li>
+                            <li class="mobile-menu-item-has-children">
+                                <a href="#" class="mobile-menu-toggle">Школа интегральной онтопсихологии</a>
+                                <ul class="mobile-sub-menu">
+                                    <li><a href="#">Интегральная онтопсихология: теория и практика. Профессиональная переподготовка</a></li>
+                                </ul>
+                            </li>
+                            <li class="mobile-menu-item-has-children">
+                                <a href="#" class="mobile-menu-toggle">Школа лидерства</a>
+                                <ul class="mobile-sub-menu">
+                                    <li><a href="#">«Метафизика и практика лидерства». Семинар-резиденс</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="#">Расписание</a></li>
+                    
+                    <li class="mobile-menu-item-has-children">
+                        <a href="#" class="mobile-menu-toggle">Консультирование</a>
+                        <ul class="mobile-sub-menu">
+                            <li><a href="#">Индивидуальное консультирование и коучинг</a></li>
+                            <li><a href="#">Управленческий консалтинг и трекинг</a></li>
+                            <li><a href="#">Развивающие корпоративные мероприятия</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="mobile-menu-item-has-children">
+                        <a href="#" class="mobile-menu-toggle">Публикации</a>
+                        <ul class="mobile-sub-menu">
+                            <li><a href="#">Новости</a></li>
+                            <li><a href="#">Статьи</a></li>
+                            <li><a href="#">Исследования</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mobile-contacts">
+                <div class="contact-item">
+                    <i class="icon-phone"></i>
+                    <span>+7 (999) 123-45-67</span>
+                </div>
+                <div class="contact-item">
+                    <i class="icon-email"></i>
+                    <span>info@psych-school.ru</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="content" class="site-content">

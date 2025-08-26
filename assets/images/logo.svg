@@ -1,0 +1,20 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2C5AA0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F39C12;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Фоновая форма -->
+  <rect x="2" y="2" width="56" height="56" rx="8" fill="url(#logoGradient)" stroke="#2C5AA0" stroke-width="2"/>
+  
+  <!-- Буква M -->
+  <path d="M8 45 L8 15 L18 30 L28 15 L28 45" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Текст -->
+  <text x="70" y="20" font-family="Manrope, sans-serif" font-size="14" font-weight="700" fill="#2C5AA0">MENEGHETTI SCHOOL</text>
+  <text x="70" y="35" font-family="Inter, sans-serif" font-size="10" font-weight="400" fill="#666">for Business Psychology and Leadership</text>
+</svg>
+
+
