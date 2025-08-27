@@ -23,6 +23,8 @@
         // Формы
         initForms();
         
+
+        
     });
 
     /**
@@ -269,51 +271,123 @@
      * Слайдер курсов
      */
     function initCoursesSlider() {
-        const $slider = $('.courses-slider .grid');
-        const $prevBtn = $('#prevCourses');
-        const $nextBtn = $('#nextCourses');
+        const wrap = document.getElementById('courses-slider');
+        if (!wrap) return;
         
-        if ($slider.length && $prevBtn.length && $nextBtn.length) {
-            let currentSlide = 0;
-            const totalSlides = $slider.children().length;
-            const slidesToShow = 3;
-            const maxSlides = totalSlides - slidesToShow;
-            
-            // Показываем/скрываем кнопки
-            function updateButtons() {
-                $prevBtn.toggle(currentSlide > 0);
-                $nextBtn.toggle(currentSlide < maxSlides);
-            }
-            
-            // Переход к слайду
-            function goToSlide(slideIndex) {
-                currentSlide = Math.max(0, Math.min(slideIndex, maxSlides));
-                const translateX = -currentSlide * (100 / slidesToShow);
-                $slider.css('transform', `translateX(${translateX}%)`);
-                updateButtons();
-            }
-            
-            // Обработчики кнопок
-            $prevBtn.on('click', function() {
-                goToSlide(currentSlide - 1);
-            });
-            
-            $nextBtn.on('click', function() {
-                goToSlide(currentSlide + 1);
-            });
-            
-            // Инициализация
-            updateButtons();
-            
-            // Автоматическое переключение каждые 5 секунд
-            setInterval(function() {
-                if (currentSlide < maxSlides) {
-                    goToSlide(currentSlide + 1);
-                } else {
-                    goToSlide(0);
-                }
-            }, 5000);
+        const track = wrap.querySelector('.slider-track');
+        const cards = () => Array.from(track.children);
+        const prevBtn = wrap.querySelector('[data-dir="prev"]');
+        const nextBtn = wrap.querySelector('[data-dir="next"]');
+        const dotsBox = wrap.querySelector('.slider-dots');
+
+        let index = 0;
+        let itemsPerView = getItemsPerView();
+        let pages = calcPages();
+
+        function getItemsPerView() {
+            if (window.matchMedia('(max-width: 680px)').matches) return 1;
+            if (window.matchMedia('(max-width: 960px)').matches) return 2;
+            return 3;
         }
+        
+        function calcPages() {
+            const total = cards().length;
+            return Math.max(1, Math.ceil(total / itemsPerView));
+        }
+
+        function update() {
+            const gap = parseFloat(getComputedStyle(track).gap) || 0;
+            const viewport = wrap.querySelector('.slider-viewport');
+            const viewportWidth = viewport.clientWidth;
+
+            const offset = index * (viewportWidth + 0);
+            track.style.transform = `translate3d(${-offset}px,0,0)`;
+
+            const onMobile = window.matchMedia('(max-width: 680px)').matches;
+            if (!onMobile) {
+                prevBtn.disabled = index <= 0;
+                nextBtn.disabled = index >= pages - 1;
+            }
+
+            updateDots();
+        }
+
+        function go(to) {
+            index = Math.max(0, Math.min(pages - 1, to));
+            update();
+        }
+
+        // Стрелки
+        prevBtn.addEventListener('click', () => go(index - 1));
+        nextBtn.addEventListener('click', () => go(index + 1));
+
+        // Точки (для мобилки)
+        function renderDots() {
+            dotsBox.innerHTML = '';
+            for (let i = 0; i < pages; i++) {
+                const b = document.createElement('button');
+                b.className = 'slider-dot';
+                b.type = 'button';
+                b.role = 'tab';
+                b.setAttribute('aria-label', `Страница ${i+1}`);
+                b.addEventListener('click', () => go(i));
+                dotsBox.appendChild(b);
+            }
+        }
+        
+        function updateDots() {
+            const dots = Array.from(dotsBox.children);
+            dots.forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
+        }
+
+        // Свайп (мобилка)
+        let startX = 0, currentX = 0, dragging = false, startTransform = 0;
+
+        track.addEventListener('pointerdown', (e) => {
+            if (!window.matchMedia('(max-width: 680px)').matches) return;
+            dragging = true;
+            track.setPointerCapture(e.pointerId);
+            startX = e.clientX;
+            const m = /translate3d\((-?\d+\.?\d*)px/.exec(getComputedStyle(track).transform);
+            startTransform = m ? parseFloat(m[1]) : 0;
+            track.style.transition = 'none';
+        });
+        
+        track.addEventListener('pointermove', (e) => {
+            if (!dragging) return;
+            currentX = e.clientX;
+            const dx = currentX - startX;
+            track.style.transform = `translate3d(${startTransform + dx}px,0,0)`;
+        });
+        
+        const endDrag = (e) => {
+            if (!dragging) return;
+            dragging = false;
+            track.style.transition = 'transform .35s ease';
+            const dx = (currentX || startX) - startX;
+            const threshold = 40;
+            if (dx < -threshold) go(index + 1);
+            else if (dx > threshold) go(index - 1);
+            else update();
+        };
+        
+        track.addEventListener('pointerup', endDrag);
+        track.addEventListener('pointercancel', endDrag);
+        track.addEventListener('pointerleave', endDrag);
+
+        // Пересчёт при ресайзе
+        const reflow = () => {
+            itemsPerView = getItemsPerView();
+            pages = calcPages();
+            index = Math.min(index, pages - 1);
+            renderDots();
+            update();
+        };
+        
+        window.addEventListener('resize', reflow);
+
+        // Инициализация
+        reflow();
     }
 
 
@@ -566,6 +640,42 @@
 
 
 
+
+
+    /**
+     * Умное позиционирование выпадающих меню
+     */
+    function initSmartMenuPositioning() {
+        const SAFE = 8; // отступ от края
+        
+        document.querySelectorAll('.menu-item-has-children').forEach(item => {
+            const panel = item.querySelector(':scope > .sub-menu');
+            if (!panel) return;
+            
+            const place = () => {
+                panel.classList.remove('sub-menu--left');
+                
+                // посчитать после показа (или временно показать off-screen)
+                panel.style.visibility = 'hidden';
+                panel.style.display = 'block';
+                
+                const r = panel.getBoundingClientRect();
+                const overflowRight = r.right > window.innerWidth - SAFE;
+                
+                if (overflowRight) panel.classList.add('sub-menu--left');
+                
+                panel.style.removeProperty('visibility');
+                panel.style.removeProperty('display');
+            };
+            
+            item.addEventListener('mouseenter', place);
+            item.addEventListener('focusin', place); // доступность с клавы
+            window.addEventListener('resize', place);
+        });
+    }
+
+
+
     // Инициализация дополнительных функций при загрузке
     $(window).on('load', function() {
         initLazyLoading();
@@ -573,6 +683,7 @@
         initCoursesSlider();
         initTeachersSlider();
         initTestimonialsSlider();
+        initSmartMenuPositioning();
     });
 
 })(jQuery);

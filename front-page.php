@@ -7,8 +7,38 @@
         <div class="container">
             <div class="grid grid-12">
                 <div class="hero-content" style="grid-column: 1 / 7;">
-                    <h1>Психологическая школа</h1>
-                    <p>Профессиональное обучение психологии с практическим подходом. Получите качественное образование и станьте востребованным специалистом.</p>
+                    <h1>Высшая школа бизнес-психологии и международного лидерства им. Антонио Менегетти</h1>
+                    
+                    <!-- Плюсы школы -->
+                    <div class="school-advantages">
+                        <div class="advantage-item">
+                            <div class="advantage-icon">
+                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.6066 3.75722L18.6882 18.688L3.75734 18.6065M17.6456 17.6455L2.42472 2.42459" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <p>Наши студенты обучаются мышлению лидера и применяют его на практике, строят международные бизнесы и выводят на рынок инновации.</p>
+                        </div>
+                        
+                        <div class="advantage-item">
+                            <div class="advantage-icon">
+                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.6066 3.75722L18.6882 18.688L3.75734 18.6065M17.6456 17.6455L2.42472 2.42459" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <p>Международный лидер - это не должность, а навык кооперирования стратегических и креативных задач. Возможность управлять людьми и вести переговоры на соответствующем уровне, независимо от текущих условий.</p>
+                        </div>
+                        
+                        <div class="advantage-item">
+                            <div class="advantage-icon">
+                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.6066 3.75722L18.6882 18.688L3.75734 18.6065M17.6456 17.6455L2.42472 2.42459" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <p>Наши выпускники обладают набором универсальных инструментов, которые значительно упрощают процессы и содержат в себе все принципы построения международного бизнеса.</p>
+                        </div>
+                    </div>
+                    
                     <div class="hero-buttons">
                         <button type="button" class="btn">
                             <span class="btn-text">Начать обучение</span>
@@ -18,9 +48,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="hero-image" style="grid-column: 7 / 13;">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/hero-image.jpg" alt="Психологическая школа">
-                </div>
+
             </div>
         </div>
     </section>
@@ -32,118 +60,126 @@
                 <h2>Наши события</h2>
             </div>
             
-            <div class="courses-slider">
-                <div class="grid grid-3">
-                    <!-- Карточка курса 1 -->
-                    <div class="course-card">
-                        <div class="course-image">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/course-1.jpg" alt="Денежный тренинг">
-                        </div>
-                        <div class="course-content">
-                            <h3 class="course-title">Денежный тренинг: «Я и деньги. Что было! Что есть! Что будет!»</h3>
-                            <div class="course-description">
-                                Тренинг предназначен для тех, кто желает обрести денежное благополучие, финансовую уверенность, изучить закон богатства, избавиться от безденежья и научиться привлекать деньги в свою жизнь
-                            </div>
-                            <div class="course-meta">
-                                <div class="course-meta-item">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/calendar.svg" alt="Календарь" width="20" height="22">
-                                    <span>18 января</span>
-                                </div>
-                                <div class="course-meta-item">
-                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_590_2868)">
-                                            <path d="M9.42857 5.5C9.42857 5.29162 9.51135 5.09177 9.6587 4.94442C9.80605 4.79707 10.0059 4.71429 10.2143 4.71429C10.4227 4.71429 10.6225 4.79707 10.7699 4.94442C10.9172 5.09177 11 5.29162 11 5.5V11H14.1429C14.3512 11 14.5511 11.0828 14.6984 11.2301C14.8458 11.3775 14.9286 11.5773 14.9286 11.7857C14.9286 11.9941 14.8458 12.1939 14.6984 12.3413C14.5511 12.4886 14.3512 12.5714 14.1429 12.5714H10.2143C10.0059 12.5714 9.80605 12.4886 9.6587 12.3413C9.51135 12.1939 9.42857 11.9941 9.42857 11.7857V5.5ZM11 22C17.0751 22 22 17.0751 22 11C22 4.92486 17.0751 0 11 0C4.92486 0 0 4.92486 0 11C0 17.0751 4.92486 22 11 22ZM11 20.4286C5.79307 20.4286 1.57143 16.2069 1.57143 11C1.57143 5.79307 5.79307 1.57143 11 1.57143C16.2069 1.57143 20.4286 5.79307 20.4286 11C20.4286 16.2069 16.2069 20.4286 11 20.4286Z" fill="#0084FE"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_590_2868">
-                                                <rect width="22" height="22" fill="white"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                    <span>6 часов</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Карточка курса 2 -->
-                    <div class="course-card">
-                        <div class="course-image">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/course-2.jpg" alt="Психология бизнеса">
-                        </div>
-                        <div class="course-content">
-                            <h3 class="course-title">Психология бизнеса: «Управление и лидерство»</h3>
-                            <div class="course-description">
-                                Программа для руководителей и предпринимателей, желающих развить лидерские качества, улучшить управленческие навыки и создать эффективную команду
-                            </div>
-                            <div class="course-meta">
-                                <div class="course-meta-item">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/calendar.svg" alt="Календарь" width="20" height="22">
-                                    <span>25 января</span>
-                                </div>
-                                <div class="course-meta-item">
-                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_590_2868)">
-                                            <path d="M9.42857 5.5C9.42857 5.29162 9.51135 5.09177 9.6587 4.94442C9.80605 4.79707 10.0059 4.71429 10.2143 4.71429C10.4227 4.71429 10.6225 4.79707 10.7699 4.94442C10.9172 5.09177 11 5.29162 11 5.5V11H14.1429C14.3512 11 14.5511 11.0828 14.6984 11.2301C14.8458 11.3775 14.9286 11.5773 14.9286 11.7857C14.9286 11.9941 14.8458 12.1939 14.6984 12.3413C14.5511 12.4886 14.3512 12.5714 14.1429 12.5714H10.2143C10.0059 12.5714 9.80605 12.4886 9.6587 12.3413C9.51135 12.1939 9.42857 11.9941 9.42857 11.7857V5.5ZM11 22C17.0751 22 22 17.0751 22 11C22 4.92486 17.0751 0 11 0C4.92486 0 0 4.92486 0 11C0 17.0751 4.92486 22 11 22ZM11 20.4286C5.79307 20.4286 1.57143 16.2069 1.57143 11C1.57143 5.79307 5.79307 1.57143 11 1.57143C16.2069 1.57143 20.4286 5.79307 20.4286 11C20.4286 16.2069 16.2069 20.4286 11 20.4286Z" fill="#0084FE"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_590_2868">
-                                                <rect width="22" height="22" fill="white"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                    <span>8 часов</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Карточка курса 3 -->
-                    <div class="course-card">
-                        <div class="course-image">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/course-3.jpg" alt="Интегральная психология">
-                        </div>
-                        <div class="course-content">
-                            <h3 class="course-title">Интегральная психология: «Теория и практика»</h3>
-                            <div class="course-description">
-                                Глубокое изучение интегральной психологии с практическими техниками для личностного роста, самопознания и развития сознания
-                            </div>
-                            <div class="course-meta">
-                                <div class="course-meta-item">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/calendar.svg" alt="Календарь" width="20" height="22">
-                                    <span>1 февраля</span>
-                                </div>
-                                <div class="course-meta-item">
-                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_590_2868)">
-                                            <path d="M9.42857 5.5C9.42857 5.29162 9.51135 5.09177 9.6587 4.94442C9.80605 4.79707 10.0059 4.71429 10.2143 4.71429C10.4227 4.71429 10.6225 4.79707 10.7699 4.94442C10.9172 5.09177 11 5.29162 11 5.5V11H14.1429C14.3512 11 14.5511 11.0828 14.6984 11.2301C14.8458 11.3775 14.9286 11.5773 14.9286 11.7857C14.9286 11.9941 14.8458 12.1939 14.6984 12.3413C14.5511 12.4886 14.3512 12.5714 14.1429 12.5714H10.2143C10.0059 12.5714 9.80605 12.4886 9.6587 12.3413C9.51135 12.1939 9.42857 11.9941 9.42857 11.7857V5.5ZM11 22C17.0751 22 22 17.0751 22 11C22 4.92486 17.0751 0 11 0C4.92486 0 0 4.92486 0 11C0 17.0751 4.92486 22 11 22ZM11 20.4286C5.79307 20.4286 1.57143 16.2069 1.57143 11C1.57143 5.79307 5.79307 1.57143 11 1.57143C16.2069 1.57143 20.4286 5.79307 20.4286 11C20.4286 16.2069 16.2069 20.4286 11 20.4286Z" fill="#0084FE"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_590_2868">
-                                                <rect width="22" height="22" fill="white"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                    <span>12 часов</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Навигация слайдера -->
-                <div class="courses-slider-nav">
-                    <button id="prevCourses" class="slider-arrow left">
+            <div class="slider-wrap" id="courses-slider">
+                <!-- Стрелки -->
+                <div class="slider-controls">
+                    <button class="slider-btn left" data-dir="prev" aria-label="Предыдущие">
                         <svg viewBox="0 0 24 24">
                             <path d="M19 12H5M11 19l-7-7 7-7"/>
                         </svg>
                     </button>
-                    <button id="nextCourses" class="slider-arrow right">
+                    <button class="slider-btn right" data-dir="next" aria-label="Следующие">
                         <svg viewBox="0 0 24 24">
                             <path d="M5 12h14M13 5l7 7-7 7"/>
                         </svg>
                     </button>
                 </div>
+
+                <!-- Слайдер -->
+                <div class="slider">
+                    <div class="slider-viewport">
+                        <div class="slider-track">
+                            <!-- Карточка курса 1 -->
+                            <div class="course-card">
+                                <div class="course-image">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/course-1.jpg" alt="Денежный тренинг">
+                                </div>
+                                <div class="course-content">
+                                    <h3 class="course-title">Денежный тренинг: «Я и деньги. Что было! Что есть! Что будет!»</h3>
+                                    <div class="course-description">
+                                        Тренинг предназначен для тех, кто желает обрести денежное благополучие, финансовую уверенность, изучить закон богатства, избавиться от безденежья и научиться привлекать деньги в свою жизнь
+                                    </div>
+                                    <div class="course-meta">
+                                        <div class="course-meta-item">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/calendar.svg" alt="Календарь" width="20" height="22">
+                                            <span>18 января</span>
+                                        </div>
+                                        <div class="course-meta-item">
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_590_2868)">
+                                                    <path d="M9.42857 5.5C9.42857 5.29162 9.51135 5.09177 9.6587 4.94442C9.80605 4.79707 10.0059 4.71429 10.2143 4.71429C10.4227 4.71429 10.6225 4.79707 10.7699 4.94442C10.9172 5.09177 11 5.29162 11 5.5V11H14.1429C14.3512 11 14.5511 11.0828 14.6984 11.2301C14.8458 11.3775 14.9286 11.5773 14.9286 11.7857C14.9286 11.9941 14.8458 12.1939 14.6984 12.3413C14.5511 12.4886 14.3512 12.5714 14.1429 12.5714H10.2143C10.0059 12.5714 9.80605 12.4886 9.6587 12.3413C9.51135 12.1939 9.42857 11.9941 9.42857 11.7857V5.5ZM11 22C17.0751 22 22 17.0751 22 11C22 4.92486 17.0751 0 11 0C4.92486 0 0 4.92486 0 11C0 17.0751 4.92486 22 11 22ZM11 20.4286C5.79307 20.4286 1.57143 16.2069 1.57143 11C1.57143 5.79307 5.79307 1.57143 11 1.57143C16.2069 1.57143 20.4286 5.79307 20.4286 11C20.4286 16.2069 16.2069 20.4286 11 20.4286Z" fill="#0084FE"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_590_2868">
+                                                        <rect width="22" height="22" fill="white"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                            <span>6 часов</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Карточка курса 2 -->
+                            <div class="course-card">
+                                <div class="course-image">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/course-2.jpg" alt="Психология бизнеса">
+                                </div>
+                                <div class="course-content">
+                                    <h3 class="course-title">Психология бизнеса: «Управление и лидерство»</h3>
+                                    <div class="course-description">
+                                        Программа для руководителей и предпринимателей, желающих развить лидерские качества, улучшить управленческие навыки и создать эффективную команду
+                                    </div>
+                                    <div class="course-meta">
+                                        <div class="course-meta-item">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/calendar.svg" alt="Календарь" width="20" height="22">
+                                            <span>25 января</span>
+                                        </div>
+                                        <div class="course-meta-item">
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_590_2868)">
+                                                    <path d="M9.42857 5.5C9.42857 5.29162 9.51135 5.09177 9.6587 4.94442C9.80605 4.79707 10.0059 4.71429 10.2143 4.71429C10.4227 4.71429 10.6225 4.79707 10.7699 4.94442C10.9172 5.09177 11 5.29162 11 5.5V11H14.1429C14.3512 11 14.5511 11.0828 14.6984 11.2301C14.8458 11.3775 14.9286 11.5773 14.9286 11.7857C14.9286 11.9941 14.8458 12.1939 14.6984 12.3413C14.5511 12.4886 14.3512 12.5714 14.1429 12.5714H10.2143C10.0059 12.5714 9.80605 12.4886 9.6587 12.3413C9.51135 12.1939 9.42857 11.9941 9.42857 11.7857V5.5ZM11 22C17.0751 22 22 17.0751 22 11C22 4.92486 17.0751 0 11 0C4.92486 0 0 4.92486 0 11C0 17.0751 4.92486 22 11 22ZM11 20.4286C5.79307 20.4286 1.57143 16.2069 1.57143 11C1.57143 5.79307 5.79307 1.57143 11 1.57143C16.2069 1.57143 20.4286 5.79307 20.4286 11C20.4286 16.2069 16.2069 20.4286 11 20.4286Z" fill="#0084FE"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_590_2868">
+                                                        <rect width="22" height="22" fill="white"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                            <span>8 часов</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Карточка курса 3 -->
+                            <div class="course-card">
+                                <div class="course-image">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/course-3.jpg" alt="Интегральная психология">
+                                </div>
+                                <div class="course-content">
+                                    <h3 class="course-title">Интегральная психология: «Теория и практика»</h3>
+                                    <div class="course-description">
+                                        Глубокое изучение интегральной психологии с практическими техниками для личностного роста, самопознания и развития сознания
+                                    </div>
+                                    <div class="course-meta">
+                                        <div class="course-meta-item">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/calendar.svg" alt="Календарь" width="20" height="22">
+                                            <span>1 февраля</span>
+                                        </div>
+                                        <div class="course-meta-item">
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_590_2868)">
+                                                    <path d="M9.42857 5.5C9.42857 5.29162 9.51135 5.09177 9.6587 4.94442C9.80605 4.79707 10.0059 4.71429 10.2143 4.71429C10.4227 4.71429 10.6225 4.79707 10.7699 4.94442C10.9172 5.09177 11 5.29162 11 5.5V11H14.1429C14.3512 11 14.5511 11.0828 14.6984 11.2301C14.8458 11.3775 14.9286 11.5773 14.9286 11.7857C14.9286 11.9941 14.8458 12.1939 14.6984 12.3413C14.5511 12.4886 14.3512 12.5714 14.1429 12.5714H10.2143C10.0059 12.5714 9.80605 12.4886 9.6587 12.3413C9.51135 12.1939 9.42857 11.9941 9.42857 11.7857V5.5ZM11 22C17.0751 22 22 17.0751 22 11C22 4.92486 17.0751 0 11 0C4.92486 0 0 4.92486 0 11C0 17.0751 4.92486 22 11 22ZM11 20.4286C5.79307 20.4286 1.57143 16.2069 1.57143 11C1.57143 5.79307 5.79307 1.57143 11 1.57143C16.2069 1.57143 20.4286 5.79307 20.4286 11C20.4286 16.2069 16.2069 20.4286 11 20.4286Z" fill="#0084FE"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_590_2868">
+                                                        <rect width="22" height="22" fill="white"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                            <span>12 часов</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Точки (показываются только на мобиле через CSS) -->
+                <div class="slider-dots" aria-label="Пагинация" role="tablist"></div>
             </div>
         </div>
     </section>
@@ -195,22 +231,22 @@
             <div class="what-we-do-grid">
                 <div class="card-item card-1">
                     <div class="card-number">01.</div>
-                    <div class="card-text">Распространяем идеи осознанного лидерства, онтологического мышления и глубинных ценностей среди тех, кто влияет: предпринимателей, коучей, экспертов, управленцев, преподавателей.</div>
+                    <p>Распространяем идеи осознанного лидерства, онтологического мышления и глубинных ценностей среди тех, кто влияет: предпринимателей, коучей, экспертов, управленцев, преподавателей.</p>
                 </div>
                 
                 <div class="card-item card-2">
                     <div class="card-number">02.</div>
-                    <div class="card-text">Даём современные подходы, проверенные инструменты и живую практику, чтобы люди и организации могли быть жизнеспособными, эффективными, адаптивными.</div>
+                    <p>Даём современные подходы, проверенные инструменты и живую практику, чтобы люди и организации могли быть жизнеспособными, эффективными, адаптивными.</p>
                 </div>
                 
                 <div class="card-item card-3">
                     <div class="card-number">03.</div>
-                    <div class="card-text">Работаем с тем, что внутри: зачем ты живёшь, куда идёшь, какие ценности двигают тобой. Это даёт энергию, фокус и ясность в действиях.</div>
+                    <p>Работаем с тем, что внутри: зачем ты живёшь, куда идёшь, какие ценности двигают тобой. Это даёт энергию, фокус и ясность в действиях.</p>
                 </div>
                 
                 <div class="card-item card-4">
                     <div class="card-number">04.</div>
-                    <div class="card-text">Настоящие лидеры — не те, у кого должность, а те, кто меняют себя и вдохновляют других. Мы учим быть такими — через работу над собой и развитие духовного интеллекта.</div>
+                    <p>Настоящие лидеры — не те, у кого должность, а те, кто меняют себя и вдохновляют других. Мы учим быть такими — через работу над собой и развитие духовного интеллекта.</p>
                 </div>
                 
                 <div class="what-we-do-image">
@@ -262,14 +298,14 @@
             <div class="slider-wrap" id="teachers-slider">
                 <!-- Стрелки -->
                 <div class="slider-controls">
-                    <button class="slider-btn" data-dir="prev" aria-label="Предыдущие">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path d="M19 12H5M11 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <button class="slider-btn left" data-dir="prev" aria-label="Предыдущие">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 12H5M11 19l-7-7 7-7"/>
                         </svg>
                     </button>
-                    <button class="slider-btn" data-dir="next" aria-label="Следующие">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path d="M5 12h14M13 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <button class="slider-btn right" data-dir="next" aria-label="Следующие">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M5 12h14M13 5l7 7-7 7"/>
                         </svg>
                     </button>
                 </div>
@@ -501,25 +537,54 @@
         </div>
     </section>
 
+    <!-- Сертификаты -->
+    <section class="certificates-section section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Сертификаты и лицензии</h2>
+            </div>
+            
+            <div class="certificates-gallery">
+                <div class="certificate-image">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/licence.jpg" alt="Лицензия">
+                </div>
+                <div class="certificate-image">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/licence.jpg" alt="Лицензия">
+                </div>
+                <div class="certificate-image">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/licence.jpg" alt="Лицензия">
+                </div>
+                <div class="certificate-image">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/licence.jpg" alt="Лицензия">
+                </div>
+                <div class="certificate-image">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/licence.jpg" alt="Лицензия">
+                </div>
+                <div class="certificate-image">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/licence.jpg" alt="Лицензия">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Отзывы -->
     <section class="testimonials-section section">
         <div class="container">
             <div class="section-title">
                 <h2>Отзывы выпускников</h2>
-                <p>Что говорят о нас наши студенты</p>
             </div>
             
             <div class="slider-wrap" id="testimonials-slider">
                 <!-- Стрелки -->
                 <div class="slider-controls">
-                    <button class="slider-btn" data-dir="prev" aria-label="Предыдущие">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path d="M19 12H5M11 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <button class="slider-btn left" data-dir="prev" aria-label="Предыдущие">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 12H5M11 19l-7-7 7-7"/>
                         </svg>
                     </button>
-                    <button class="slider-btn" data-dir="next" aria-label="Следующие">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path d="M5 12h14M13 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <button class="slider-btn right" data-dir="next" aria-label="Следующие">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M5 12h14M13 5l7 7-7 7"/>
                         </svg>
                     </button>
                 </div>
@@ -560,7 +625,7 @@
                                             </svg>
                                         </div>
                                         <div class="testimonial-body">
-                                <div class="testimonial-text"><?php the_content(); ?></div>
+                                <?php the_content(); ?>
                                 <div class="testimonial-author">
                                                 <h3 class="testimonial-name"><?php echo $author_name ?: get_the_title(); ?></h3>
                                                 <p class="testimonial-role">Выпускник программы</p>
@@ -582,9 +647,7 @@
                                         </svg>
                                     </div>
                                     <div class="testimonial-body">
-                                        <div class="testimonial-text">
-                                            <p>"Обучение в школе полностью изменило мой подход к лидерству. Теперь я понимаю, что настоящий лидер - это тот, кто сначала работает над собой, а потом вдохновляет других."</p>
-                                        </div>
+                                        <p>"Обучение в школе полностью изменило мой подход к лидерству. Теперь я понимаю, что настоящий лидер - это тот, кто сначала работает над собой, а потом вдохновляет других."</p>
                                         <div class="testimonial-author">
                                             <h3 class="testimonial-name">Анна Смирнова</h3>
                                             <p class="testimonial-role">Выпускник программы</p>
@@ -601,9 +664,7 @@
                                         </svg>
                                     </div>
                                     <div class="testimonial-body">
-                                        <div class="testimonial-text">
-                                            <p>"Практические инструменты, которые я получил здесь, помогли мне вывести свою команду на новый уровень. Рекомендую всем, кто хочет развиваться как лидер."</p>
-                                        </div>
+                                        <p>"Практические инструменты, которые я получил здесь, помогли мне вывести свою команду на новый уровень. Рекомендую всем, кто хочет развиваться как лидер."</p>
                                         <div class="testimonial-author">
                                             <h3 class="testimonial-name">Дмитрий Козлов</h3>
                                             <p class="testimonial-role">Выпускник программы</p>
@@ -620,9 +681,7 @@
                                         </svg>
                                     </div>
                                     <div class="testimonial-body">
-                                        <div class="testimonial-text">
-                                            <p>"Школа дала мне не только знания, но и новое видение себя как лидера. Теперь я уверенно управляю своей командой и достигаю поставленных целей."</p>
-                                        </div>
+                                        <p>"Школа дала мне не только знания, но и новое видение себя как лидера. Теперь я уверенно управляю своей командой и достигаю поставленных целей."</p>
                                         <div class="testimonial-author">
                                             <h3 class="testimonial-name">Мария Петрова</h3>
                                             <p class="testimonial-role">Выпускник программы</p>
@@ -639,9 +698,7 @@
                                         </svg>
                                     </div>
                                     <div class="testimonial-body">
-                                        <div class="testimonial-text">
-                                            <p>"Благодаря обучению я научился лучше понимать себя и свою команду. Это помогло создать более эффективную рабочую среду и достичь лучших результатов."</p>
-                                        </div>
+                                        <p>"Благодаря обучению я научился лучше понимать себя и свою команду. Это помогло создать более эффективную рабочую среду и достичь лучших результатов."</p>
                                         <div class="testimonial-author">
                                             <h3 class="testimonial-name">Сергей Иванов</h3>
                                             <p class="testimonial-role">Выпускник программы</p>
@@ -664,44 +721,15 @@
     <!-- Контакты -->
     <section id="contact" class="contact-section section">
         <div class="container">
-            <div class="section-title">
-                <h2>Свяжитесь с нами</h2>
-                <p>Остались вопросы? Мы готовы помочь!</p>
-            </div>
-            <div class="grid grid-12">
-                <div class="contact-info" style="grid-column: 1 / 6;">
-                    <h3>Контактная информация</h3>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="icon-phone"></i>
-                            <div>
-                                <strong>Телефон:</strong>
-                                <a href="tel:+79991234567">+7 (999) 123-45-67</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="icon-email"></i>
-                            <div>
-                                <strong>Email:</strong>
-                                <a href="mailto:info@psych-school.ru">info@psych-school.ru</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="icon-location"></i>
-                            <div>
-                                <strong>Адрес:</strong>
-                                <span>г. Москва, ул. Примерная, д. 123</span>
-                            </div>
-                        </div>
-                    </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Свяжитесь с нами</h2>
+                    <p>Остались вопросы? Мы готовы помочь! Задайте любой вопрос, оставьте свои контакты и мы проконсультируем вас по любому вопросу.</p>
                 </div>
-                <div class="contact-form" style="grid-column: 7 / 13;">
+                <div class="contact-form">
                     <form class="contact-form" id="contactForm">
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Ваше имя" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" placeholder="Email" required>
                         </div>
                         <div class="form-group">
                             <input type="tel" name="phone" placeholder="Телефон">
@@ -716,29 +744,7 @@
         </div>
     </section>
 
-    <!-- Тестовый блок с кнопками -->
-    <section class="buttons-test-section section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Тестовые кнопки</h2>
-                <p>Основная и дополнительная кнопки для настройки стилей</p>
-            </div>
-            <div class="buttons-test-container">
-                <button type="button" class="btn">
-                    <span class="btn-text">Основная кнопка</span>
-                    <svg class="btn-arrow" width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 6H15M15 6L10 1M15 6L10 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-                <button type="button" class="btn-secondary">
-                    <span class="btn-text">Дополнительная кнопка</span>
-                    <svg class="btn-arrow" width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 6H15M15 6L10 1M15 6L10 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </section>
+
 
 </main>
 

@@ -20,33 +20,12 @@
                             <?php } ?>
                         </div>
                         <p class="footer-description">
-                            Профессиональное обучение психологии с практическим подходом. 
-                            Получите качественное образование и станьте востребованным специалистом.
+                            Meneghetti School for Business Psychology and Leadership
                         </p>
-                        <div class="social-links">
-                            <a href="#" class="social-link" aria-label="ВКонтакте">
-                                <i class="icon-vk"></i>
-                            </a>
-                            <a href="#" class="social-link" aria-label="Telegram">
-                                <i class="icon-telegram"></i>
-                            </a>
-                            <a href="#" class="social-link" aria-label="WhatsApp">
-                                <i class="icon-whatsapp"></i>
-                            </a>
-                        </div>
+
                     </div>
 
-                    <!-- Программы обучения -->
-                    <div class="footer-widget">
-                        <h3 class="widget-title">Программы обучения</h3>
-                        <ul class="footer-menu">
-                            <li><a href="<?php echo esc_url(home_url('/courses')); ?>">Все программы</a></li>
-                            <li><a href="#">Практическая психология</a></li>
-                            <li><a href="#">Детская психология</a></li>
-                            <li><a href="#">Семейная психология</a></li>
-                            <li><a href="#">Клиническая психология</a></li>
-                        </ul>
-                    </div>
+
 
                     <!-- Информация -->
                     <div class="footer-widget">

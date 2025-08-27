@@ -61,6 +61,7 @@
                     <div class="site-branding">
                         <a href="<?php echo esc_url(home_url('/')); ?>" rel="home" class="logo-link">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/logo.svg" alt="Meneghetti School for Business Psychology and Leadership" class="logo">
+                            <span class="logo-text">Meneghetti School for Business Psychology and Leadership</span>
                         </a>
                     </div>
 
@@ -99,20 +100,20 @@
                                     <li class="menu-item-has-children">
                                         <a href="#">Школа бизнес-психологии</a>
                                         <ul class="sub-menu">
-                                            <li><a href="#">Интегральная онтопсихология в практике бизнеса. Курс для руководителей. Профессиональная переподготовка</a></li>
-                                            <li><a href="#">Forma mentis предпринимателя: ключевые факторы успеха. Тренинг-интенсив</a></li>
+                                            <li><a href="#">Интегральная онтопсихология в практике бизнеса. Курс для руководителей.</a></li>
+                                            <li><a href="#">Forma mentis предпринимателя: ключевые факторы успеха.</a></li>
                                         </ul>
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="#">Школа интегральной онтопсихологии</a>
                                         <ul class="sub-menu">
-                                            <li><a href="#">Интегральная онтопсихология: теория и практика. Профессиональная переподготовка</a></li>
+                                            <li><a href="#">Интегральная онтопсихология: теория и практика.</a></li>
                                         </ul>
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="#">Школа лидерства</a>
                                         <ul class="sub-menu">
-                                            <li><a href="#">«Метафизика и практика лидерства». Семинар-резиденс</a></li>
+                                            <li><a href="#">«Метафизика и практика лидерства». Семинар-резиденс.</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -178,20 +179,20 @@
                             <li class="mobile-menu-item-has-children">
                                 <a href="#" class="mobile-menu-toggle">Школа бизнес-психологии</a>
                                 <ul class="mobile-sub-menu">
-                                    <li><a href="#">Интегральная онтопсихология в практике бизнеса. Курс для руководителей. Профессиональная переподготовка</a></li>
-                                    <li><a href="#">Forma mentis предпринимателя: ключевые факторы успеха. Тренинг-интенсив</a></li>
+                                    <li><a href="#">Интегральная онтопсихология в практике бизнеса. Курс для руководителей.</a></li>
+                                    <li><a href="#">Forma mentis предпринимателя: ключевые факторы успеха.</a></li>
                                 </ul>
                             </li>
                             <li class="mobile-menu-item-has-children">
                                 <a href="#" class="mobile-menu-toggle">Школа интегральной онтопсихологии</a>
                                 <ul class="mobile-sub-menu">
-                                    <li><a href="#">Интегральная онтопсихология: теория и практика. Профессиональная переподготовка</a></li>
+                                    <li><a href="#">Интегральная онтопсихология: теория и практика.</a></li>
                                 </ul>
                             </li>
                             <li class="mobile-menu-item-has-children">
                                 <a href="#" class="mobile-menu-toggle">Школа лидерства</a>
                                 <ul class="mobile-sub-menu">
-                                    <li><a href="#">«Метафизика и практика лидерства». Семинар-резиденс</a></li>
+                                    <li><a href="#">«Метафизика и практика лидерства». Семинар-резиденс.</a></li>
                                 </ul>
                             </li>
                         </ul>

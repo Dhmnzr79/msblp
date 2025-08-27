@@ -327,7 +327,7 @@ a:hover {
 
 /* Секции */
 .section {
-    padding: 4rem 0;
+    padding: 40px 0;
 }
 
 .section-title {
@@ -335,14 +335,10 @@ a:hover {
     margin-bottom: 3rem;
 }
 
-.section-title h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
+
 
 .section-title p {
-    font-size: 1.1rem;
-    max-width: 600px;
+    font-size: 1.5rem;
     margin: 0;
 }
 
@@ -389,7 +385,7 @@ a:hover {
 .header-content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 1rem 0;
 }
 
@@ -398,13 +394,15 @@ a:hover {
 }
 
 .logo-link {
-    display: block;
+    display: flex;
+    align-items: center;
     text-decoration: none;
 }
 
 .logo {
     height: 50px;
     width: auto;
+    max-width: 110px;
     transition: var(--transition);
 }
 
@@ -412,10 +410,26 @@ a:hover {
     transform: scale(1.05);
 }
 
+.logo-text {
+    display: none;
+    font-size: 14px;
+    color: var(--text-color);
+    font-weight: 400;
+    margin-left: 10px;
+    line-height: 1.4;
+    max-width: 220px;
+}
+
+@media (min-width: 768px) {
+    .logo-text {
+        display: block;
+    }
+}
+
 /* Навигация */
 .main-navigation {
-    flex: 1;
-    margin: 0 2rem;
+    margin-left: auto;
+    margin-right: 0;
 }
 
 .nav-menu {
@@ -468,6 +482,7 @@ a:hover {
     box-shadow: var(--shadow);
     border-radius: var(--border-radius);
     min-width: 250px;
+    max-width: 400px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
@@ -477,6 +492,20 @@ a:hover {
     margin: 0;
     padding: 0.5rem 0;
 }
+
+/* Вложенные подменю (третий уровень) открываются вправо */
+.sub-menu .sub-menu {
+    top: 0;
+    left: 100%;
+}
+
+/* Когда у правого края открываем влево */
+.sub-menu--left {
+    left: auto;
+    right: 100%;
+}
+
+
 
 .menu-item-has-children:hover > .sub-menu {
     opacity: 1;
@@ -493,7 +522,9 @@ a:hover {
     color: var(--text-color);
     font-size: 0.9rem;
     border-bottom: 1px solid #f0f0f0;
-    white-space: nowrap;
+    white-space: normal;
+    line-height: 1.3;
+    max-width: 36ch;
 }
 
 .sub-menu a:hover {
@@ -691,9 +722,8 @@ a:hover {
 
 /* Подвал */
 .site-footer {
-    background: var(--primary-color);
+    background: #1a1943;
     color: var(--white);
-    margin-top: 4rem;
 }
 
 .footer-main {
@@ -702,7 +732,7 @@ a:hover {
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
 }
 
@@ -716,6 +746,7 @@ a:hover {
     color: rgba(255,255,255,0.8);
     line-height: 1.6;
     margin-bottom: 1.5rem;
+    font-size: 14px;
 }
 
 .social-links {
@@ -975,6 +1006,70 @@ a:hover {
     overflow: hidden;
 }
 
+/* Плюсы школы */
+.school-advantages {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.advantage-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.advantage-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.advantage-text h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+    color: var(--white);
+}
+
+.advantage-text p {
+    font-size: 0.875rem;
+    margin: 0;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+/* Адаптивность для плюсов школы */
+@media (max-width: 768px) {
+    .school-advantages {
+        flex-direction: column;
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+    }
+    
+    .advantage-item {
+        gap: 0.5rem;
+    }
+    
+    .advantage-icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .advantage-text h4 {
+        font-size: 0.9rem;
+    }
+    
+    .advantage-text p {
+        font-size: 0.8rem;
+    }
+}
+
 .hero-section::before {
     content: '';
     position: absolute;
@@ -989,6 +1084,7 @@ a:hover {
 .hero-content {
     position: relative;
     z-index: 2;
+    padding-right: 15%;
 }
 
 .hero-content h1 {
@@ -998,12 +1094,7 @@ a:hover {
     font-weight: 800;
 }
 
-.hero-content p {
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
-    margin-bottom: 2rem;
-    opacity: 0.9;
-    max-width: 500px;
-}
+
 
 .hero-buttons {
     display: flex;
@@ -1078,6 +1169,7 @@ a:hover {
 
 /* Карточки курсов */
 .course-card {
+    flex: 0 0 calc((100% - 2*var(--gap)) / 3);
     background: var(--white);
     border-radius: 12px;
     overflow: hidden;
@@ -1116,6 +1208,7 @@ a:hover {
 
 .course-description {
     margin-bottom: 20px;
+    min-height: 140px;
 }
 
 .course-meta {
@@ -1142,11 +1235,11 @@ a:hover {
 /* Слайдер курсов */
 .courses-slider {
     position: relative;
-    margin-bottom: 60px;
 }
 
 /* О школе */
 .about-school-section {
+    padding-top: 0;
 }
 
 .about-content h3 {
@@ -1169,6 +1262,7 @@ a:hover {
     position: relative;
     padding-left: 24px;
     margin-bottom: 16px;
+    font-size: 18px;
 }
 
 .about-content li::before {
@@ -1216,6 +1310,8 @@ a:hover {
     padding: 32px;
     border-radius: 12px;
 }
+
+
 
 .card-number {
     font-size: 24px;
@@ -1386,7 +1482,7 @@ a:hover {
 /* Обёртка для позиционирования стрелок над слайдером */
 .slider-wrap {
     position: relative;
-    margin: 80px auto 40px;
+    margin: 50px auto 40px;
 }
 
 /* Стрелки — над слайдером, прижаты вправо */
@@ -1400,20 +1496,22 @@ a:hover {
 }
 
 .slider-btn {
-    width: var(--arrow-size);
-    height: var(--arrow-size);
-    border-radius: 999px;
-    border: 1px solid var(--blue-color);
-    background: #fff;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
     cursor: pointer;
-    display: grid;
-    place-items: center;
-    transition: transform .15s ease, background .15s ease, opacity .2s ease;
+    transition: transform 0.3s ease, background 0.3s ease;
+    background: none;
+    border: none;
+    padding: 0;
 }
 
 .slider-btn:hover {
-    background: rgba(0, 132, 254, 0.12);
     transform: scale(1.1);
+    background: rgba(0, 132, 254, 0.12);
 }
 
 .slider-btn[disabled] {
@@ -1423,16 +1521,26 @@ a:hover {
 }
 
 .slider-btn svg {
-    width: 22px;
-    height: 22px;
-    stroke: var(--blue-color);
+    width: 28px;
+    height: 28px;
+    stroke: #333;
     stroke-width: 2;
     fill: none;
-    transition: stroke 0.3s ease;
+    transition: stroke 0.3s ease, transform 0.3s ease;
 }
 
 .slider-btn:hover svg {
     stroke: var(--blue-color);
+}
+
+/* Для левой стрелки двигаем SVG при ховере влево */
+.slider-btn.left:hover svg {
+    transform: translateX(-2px);
+}
+
+/* Для правой стрелки двигаем SVG вправо */
+.slider-btn.right:hover svg {
+    transform: translateX(2px);
 }
 
 /* Слайдер */
@@ -1536,13 +1644,29 @@ a:hover {
 /* ====== Адаптив ====== */
 @media (max-width: 960px) {
     .teacher-card {
-        flex-basis: calc((100% - var(--gap)) / 2);
+        flex: 0 0 calc((100% - var(--gap)) / 2) !important;
+    }
+    
+    .testimonial-card {
+        flex: 0 0 calc((100% - var(--gap)) / 2) !important;
+    }
+    
+    .course-card {
+        flex: 0 0 calc((100% - var(--gap)) / 2) !important;
     }
 }
 
 @media (max-width: 680px) {
     .teacher-card {
-        flex-basis: 100%;
+        flex: 0 0 100% !important;
+    }
+    
+    .testimonial-card {
+        flex: 0 0 100% !important;
+    }
+    
+    .course-card {
+        flex: 0 0 100% !important;
     }
     
     .slider-controls {
@@ -1599,17 +1723,12 @@ a:hover {
     flex-direction: column;
 }
 
-.testimonial-text {
-    font-size: 14px;
+.testimonial-body > p {
+    font-size: 16px;
     color: var(--text-color);
     line-height: 1.6;
     margin-bottom: 15px;
     flex: 1;
-}
-
-.testimonial-text p {
-    margin: 0;
-    font-size: 16px;
 }
 
 .testimonial-author {
@@ -1639,7 +1758,6 @@ a:hover {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
-    margin-top: 80px;
 }
 
 .stat-card {
@@ -1664,11 +1782,46 @@ a:hover {
     display: block;
 }
 
-.stat-text {
-    font-size: 16px;
-    color: var(--text-color);
-    line-height: 1.5;
-    margin: 0;
+
+
+/* Сертификаты */
+.certificates-section {
+    background-color: #38264F;
+    padding-bottom: 80px;
+    margin-top: 40px;
+}
+
+.certificates-section .section-title h2 {
+    color: white;
+}
+
+.certificates-gallery {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.certificate-image {
+    flex: 0 0 auto;
+}
+
+.certificate-image img {
+    width: 100%;
+    height: auto;
+}
+
+/* Мобильная версия галереи */
+@media (max-width: 768px) {
+    .certificates-gallery {
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    .certificates-gallery::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 /* Адаптив для статистики */
@@ -1716,11 +1869,7 @@ a:hover {
     z-index: 1;
 }
 
-.testimonial-text {
-    margin-bottom: 1.5rem;
-    font-style: italic;
-    line-height: 1.6;
-}
+
 
 .testimonial-author {
     border-top: 1px solid #eee;
@@ -1740,38 +1889,33 @@ a:hover {
     color: var(--white);
 }
 
-.contact-section .section-title h2,
-.contact-section .section-title p {
-    color: var(--white);
-}
-
-.contact-details {
-    margin-top: 2rem;
-}
-
-.contact-details .contact-item {
+.contact-content {
     display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 60px;
+    align-items: center;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-info h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
     color: var(--white);
+    font-family: 'Manrope', sans-serif;
 }
 
-.contact-details .contact-item i {
-    margin-top: 0.2rem;
-    color: var(--secondary-color);
-}
-
-.contact-details .contact-item a {
+.contact-info p {
+    font-size: 1.2rem;
+    line-height: 1.6;
     color: var(--white);
-    text-decoration: none;
-}
-
-.contact-details .contact-item a:hover {
-    color: var(--secondary-color);
+    margin: 0;
 }
 
 .contact-form {
+    flex: 1;
     background: var(--white);
     padding: 2rem;
     border-radius: var(--border-radius);
@@ -1802,6 +1946,22 @@ a:hover {
 .form-group textarea {
     resize: vertical;
     min-height: 120px;
+}
+
+/* Адаптив для контактов */
+@media (max-width: 768px) {
+    .contact-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .contact-info h2 {
+        font-size: 2rem;
+    }
+    
+    .contact-info p {
+        font-size: 1.1rem;
+    }
 }
 
 /* Навигация слайдеров */
@@ -1889,10 +2049,7 @@ a:hover {
         grid-template-columns: 1fr;
     }
     
-    /* Отступы */
-    .section {
-        padding: 40px 0;
-    }
+
     
     .section-sm {
         padding: 30px 0;
