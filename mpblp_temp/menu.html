@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Шапка + топ-меню (drill-down)</title>
+<style>
+  :root{--brand:#16b6c5;--ink:#0f1220;--bg:#fff;--ring:#e7e9f2;--ui:#f2f3f7;--accent:#2d6bfd;--container:1100px}
+  *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#fafbfe;color:var(--ink)}
+  .container{max-width:var(--container);margin:0 auto;padding:0 16px}
+  /* header */
+  .hdr{position:sticky;top:0;background:var(--bg);z-index:50;box-shadow:0 2px 14px rgba(20,20,43,.06)}
+  .hdr-row{height:64px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+  .brand-badge{width:36px;height:36px;border-radius:999px;display:grid;place-items:center;background:var(--brand);color:#fff;font-weight:800}
+  .brand-name{font-weight:800}
+  .hdr-actions{display:flex;gap:10px}
+  .icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--ring);background:#fff;display:grid;place-items:center;cursor:pointer}
+  .icon-btn:hover{background:var(--ui)} .icon-btn svg{width:22px;height:22px;stroke:#0d0f1f}
+  /* backdrop + sheet */
+  .no-scroll{overflow:hidden}
+  .backdrop{position:fixed;inset:0;background:rgba(15,18,32,.36);opacity:0;pointer-events:none;transition:opacity .2s ease;z-index:70}
+  .backdrop[data-open="true"]{opacity:1;pointer-events:auto}
+  .topsheet{position:fixed;left:0;right:0;top:0;height:min(85vh,640px);background:#fff;border-bottom:1px solid var(--ring);
+           transform:translateY(-105%);transition:transform .25s ease;z-index:80;box-shadow:0 20px 40px rgba(15,18,32,.18)}
+  .topsheet[data-open="true"]{transform:translateY(0)}
+  .sheet-head{display:flex;align-items:center;gap:8px;height:56px;padding:0 12px;border-bottom:1px solid var(--ring)}
+  .sheet-title{margin-inline:auto;font-weight:700}
+  .sheet-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--ring);background:#fff;display:grid;place-items:center;cursor:pointer}
+  .sheet-body{height:calc(100% - 56px);display:flex;flex-direction:column}
+  .cta{padding:14px 16px}
+  .btn-primary{width:100%;display:flex;justify-content:center;align-items:center;gap:10px;padding:14px;border-radius:14px;border:1px solid transparent;background:var(--accent);color:#fff;font-weight:700}
+  .btn-primary svg{width:20px;height:20px;stroke:#fff}
+
+  /* DRILL-DOWN NAV */
+  .mnav{flex:1;min-height:0}
+  .mnav-viewport{height:100%;overflow:hidden}
+  .mnav-track{display:flex;height:100%;transition:transform .25s ease}
+  .mnav-level{flex:0 0 100%;height:100%;overflow:auto;margin:0;padding:8px 12px 24px;list-style:none}
+  .mnav-level a,.mnav-link{display:flex;align-items:center;min-height:48px;padding:10px 8px;border-bottom:1px solid #f2f3f7;text-decoration:none;color:var(--ink)}
+  .mnav-link{background:none;border:0;text-align:left;width:100%;cursor:pointer}
+  .mnav-all{font-weight:700}
+  @media (prefers-reduced-motion:reduce){.topsheet,.mnav-track{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="container hdr-row">
+    <a class="brand" href="/"><span class="brand-badge">Ц</span><span class="brand-name">ЦЭСИ</span></a>
+    <div class="hdr-actions">
+      <a class="icon-btn" href="tel:+79991234567" aria-label="Позвонить">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 5c0 7.18 7.82 15 15 15l2-3-4-3-2 2c-3 0-8-5-8-8l2-2-3-4-3 2Z" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <button class="icon-btn" id="menuToggle" aria-expanded="false" aria-controls="topsheet" aria-label="Открыть меню">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="backdrop" id="sheetBackdrop" aria-hidden="true"></div>
+
+<div class="topsheet" id="topsheet" aria-hidden="true">
+  <div class="sheet-head">
+    <button class="sheet-btn" id="sheetBack" aria-label="Назад" hidden>
+      <svg viewBox="0 0 24 24" fill="none"><path d="M15 6L9 12l6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="sheet-title" id="sheetTitle">Меню</div>
+    <button class="sheet-btn" id="sheetClose" aria-label="Закрыть меню">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6l-12 12" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="sheet-body">
+    <!-- CTA сверху -->
+    <div class="cta">
+      <a class="btn-primary" href="#callback">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 5c0 7.18 7.82 15 15 15l2-3-4-3-2 2c-3 0-8-5-8-8l2-2-3-4-3 2Z" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Оставить звонок
+      </a>
+    </div>
+
+    <!-- Drill-down меню -->
+    <nav class="mnav">
+      <div class="mnav-viewport">
+        <div class="mnav-track">
+          <!-- уровень 0 -->
+          <ul class="mnav-level" data-title="Меню">
+            <li><a href="/">Главная</a></li>
+
+            <li class="has-children"><button class="mnav-link" data-target-id="lvl-o">О Школе</button></li>
+            <li class="has-children"><button class="mnav-link" data-target-id="lvl-p">Программы</button></li>
+            <li><a href="/raspisanie">Расписание</a></li>
+            <li class="has-children"><button class="mnav-link" data-target-id="lvl-k">Консультирование</button></li>
+            <li class="has-children"><button class="mnav-link" data-target-id="lvl-pub">Публикации</button></li>
+          </ul>
+
+          <!-- О Школе -->
+          <ul class="mnav-level" id="lvl-o" data-title="О Школе">
+            <li><a href="/o-shkole/missiya">Миссия, Цели, Задачи</a></li>
+            <li><a href="/o-shkole/auditoriya">Аудитория</a></li>
+            <li><a href="/o-shkole/teoriya">Теория и методика</a></li>
+            <li><a href="/o-shkole/integral">Интегральная онтопсихология</a></li>
+            <li><a href="/o-shkole/principy">Принципы (Наши приоритеты)</a></li>
+            <li><a href="/o-shkole/osnovateli">Основатели</a></li>
+            <li><a href="/o-shkole/prepodavateli">Преподаватели</a></li>
+            <li><a href="/o-shkole/svedeniya">Сведения об образовательной организации</a></li>
+            <li><a class="mnav-all" href="/o-shkole">Смотреть раздел →</a></li>
+          </ul>
+
+          <!-- Программы -->
+          <ul class="mnav-level" id="lvl-p" data-title="Программы">
+            <li class="has-children"><button class="mnav-link" data-target-id="lvl-p-biz">Школа бизнес-психологии</button></li>
+            <li class="has-children"><button class="mnav-link" data-target-id="lvl-p-int">Школа интегральной онтопсихологии</button></li>
+            <li class="has-children"><button class="mnav-link" data-target-id="lvl-p-lead">Школа лидерства</button></li>
+            <li><a class="mnav-all" href="/programmy">Все программы →</a></li>
+          </ul>
+
+          <ul class="mnav-level" id="lvl-p-biz" data-title="Школа бизнес-психологии">
+            <li><a href="/programmy/biz/ontopsih-v-biznese">Интегральная онтопсихология в практике бизнеса. Курс для руководителей.</a></li>
+            <li><a href="/programmy/biz/forma-mentis">Forma mentis предпринимателя: ключевые факторы успеха.</a></li>
+            <li><a class="mnav-all" href="/programmy/biz">Раздел школы →</a></li>
+          </ul>
+
+          <ul class="mnav-level" id="lvl-p-int" data-title="Школа интегральной онтопсихологии">
+            <li><a href="/programmy/integral/teoriya-i-praktika">Интегральная онтопсихология: теория и практика.</a></li>
+            <li><a class="mnav-all" href="/programmy/integral">Раздел школы →</a></li>
+          </ul>
+
+          <ul class="mnav-level" id="lvl-p-lead" data-title="Школа лидерства">
+            <li><a href="/programmy/leader/metafizika-liderstva">«Метафизика и практика лидерства». Семинар-резиденс.</a></li>
+            <li><a class="mnav-all" href="/programmy/leader">Раздел школы →</a></li>
+          </ul>
+
+          <!-- Консультирование -->
+          <ul class="mnav-level" id="lvl-k" data-title="Консультирование">
+            <li><a href="/konsult/individual">Индивидуальное консультирование и коучинг</a></li>
+            <li><a href="/konsult/management">Управленческий консалтинг и трекинг</a></li>
+            <li><a href="/konsult/corporate">Развивающие корпоративные мероприятия</a></li>
+            <li><a class="mnav-all" href="/konsult">Раздел →</a></li>
+          </ul>
+
+          <!-- Публикации -->
+          <ul class="mnav-level" id="lvl-pub" data-title="Публикации">
+            <li><a href="/publ/news">Новости</a></li>
+            <li><a href="/publ/articles">Статьи</a></li>
+            <li><a href="/publ/research">Исследования</a></li>
+            <li><a class="mnav-all" href="/publ">Все публикации →</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<script>
+(() => {
+  const html = document.documentElement;
+  const sheet = document.getElementById('topsheet');
+  const backdrop = document.getElementById('sheetBackdrop');
+  const openBtn = document.getElementById('menuToggle');
+  const closeBtn = document.getElementById('sheetClose');
+  const backBtn  = document.getElementById('sheetBack');
+  const titleEl  = document.getElementById('sheetTitle');
+
+  const track  = sheet.querySelector('.mnav-track');
+  const levels = Array.from(track.children);            // все панели по порядку
+  const rootIx = 0;
+  let history  = [rootIx];                              // стек индексов
+
+  function setIndex(i){
+    track.style.transform = `translateX(${-100 * i}%)`; // едем к нужной панели
+    backBtn.hidden = i === rootIx;
+    const t = levels[i]?.dataset.title || 'Меню';
+    titleEl.textContent = t;
+  }
+
+  function open(){
+    sheet.setAttribute('data-open','true');
+    sheet.setAttribute('aria-hidden','false');
+    backdrop.setAttribute('data-open','true');
+    backdrop.setAttribute('aria-hidden','false');
+    openBtn.setAttribute('aria-expanded','true');
+    html.classList.add('no-scroll');
+    history = [rootIx];
+    setIndex(rootIx);
+  }
+  function close(){
+    sheet.setAttribute('data-open','false');
+    sheet.setAttribute('aria-hidden','true');
+    backdrop.setAttribute('data-open','false');
+    backdrop.setAttribute('aria-hidden','true');
+    openBtn.setAttribute('aria-expanded','false');
+    html.classList.remove('no-scroll');
+  }
+
+  function goTo(id){
+    const i = levels.findIndex(el => el.id === id);     // ищем ПАНЕЛЬ по id
+    if (i === -1) return;
+    history.push(i);
+    setIndex(i);
+  }
+  function goBack(){
+    if (history.length > 1){
+      history.pop();
+      setIndex(history[history.length - 1]);
+    } else {
+      close();
+    }
+  }
+
+  openBtn.addEventListener('click', () =>
+    sheet.getAttribute('data-open') === 'true' ? close() : open()
+  );
+  closeBtn.addEventListener('click', close);
+  backBtn.addEventListener('click', goBack);
+  backdrop.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  // делегирование клика по кнопкам перехода
+  sheet.addEventListener('click', e => {
+    const b = e.target.closest('.mnav-link');
+    const id = b?.dataset.targetId;                     // data-target-id="lvl-p" и т.п.
+    if (id) goTo(id);
+  });
+})();
+
+</script>
+
+<!-- Заглушка формы -->
+<section id="callback" class="container" style="padding:40px 16px 80px;color:#8b8fa3">
+  <p>Здесь будет форма «Оставить звонок».</p>
+</section>
+
+</body>
+</html>

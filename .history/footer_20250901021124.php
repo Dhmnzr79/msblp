@@ -93,6 +93,11 @@
         </div>
     </footer>
 
+    <!-- Кнопка "Наверх" -->
+    <button id="back-to-top" class="back-to-top" aria-label="Наверх">
+        <i class="icon-arrow-up"></i>
+    </button>
+
 </div><!-- #page -->
 
 <?php wp_footer(); ?>

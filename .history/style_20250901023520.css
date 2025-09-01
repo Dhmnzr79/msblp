@@ -1226,7 +1226,7 @@ a:hover {
     .what-we-do-image {
         grid-column: 1;
         grid-row: 5;
-        height: 360px;
+        height: 250px;
     }
     
     .card-item {

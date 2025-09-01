@@ -1158,7 +1158,6 @@ a:hover {
 
 .about-image img {
     width: 100%;
-    max-width: 540px;
     height: auto;
     border-radius: 12px;
 }
@@ -1226,7 +1225,7 @@ a:hover {
     .what-we-do-image {
         grid-column: 1;
         grid-row: 5;
-        height: 360px;
+        height: 250px;
     }
     
     .card-item {
@@ -2527,7 +2526,6 @@ body.nav-open {
     
     .header-actions {
         display: flex;
-        margin-left: auto;
     }
     
     .btn-menu {

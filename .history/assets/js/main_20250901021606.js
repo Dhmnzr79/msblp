@@ -27,77 +27,48 @@
     });
 
     /**
-     * Инициализация нового мобильного меню
+     * Инициализация мобильного меню
      */
     function initMobileMenu() {
-        const body = document.body;
-        const btnMenu = document.querySelector('.btn-menu');
-        const aside = document.getElementById('mobileNav');
-        const overlay = document.querySelector('.nav-overlay');
-        const btnClose = aside.querySelector('.nav-close');
-        const btnBack = aside.querySelector('.nav-back');
-        const title = aside.querySelector('.mobile-nav__title');
-        const panels = [...aside.querySelectorAll('.nav-panel')];
-        const root = document.getElementById('root');
-        let stack = [root], lastFocused = null;
+        const $menuToggle = $('.menu-toggle');
+        const $mobileMenu = $('.mobile-menu-overlay');
+        const $mobileMenuClose = $('.mobile-menu-close');
 
-        function show(panel) {
-            panels.forEach(p => p.hidden = (p !== panel));
-            title.textContent = panel.dataset.title || 'Меню';
-            btnBack.hidden = (panel === root);
-        }
-
-        function openNav() {
-            lastFocused = document.activeElement;
-            body.classList.add('nav-open');
-            aside.setAttribute('aria-hidden', 'false');
-            btnMenu.setAttribute('aria-expanded', 'true');
-            show(stack[stack.length - 1]);
-        }
-
-        function closeNav() {
-            body.classList.remove('nav-open');
-            aside.setAttribute('aria-hidden', 'true');
-            btnMenu.setAttribute('aria-expanded', 'false');
-            stack = [root];
-            show(root);
-            if (lastFocused) lastFocused.focus();
-        }
-
-        aside.addEventListener('click', (e) => {
-            const next = e.target.closest('.nav-next');
-            if (next) {
-                const sel = next.getAttribute('data-target');
-                const target = aside.querySelector(sel);
-                if (!target) {
-                    alert('Панель не найдена: ' + sel);
-                    return;
-                }
-                stack.push(target);
-                show(target);
-                return;
-            }
-            if (e.target.closest('.nav-close') || e.target.closest('[data-close]')) closeNav();
+        $menuToggle.on('click', function() {
+            $mobileMenu.addClass('active');
+            $('body').addClass('menu-open');
         });
 
-        btnBack.addEventListener('click', () => {
-            if (stack.length > 1) {
-                stack.pop();
-                show(stack[stack.length - 1]);
+        $mobileMenuClose.on('click', function() {
+            $mobileMenu.removeClass('active');
+            $('body').removeClass('menu-open');
+        });
+
+        // Закрытие по клику вне меню
+        $mobileMenu.on('click', function(e) {
+            if (e.target === this) {
+                $mobileMenu.removeClass('active');
+                $('body').removeClass('menu-open');
             }
         });
 
-        btnMenu.addEventListener('click', openNav);
-        btnClose.addEventListener('click', closeNav);
-        overlay.addEventListener('click', closeNav);
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && body.classList.contains('nav-open')) closeNav();
+        // Закрытие по Escape
+        $(document).on('keydown', function(e) {
+            if (e.key === 'Escape' && $mobileMenu.hasClass('active')) {
+                $mobileMenu.removeClass('active');
+                $('body').removeClass('menu-open');
+            }
         });
 
-        // Init: hide all except root (safety in case CSS stripped)
-        panels.forEach(p => p.hidden = true);
-        root.hidden = false;
+        // Мобильные подменю
+        $('.mobile-menu-toggle').on('click', function(e) {
+            e.preventDefault();
+            const $this = $(this);
+            const $subMenu = $this.next('.mobile-sub-menu');
+            
+            $this.toggleClass('active');
+            $subMenu.toggleClass('active');
+        });
     }
 
 

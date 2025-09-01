@@ -563,21 +563,22 @@ function psych_school_redirect_to_coming_soon() {
 // add_action('template_redirect', 'psych_school_redirect_to_coming_soon');
 
 /**
- * Показываем страницу-заглушку для всех страниц кроме главной
+ * Простое перенаправление на 404 для всех несуществующих страниц
  */
-function psych_school_show_coming_soon() {
-    // Не показываем заглушку на главной странице
+function psych_school_simple_redirect() {
+    // Не перенаправляем на главной странице
     if (is_front_page() || is_home()) {
         return;
     }
     
-    // Не показываем заглушку для администраторов
+    // Не перенаправляем для администраторов
     if (current_user_can('manage_options')) {
         return;
     }
     
-    // Показываем страницу-заглушку
-    include(get_template_directory() . '/page-coming-soon.php');
-    exit;
+    // Если страница не существует, показываем 404 (страницу-заглушку)
+    if (is_404() || !have_posts()) {
+        return; // Показываем 404 страницу
+    }
 }
-add_action('template_redirect', 'psych_school_show_coming_soon');
+add_action('template_redirect', 'psych_school_simple_redirect');

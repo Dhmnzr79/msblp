@@ -193,7 +193,7 @@
             
             <div class="grid grid-2">
                 <div class="about-image">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/osrt.jpg" alt="О школе">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/about-school.jpg" alt="О школе">
                 </div>
                 
                 <div class="about-content">
@@ -250,7 +250,7 @@
                 </div>
                 
                 <div class="what-we-do-image">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/bg03.jpg" alt="Что мы делаем">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/what-we-do.jpg" alt="Что мы делаем">
                 </div>
             </div>
         </div>

@@ -65,17 +65,17 @@
                         </a>
                     </div>
 
-                    <!-- Мобильные кнопки -->
-                    <div class="header-actions">
-                        <a class="btn-call" href="tel:+79991234567" aria-label="Позвонить">☎</a>
-                        <button class="btn-menu" aria-haspopup="dialog" aria-controls="mobileNav" aria-expanded="false">
-                            <span class="btn-menu__bars" aria-hidden="true"></span>
-                            <span class="sr-only"><?php esc_html_e('Открыть меню', 'psych-school'); ?></span>
-                        </button>
-                    </div>
-
                     <!-- Главное меню -->
                     <nav id="site-navigation" class="main-navigation">
+                        <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+                            <span class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                            <span class="screen-reader-text"><?php esc_html_e('Меню', 'psych-school'); ?></span>
+                        </button>
+                        
                         <ul class="nav-menu">
                             <li><a href="<?php echo esc_url(home_url('/')); ?>">Главная</a></li>
                             
@@ -160,21 +160,21 @@
                 <li><a href="<?php echo esc_url(home_url('/')); ?>">Главная</a></li>
                 <li><button class="nav-next" data-target="#about">О Школе</button></li>
                 <li><button class="nav-next" data-target="#programs">Программы</button></li>
-                <li><a href="#">Расписание</a></li>
+                <li><a href="/schedule">Расписание</a></li>
                 <li><button class="nav-next" data-target="#consulting">Консультирование</button></li>
                 <li><button class="nav-next" data-target="#publications">Публикации</button></li>
             </ul>
 
             <!-- О Школе -->
             <ul class="nav-panel" id="about" data-level="1" data-title="О Школе" hidden>
-                <li><a href="#">Миссия, Цели, Задачи</a></li>
-                <li><a href="#">Аудитория</a></li>
-                <li><a href="#">Теория и методика</a></li>
-                <li><a href="#">Интегральная онтопсихология</a></li>
-                <li><a href="#">Принципы (Наши приоритеты)</a></li>
-                <li><a href="#">Основатели</a></li>
-                <li><a href="#">Преподаватели</a></li>
-                <li><a href="#">Сведения об образовательной организации</a></li>
+                <li><a href="/about/mission">Миссия, Цели, Задачи</a></li>
+                <li><a href="/about/audience">Аудитория</a></li>
+                <li><a href="/about/theory">Теория и методика</a></li>
+                <li><a href="/about/ontopsychology">Интегральная онтопсихология</a></li>
+                <li><a href="/about/principles">Принципы (Наши приоритеты)</a></li>
+                <li><a href="/about/founders">Основатели</a></li>
+                <li><a href="/about/teachers">Преподаватели</a></li>
+                <li><a href="/about/docs">Сведения об образовательной организации</a></li>
             </ul>
 
             <!-- Программы -->
@@ -186,32 +186,32 @@
 
             <!-- Программы → Школа бизнес-психологии -->
             <ul class="nav-panel" id="bp" data-level="2" data-title="Школа бизнес-психологии" hidden>
-                <li><a href="#">Интегральная онтопсихология в практике бизнеса.</a></li>
-                <li><a href="#">Forma mentis предпринимателя: ключевые факторы успеха.</a></li>
+                <li><a href="/programs/bp/integral-business">Интегральная онтопсихология в практике бизнеса.</a></li>
+                <li><a href="/programs/bp/forma-mentis">Forma mentis предпринимателя: ключевые факторы успеха.</a></li>
             </ul>
 
             <!-- Программы → Школа интегральной онтопсихологии -->
             <ul class="nav-panel" id="io" data-level="2" data-title="Школа интегральной онтопсихологии" hidden>
-                <li><a href="#">Интегральная онтопсихология: теория и практика.</a></li>
+                <li><a href="/programs/io/theory-and-practice">Интегральная онтопсихология: теория и практика.</a></li>
             </ul>
 
             <!-- Программы → Школа лидерства -->
             <ul class="nav-panel" id="leader" data-level="2" data-title="Школа лидерства" hidden>
-                <li><a href="#">«Метафизика и практика лидерства»</a></li>
+                <li><a href="/programs/leader/metaphysics">«Метафизика и практика лидерства»</a></li>
             </ul>
 
             <!-- Консультирование -->
             <ul class="nav-panel" id="consulting" data-level="1" data-title="Консультирование" hidden>
-                <li><a href="#">Индивидуальное консультирование и коучинг</a></li>
-                <li><a href="#">Управленческий консалтинг и трекинг</a></li>
-                <li><a href="#">Развивающие корпоративные мероприятия</a></li>
+                <li><a href="/consult/individual">Индивидуальное консультирование и коучинг</a></li>
+                <li><a href="/consult/management">Управленческий консалтинг и трекинг</a></li>
+                <li><a href="/consult/corporate">Развивающие корпоративные мероприятия</a></li>
             </ul>
 
             <!-- Публикации -->
             <ul class="nav-panel" id="publications" data-level="1" data-title="Публикации" hidden>
-                <li><a href="#">Новости</a></li>
-                <li><a href="#">Статьи</a></li>
-                <li><a href="#">Исследования</a></li>
+                <li><a href="/news">Новости</a></li>
+                <li><a href="/articles">Статьи</a></li>
+                <li><a href="/research">Исследования</a></li>
             </ul>
         </nav>
     </aside>

@@ -3,7 +3,7 @@
 <main id="primary" class="site-main">
     
     <!-- Hero секция -->
-    <section class="hero-section" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/images/main-bg.jpg');">
+    <section class="hero-section">
         <div class="container">
             <div class="grid grid-12">
                 <div class="hero-content" style="grid-column: 1 / 7;">
@@ -79,11 +79,11 @@
                 <div class="slider">
                     <div class="slider-viewport">
                         <div class="slider-track">
-                                                         <!-- Карточка курса 1 -->
-                             <div class="course-card">
-                                 <div class="course-image">
-                                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/kurs01.jpg" alt="Денежный тренинг">
-                                 </div>
+                            <!-- Карточка курса 1 -->
+                            <div class="course-card">
+                                <div class="course-image">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/course-1.jpg" alt="Денежный тренинг">
+                                </div>
                                 <div class="course-content">
                                     <h3 class="course-title">Денежный тренинг: «Я и деньги. Что было! Что есть! Что будет!»</h3>
                                     <div class="course-description">
@@ -111,11 +111,11 @@
                                 </div>
                             </div>
 
-                                                         <!-- Карточка курса 2 -->
-                             <div class="course-card">
-                                 <div class="course-image">
-                                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/kurs02.jpg" alt="Психология бизнеса">
-                                 </div>
+                            <!-- Карточка курса 2 -->
+                            <div class="course-card">
+                                <div class="course-image">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/course-2.jpg" alt="Психология бизнеса">
+                                </div>
                                 <div class="course-content">
                                     <h3 class="course-title">Психология бизнеса: «Управление и лидерство»</h3>
                                     <div class="course-description">
@@ -143,11 +143,11 @@
                                 </div>
                             </div>
 
-                                                         <!-- Карточка курса 3 -->
-                             <div class="course-card">
-                                 <div class="course-image">
-                                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/kurs03.jpg" alt="Интегральная психология">
-                                 </div>
+                            <!-- Карточка курса 3 -->
+                            <div class="course-card">
+                                <div class="course-image">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/course-3.jpg" alt="Интегральная психология">
+                                </div>
                                 <div class="course-content">
                                     <h3 class="course-title">Интегральная психология: «Теория и практика»</h3>
                                     <div class="course-description">
@@ -193,7 +193,7 @@
             
             <div class="grid grid-2">
                 <div class="about-image">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/osrt.jpg" alt="О школе">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/about-school.jpg" alt="О школе">
                 </div>
                 
                 <div class="about-content">
@@ -250,7 +250,7 @@
                 </div>
                 
                 <div class="what-we-do-image">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/bg03.jpg" alt="Что мы делаем">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/what-we-do.jpg" alt="Что мы делаем">
                 </div>
             </div>
         </div>
