@@ -528,4 +528,37 @@ function psych_school_enqueue_scripts() {
 }
 add_action('wp_enqueue_scripts', 'psych_school_enqueue_scripts');
 
+/**
+ * Перенаправление на страницу-заглушку для всех страниц кроме главной
+ */
+function psych_school_redirect_to_coming_soon() {
+    // Не перенаправляем на главной странице
+    if (is_front_page() || is_home()) {
+        return;
+    }
+    
+    // Не перенаправляем если это уже страница-заглушка
+    if (is_page_template('page-coming-soon.php')) {
+        return;
+    }
+    
+    // Не перенаправляем для администраторов
+    if (current_user_can('manage_options')) {
+        return;
+    }
+    
+    // Перенаправляем на страницу-заглушку
+    $coming_soon_page = get_pages(array(
+        'meta_key' => '_wp_page_template',
+        'meta_value' => 'page-coming-soon.php',
+        'numberposts' => 1
+    ));
+    
+    if (!empty($coming_soon_page)) {
+        wp_redirect(get_permalink($coming_soon_page[0]->ID));
+        exit;
+    }
+}
+// Временно отключаем перенаправление для тестирования
+// add_action('template_redirect', 'psych_school_redirect_to_coming_soon');
 

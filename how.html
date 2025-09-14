@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Интегральная онтопсихология — секции</title>
+  <style>
+    /* ===== БАЗА СЕТКИ ===== */
+    :root{
+      --container: 1200px;      /* ширина контейнера */
+      --cols: 12;               /* число колонок */
+      --gap: 24px;              /* gutter */
+      --s1: 8px; --s2: 12px; --s3: 16px; --s4: 24px; --s5: 32px; --s6: 48px;
+      --radius: 12px;
+      --text: #1f1f1f; --muted:#5a5a5a;
+    }
+    *{ box-sizing: border-box; }
+    body{ margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--text); }
+
+    .container{
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--s4);
+      display: grid;
+      grid-template-columns: repeat(var(--cols), minmax(0,1fr));
+      column-gap: var(--gap);
+      align-items: start;
+    }
+    section{ padding: var(--s6) 0; }
+
+    h1,h2{ margin:0 0 var(--s4); line-height:1.15; font-weight:800; letter-spacing:-0.01em; }
+    h1{ font-size: clamp(32px, 3.8vw, 48px); }
+    h2{ font-size: clamp(26px, 3.2vw, 40px); }
+    h3{ margin:0 0 var(--s3); font-size:18px; line-height:1.25; }
+    p{ margin:0 0 var(--s3); font-size:16px; line-height:1.6; }
+    .muted{ color:var(--muted); }
+
+    .media{ position:relative; overflow:hidden; border-radius:var(--radius); background:#f1f1f1; }
+    .media img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+    .ratio-4x5{ padding-top:125%; }  /* портрет */
+    .ratio-16x9{ padding-top:56.25%; }
+
+    /* ===== СЕКЦИЯ 1 ===== (фото 5/12, текст 7/12) */
+    .s1-media{ grid-column:1 / span 5; }
+    .s1-text { grid-column:6 / span 7; }
+
+    /* ===== СЕКЦИЯ 2 ===== (фото 7/12, текст 5/12) */
+    .s2-media{ grid-column:1 / span 7; }
+    .s2-text { grid-column:8 / span 5; }
+    /* картинка естественной высоты, чтобы не было "дырок" */
+    .s2-media .media{ padding-top:0; }
+    .s2-media .media img{ position:static; height:auto; }
+
+    /* ===== СЕКЦИЯ 3 ===== */
+    .s3-head{ grid-column:1 / -1; margin-bottom:var(--s5); }
+
+    /* точная раскладка карточек как в макете */
+    .card{ border:1px solid rgba(0,0,0,.08); border-radius:var(--radius); background:#fff; padding:var(--s5); }
+    .card a{ color:#d61f2c; font-weight:700; text-decoration:none; }
+    .card a:hover{ text-decoration:underline; }
+
+    /* две левые колонки: по 3 колонки каждая карточка */
+    .card1{ grid-column:1 / span 3; }
+    .card2{ grid-column:4 / span 3; }
+    .card3{ grid-column:1 / span 3; margin-top:var(--s4); }
+    .card4{ grid-column:4 / span 3; margin-top:var(--s4); }
+
+    /* правая большая карточка — 6 колонок (7–12) */
+    .card-feature{ grid-column:7 / span 6; }
+    .feature{ border-radius:var(--radius); overflow:hidden; background:#e9eef9; }
+    .feature .media{ border-radius:0; }
+    .feature .inner{ padding:var(--s5); }
+
+    /* ===== АДАПТИВ ===== */
+    @media (max-width: 1024px){
+      /* секции 1–2: 6/12 + 6/12 */
+      .s1-media{ grid-column:1 / span 6; }
+      .s1-text { grid-column:7 / span 6; }
+      .s2-media{ grid-column:1 / span 6; }
+      .s2-text { grid-column:7 / span 6; }
+
+      /* секция 3: левая сетка занимает 6/12, правая уходит ниже на 12/12 */
+      .card1,.card3{ grid-column:1 / span 3; }
+      .card2,.card4{ grid-column:4 / span 3; }
+      .card-feature{ grid-column:1 / -1; margin-top:var(--s4); }
+    }
+    @media (max-width: 768px){
+      .container{ row-gap:var(--s4); }
+      /* стекуем всё по одной колонке */
+      .s1-media,.s1-text,.s2-media,.s2-text,
+      .s3-head,.card1,.card2,.card3,.card4,.card-feature{ grid-column:1 / -1; }
+      .s1-text,.s2-text{ margin-top:var(--s4); }
+      .card2,.card4{ margin-top:0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== СЕКЦИЯ 1 ===== -->
+  <section aria-labelledby="s1-title">
+    <div class="container">
+      <div class="s1-media">
+        <figure class="media ratio-4x5">
+          <img src="img/hero.jpg" alt="Деловые люди" />
+        </figure>
+      </div>
+      <div class="s1-text">
+        <h2 id="s1-title">Как работает интегральная онтопсихология</h2>
+        <p>Интегральная онтопсихология исходит из того, что человек является неотъемлемой частью мироздания (бытия): он создан и призван жить по универсальным законам Жизни. Тогда он «ловит» поток жизни и достигает благополучия, блаженства, благодати.</p>
+        <p>Креативное бессознательное — источник интуиции, мудрости и оптимальных решений, которое позволяет человеку понять своё призвание, раскрыть творческий потенциал, максимально самореализоваться и жить осмысленно.</p>
+        <p class="muted">Однако сознание, сформированное в процессе обучения, часто теряет контакт с глубинной мудростью психики. Это приводит к ошибочным выборам и ощущению, что «жизнь проходит мимо».</p>
+        <p>Подход помогает восстановить контакт с собой, выстраивать эффективные взаимоотношения и жить радостно.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== СЕКЦИЯ 2 ===== -->
+  <section aria-labelledby="s2-title">
+    <div class="container">
+      <div class="s2-media">
+        <figure class="media">
+          <img src="img/audience.jpg" alt="Аудитория на выступлении" />
+        </figure>
+      </div>
+      <div class="s2-text">
+        <h1 id="s2-title">Жизни и ведет к креативным трансформациям в значимых сферах жизни: «Я – Мое близкое окружение – Моя Команда – Моя Компания – Моя Страна – Весь Мир – Жизнь».</h1>
+        <p>В интегральной онтопсихологии используются современные и результативные методы индивидуальной и групповой работы. Они ориентируются на получение ответов напрямую из неисчерпаемого источника мудрости — креативного бессознательного.</p>
+        <p>Это позволяет быстро выявить глубинную причину проблемы и найти оптимальные шаги. Для долгосрочных изменений применяются инструменты и психотехнологии целостной трансформации личности и развития бизнеса.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== СЕКЦИЯ 3 ===== -->
+  <section aria-labelledby="s3-title">
+    <div class="container">
+      <div class="s3-head">
+        <h2 id="s3-title">Уникальные инструменты интегральной онтопсихологии:</h2>
+      </div>
+
+      <!-- 2×2 карточки слева (по 3 колонки каждая) -->
+      <article class="card card1">
+        <h3>Лидерский семинар-резиденс</h3>
+        <p><a href="#">Подробнее</a></p>
+      </article>
+
+      <article class="card card2">
+        <h3>Тренинг раскрытия интуитивных способностей</h3>
+        <p><a href="#">Подробнее</a></p>
+      </article>
+
+      <article class="card card3">
+        <h3>Интегральная синемалогия — психологический разбор кинофильма с ведущим</h3>
+        <p><a href="#">Подробнее</a></p>
+      </article>
+
+      <article class="card card4">
+        <h3>Коучинг креативных трансформаций</h3>
+        <p><a href="#">Подробнее</a></p>
+      </article>
+
+      <!-- правая широкая карточка 6/12 -->
+      <aside class="card-feature">
+        <div class="feature">
+          <figure class="media ratio-16x9">
+            <img src="img/feature.jpg" alt="Иллюстрация: работа с образами" />
+          </figure>
+          <div class="inner">
+            <p><strong>Интегральная работа с образами</strong> (сновидения, символы и метафоры, образы личного пространства, образы интуиции, образы художественного творчества, рекламы, массовой культуры).</p>
+            <p><a href="#">Подробнее</a></p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+</body>
+</html>

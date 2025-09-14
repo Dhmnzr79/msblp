@@ -101,6 +101,7 @@ body {
     font-size: clamp(16px, 1.2vw, 18px);
     line-height: 1.6;
     margin-block: 0 1em;
+    max-inline-size: 65ch; /* ограничиваем длину строки для удобства */
   }
   ul,ol {
     margin-block: 0 1em;
@@ -2478,11 +2479,5 @@ body.nav-open {
     }
 }
 
-/* ====== СТРАНИЦА "КАК РАБОТАЕТ ИНТЕГРАЛЬНАЯ ОНТОПСИХОЛОГИЯ" ====== */
-
-/* Большая карточка на всю высоту */
-.card-feature {
-    height: 100%;
-}
 
 

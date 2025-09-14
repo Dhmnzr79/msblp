@@ -199,13 +199,6 @@
                     <div class="school-motto">
                         <strong>Девиз Школы:</strong> «Fortis fortuna adiuvat» – «Удача помогает сильным»
                     </div>
-                    
-                    <button class="btn">
-                        <span class="btn-text">Узнать больше</span>
-                        <svg class="btn-arrow" width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 6H15M15 6L10 1M15 6L10 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
                 </div>
             </div>
         </div>

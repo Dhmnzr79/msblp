@@ -101,6 +101,7 @@ body {
     font-size: clamp(16px, 1.2vw, 18px);
     line-height: 1.6;
     margin-block: 0 1em;
+    max-inline-size: 65ch; /* ограничиваем длину строки для удобства */
   }
   ul,ol {
     margin-block: 0 1em;
@@ -2480,9 +2481,161 @@ body.nav-open {
 
 /* ====== СТРАНИЦА "КАК РАБОТАЕТ ИНТЕГРАЛЬНАЯ ОНТОПСИХОЛОГИЯ" ====== */
 
-/* Большая карточка на всю высоту */
-.card-feature {
+/* 12-колоночная сетка для этой страницы */
+.how-grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+}
+
+/* Медиа-блоки с поддержанием соотношения сторон */
+.media-ratio-4x5 {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f5f0f1;
+    padding-top: 125%; /* 4:5 соотношение */
+}
+
+.media-ratio-16x9 {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f5f0f1;
+    padding-top: 56.25%; /* 16:9 соотношение */
+}
+
+.media-ratio-4x5 img,
+.media-ratio-16x9 img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
     height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Приглушенный текст */
+.text-muted {
+    color: #555;
+}
+
+/* Секция 1: фото слева (5/12), текст справа (7/12) */
+.s1-media {
+    grid-column: 1 / span 5;
+}
+
+.s1-text {
+    grid-column: 6 / span 7;
+}
+
+/* Секция 2: широкое фото слева (7/12), текст справа (5/12) */
+.s2-media {
+    grid-column: 1 / span 7;
+}
+
+.s2-text {
+    grid-column: 8 / span 5;
+}
+
+/* Заголовок секции */
+.s3-head {
+    grid-column: 1 / -1;
+    margin-bottom: 32px;
+}
+
+/* Карточки */
+.card-col-1 {
+    grid-column: 1 / span 4;
+    display: grid;
+    row-gap: 24px;
+}
+
+.card-col-2 {
+    grid-column: 5 / span 4;
+    display: grid;
+    row-gap: 24px;
+}
+
+.card-feature {
+    grid-column: 9 / span 4;
+}
+
+/* Большая карточка с медиа */
+.feature {
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.feature .media-ratio-16x9 {
+    border-radius: 0;
+}
+
+.feature .inner {
+    padding: 32px;
+}
+
+.feature .inner a {
+    color: #d61f2c;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.feature .inner a:hover {
+    text-decoration: underline;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    /* Секция 1–2: 6/12 + 6/12 */
+    .s1-media,
+    .s2-media {
+        grid-column: 1 / span 6;
+    }
+    
+    .s1-text,
+    .s2-text {
+        grid-column: 7 / span 6;
+    }
+    
+    /* Секция 3: левая колонка (6/12) + правая (6/12) */
+    .card-col-1 {
+        grid-column: 1 / span 6;
+    }
+    
+    .card-col-2 {
+        grid-column: 7 / span 6;
+    }
+    
+    .card-feature {
+        grid-column: 1 / -1;
+        margin-top: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Секция 1–2: стек */
+    .s1-media,
+    .s1-text,
+    .s2-media,
+    .s2-text {
+        grid-column: 1 / -1;
+    }
+    
+    .s1-text,
+    .s2-text {
+        margin-top: 24px;
+    }
+    
+    /* Секция 3: все карточки столбцом */
+    .card-col-1,
+    .card-col-2,
+    .card-feature {
+        grid-column: 1 / -1;
+    }
 }
 
 

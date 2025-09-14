@@ -7,7 +7,7 @@
         <div class="container">
             <div class="grid grid-12">
                 <div class="hero-content" style="grid-column: 1 / 7;">
-                    <h1>Высшая школа бизнес-психологии и лидерства им. Антонио Менегетти</h1>
+                    <h1>Высшая школа бизнес-психологии и международного лидерства им. Антонио Менегетти</h1>
                     
                     <!-- Плюсы школы -->
                     <div class="school-advantages">
@@ -56,7 +56,7 @@
     <!-- Курсы -->
     <section class="courses-section section">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title animate-on-scroll">
                 <h2>Наши события</h2>
             </div>
             
@@ -187,25 +187,32 @@
     <!-- О школе -->
     <section class="about-school-section section">
         <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>О школе</h2>
+            </div>
+            
             <div class="grid grid-2">
-                <div class="about-image">
+                <div class="about-image animate-on-scroll animate-fadeInLeft">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/osrt.jpg" alt="О школе">
                 </div>
                 
-                <div class="about-content">
-                    <h2>О школе</h2>
-                    <p>«Высшая школа интегральной онтопсихологии и лидерства им. Антонио Менегетти» предлагает эксклюзивное образование в сфере психологии бизнеса, онтопсихологии и лидерства, направленное на формирование интеллектуальной элиты бизнеса и общества, способной отвечать на глобальные вызовы ХХI века, решать возникающие проблемы и предлагать креативные решения на основе универсальных жизненных ценностей, умения не просто управлять реальностью, а создавать новый гармоничный и справедливый мир для всех (служение).</p>
+                <div class="about-content animate-on-scroll animate-fadeInRight">
+                    <h3>Миссия:</h3>
+                    <p>Формировать новое поколение лидеров, которые, раскрывая свой потенциал, меняют себя — и вместе с этим трансформируют бизнес, команды, семьи и мир вокруг.</p>
                     
-                    <div class="school-motto">
-                        <strong>Девиз Школы:</strong> «Fortis fortuna adiuvat» – «Удача помогает сильным»
+                    <h3>Цели:</h3>
+                    <ul>
+                        <li>Помочь людям любого возраста и профессии — от студентов до предпринимателей — раскрыть свои сильные стороны и двигаться к личному успеху.</li>
+                        <li>Дать опору в виде универсальных жизненных ценностей, актуальных в XXI веке, чтобы человек знал, зачем он живёт и к чему идёт.</li>
+                        <li>Повышать устойчивость и эффективность лидеров, команд и организаций в условиях глобальных перемен.</li>
+                        <li>Развивать духовный интеллект, эмоциональную зрелость и креативное мышление — как основу лидерства нового времени.</li>
+                        <li>Содействовать глубинным личным и социальным изменениям, чтобы человек мог жить осмысленно, свободно, с радостью и пользой для других.</li>
+                    </ul>
+                    
+                    <div class="signature">
+                        <div class="signature-name">Александр Островский</div>
+                        <div class="signature-title">Руководитель Meneghetti School for Business Psychology and Leadership</div>
                     </div>
-                    
-                    <button class="btn">
-                        <span class="btn-text">Узнать больше</span>
-                        <svg class="btn-arrow" width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 6H15M15 6L10 1M15 6L10 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
                 </div>
             </div>
         </div>
@@ -216,33 +223,33 @@
     <!-- Что мы на самом деле делаем -->
     <section class="what-we-do-section section">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title animate-on-scroll">
                 <h2>Что мы на самом деле делаем</h2>
                 <p>Не просто обучаем — меняем мышление, усиливаем людей и задаём вектор</p>
             </div>
             
             <div class="what-we-do-grid">
-                <div class="card-item card-1">
+                <div class="card-item card-1 animate-on-scroll animate-delay-100">
                     <div class="card-number">01.</div>
                     <p>Распространяем идеи осознанного лидерства, онтологического мышления и глубинных ценностей среди тех, кто влияет: предпринимателей, коучей, экспертов, управленцев, преподавателей.</p>
                 </div>
                 
-                <div class="card-item card-2">
+                <div class="card-item card-2 animate-on-scroll animate-delay-200">
                     <div class="card-number">02.</div>
                     <p>Даём современные подходы, проверенные инструменты и живую практику, чтобы люди и организации могли быть жизнеспособными, эффективными, адаптивными.</p>
                 </div>
                 
-                <div class="card-item card-3">
+                <div class="card-item card-3 animate-on-scroll animate-delay-300">
                     <div class="card-number">03.</div>
                     <p>Работаем с тем, что внутри: зачем ты живёшь, куда идёшь, какие ценности двигают тобой. Это даёт энергию, фокус и ясность в действиях.</p>
                 </div>
                 
-                <div class="card-item card-4">
+                <div class="card-item card-4 animate-on-scroll animate-delay-400">
                     <div class="card-number">04.</div>
                     <p>Настоящие лидеры — не те, у кого должность, а те, кто меняют себя и вдохновляют других. Мы учим быть такими — через работу над собой и развитие духовного интеллекта.</p>
                 </div>
                 
-                <div class="what-we-do-image">
+                <div class="what-we-do-image animate-on-scroll animate-fadeInScale animate-delay-500">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/bg03.jpg" alt="Что мы делаем">
                 </div>
             </div>
@@ -253,7 +260,7 @@
     <section class="features-section section">
         <div class="container">
             <div class="features-grid">
-                <div class="feature-item">
+                <div class="feature-item animate-on-scroll animate-delay-100">
                     <div class="feature-icon">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/icon01.svg" alt="Знания от практиков">
                     </div>
@@ -261,7 +268,7 @@
                     <p class="feature-text">Наши преподаватели являются действующими международными предпринимателями</p>
                 </div>
                 
-                <div class="feature-item">
+                <div class="feature-item animate-on-scroll animate-delay-200">
                     <div class="feature-icon">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/icon02.svg" alt="Оптимальные программы">
                     </div>
@@ -269,7 +276,7 @@
                     <p class="feature-text">Все наши курсы рассчитаны на 2-4 месяца. Как правило, это достаточное количество времени, чтобы получить первые результаты изменений</p>
                 </div>
                 
-                <div class="feature-item">
+                <div class="feature-item animate-on-scroll animate-delay-300">
                     <div class="feature-icon">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/icon03.svg" alt="Готовим профессионалов">
                     </div>
@@ -483,7 +490,7 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    <h3>4</h3>
+                    <h3 class="stat-number" data-target="4">0</h3>
                     <p class="stat-text">4 месяца курса достаточно для полной трансформации мышления</p>
                 </article>
 
@@ -499,7 +506,7 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    <h3>17 000</h3>
+                    <h3 class="stat-number" data-target="17000">0</h3>
                     <p class="stat-text">17 000 выпускников по всему миру</p>
                 </article>
 
@@ -515,7 +522,7 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    <h3>74</h3>
+                    <h3 class="stat-number" data-target="74">0</h3>
                     <p class="stat-text">В 74 странах, включая все передовые державы, наши методы являются одними из самых эффективных</p>
                 </article>
 
@@ -531,7 +538,7 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    <h3>56</h3>
+                    <h3 class="stat-number" data-target="56">0</h3>
                     <p class="stat-text">56 лет средний возраст наших выпускников. Рекомендуемый возраст для поступления: от 28 - ми лет</p>
                 </article>
             </div>
@@ -730,13 +737,16 @@
                 <div class="contact-form">
                     <form class="contact-form" id="contactForm">
                         <div class="form-group">
-                            <input type="text" name="name" placeholder="Ваше имя" required>
+                            <input type="text" name="name" placeholder="Ваше имя *" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" name="phone" placeholder="Телефон">
+                            <input type="tel" name="phone" placeholder="Телефон *" required>
                         </div>
                         <div class="form-group">
-                            <textarea name="message" placeholder="Сообщение" rows="5" required></textarea>
+                            <input type="email" name="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Сообщение *" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn">Отправить сообщение</button>
                     </form>

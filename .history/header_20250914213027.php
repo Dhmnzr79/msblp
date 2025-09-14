@@ -8,7 +8,65 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Critical CSS -->
+    <style>
+        /* Критический CSS для быстрой загрузки */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            background-color: #F3F7FB; 
+            color: #383838; 
+        }
+        .container { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
+        .site-header { 
+            background: #ffffff; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+        }
+        .hero-section { 
+            padding: 6rem 0; 
+            background-image: url('<?php echo get_template_directory_uri(); ?>/assets/images/main-bg.jpg'); 
+            background-position: center center; 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            color: white; 
+            position: relative; 
+            overflow: hidden; 
+        }
+        .hero-content h1 { 
+            color: white; 
+            font-size: clamp(2.5rem, 8vw, 4rem); 
+            margin-bottom: 1.5rem; 
+            font-weight: 800; 
+            font-family: 'Manrope', sans-serif; 
+        }
+        .btn { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 12px; 
+            padding: 20px; 
+            border-radius: 10px; 
+            color: white; 
+            text-decoration: none; 
+            background: #E5415F; 
+            border: 2px solid #E5415F; 
+            transition: all 0.3s ease; 
+            cursor: pointer; 
+            font-weight: 600; 
+            font-size: 1rem; 
+            box-sizing: border-box; 
+            font-family: 'Manrope', sans-serif; 
+        }
+    </style>
     
     <?php wp_head(); ?>
 </head>
@@ -26,22 +84,28 @@
                 <div class="header-top-content">
                     <!-- Контакты -->
                     <div class="header-contacts">
+                        <?php if (get_option('psych_school_contact_address')) : ?>
                         <div class="contact-item">
                             <i class="icon-location"></i>
-                            <span>г. Москва, ул. Примерная, д. 123</span>
+                            <span><?php echo esc_html(get_option('psych_school_contact_address')); ?></span>
                         </div>
+                        <?php endif; ?>
+                        <?php if (get_option('psych_school_contact_email')) : ?>
                         <div class="contact-item">
                             <i class="icon-email"></i>
-                            <span>info@psych-school.ru</span>
+                            <span><?php echo esc_html(get_option('psych_school_contact_email')); ?></span>
                         </div>
+                        <?php endif; ?>
                     </div>
 
                     <!-- Звонок и кнопка -->
                     <div class="header-call">
+                        <?php if (get_option('psych_school_contact_phone')) : ?>
                         <div class="contact-item">
                             <i class="icon-phone"></i>
-                            <span>+7 (999) 123-45-67</span>
+                            <span><?php echo esc_html(get_option('psych_school_contact_phone')); ?></span>
                         </div>
+                        <?php endif; ?>
                         <button type="button" class="btn-secondary">
                             <span class="btn-text">Бесплатная консультация</span>
                             <svg class="btn-arrow" width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,7 +150,7 @@
                                     <li><a href="#">Аудитория</a></li>
                                     <li><a href="#">Теория и методика</a></li>
                                     <li><a href="#">Интегральная онтопсихология</a></li>
-                                    <li><a href="<?php echo esc_url(home_url('/how-ontopsychology')); ?>">Как работает интегральная онтопсихология</a></li>
+                                    <li><a href="#">Как работает интегральная онтопсихология</a></li>
                                     <li><a href="#">Принципы (Наши приоритеты)</a></li>
                                     <li><a href="#">Основатели</a></li>
                                     <li><a href="#">Преподаватели</a></li>
@@ -170,7 +234,7 @@
                 <li><a href="#">Миссия, Цели, Задачи</a></li>
                 <li><a href="#">Аудитория</a></li>
                 <li><a href="#">Теория и методика</a></li>
-                <li><a href="<?php echo esc_url(home_url('/how-ontopsychology')); ?>">Как работает интегральная онтопсихология</a></li>
+                <li><a href="#">Интегральная онтопсихология</a></li>
                 <li><a href="#">Принципы (Наши приоритеты)</a></li>
                 <li><a href="#">Основатели</a></li>
                 <li><a href="#">Преподаватели</a></li>

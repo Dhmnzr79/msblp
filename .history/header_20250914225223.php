@@ -78,6 +78,7 @@
                     <nav id="site-navigation" class="main-navigation">
                         <ul class="nav-menu">
                             <li><a href="<?php echo esc_url(home_url('/')); ?>">Главная</a></li>
+                            <li><a href="<?php echo esc_url(home_url('/how-ontopsychology')); ?>">Как работает интегральная онтопсихология</a></li>
                             
                             <li class="menu-item-has-children">
                                 <a href="#">О Школе</a>
@@ -86,7 +87,7 @@
                                     <li><a href="#">Аудитория</a></li>
                                     <li><a href="#">Теория и методика</a></li>
                                     <li><a href="#">Интегральная онтопсихология</a></li>
-                                    <li><a href="<?php echo esc_url(home_url('/how-ontopsychology')); ?>">Как работает интегральная онтопсихология</a></li>
+                                    <li><a href="#">Как работает интегральная онтопсихология</a></li>
                                     <li><a href="#">Принципы (Наши приоритеты)</a></li>
                                     <li><a href="#">Основатели</a></li>
                                     <li><a href="#">Преподаватели</a></li>

@@ -7,7 +7,7 @@
         <div class="container">
             <div class="grid grid-12">
                 <div class="hero-content" style="grid-column: 1 / 7;">
-                    <h1>Высшая школа бизнес-психологии и лидерства им. Антонио Менегетти</h1>
+                    <h1>Высшая школа бизнес-психологии и международного лидерства им. Антонио Менегетти</h1>
                     
                     <!-- Плюсы школы -->
                     <div class="school-advantages">
@@ -56,7 +56,7 @@
     <!-- Курсы -->
     <section class="courses-section section">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title animate-on-scroll">
                 <h2>Наши события</h2>
             </div>
             
@@ -187,25 +187,32 @@
     <!-- О школе -->
     <section class="about-school-section section">
         <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>О школе</h2>
+            </div>
+            
             <div class="grid grid-2">
-                <div class="about-image">
+                <div class="about-image animate-on-scroll animate-fadeInLeft">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/osrt.jpg" alt="О школе">
                 </div>
                 
-                <div class="about-content">
-                    <h2>О школе</h2>
-                    <p>«Высшая школа интегральной онтопсихологии и лидерства им. Антонио Менегетти» предлагает эксклюзивное образование в сфере психологии бизнеса, онтопсихологии и лидерства, направленное на формирование интеллектуальной элиты бизнеса и общества, способной отвечать на глобальные вызовы ХХI века, решать возникающие проблемы и предлагать креативные решения на основе универсальных жизненных ценностей, умения не просто управлять реальностью, а создавать новый гармоничный и справедливый мир для всех (служение).</p>
+                <div class="about-content animate-on-scroll animate-fadeInRight">
+                    <h3>Миссия:</h3>
+                    <p>Формировать новое поколение лидеров, которые, раскрывая свой потенциал, меняют себя — и вместе с этим трансформируют бизнес, команды, семьи и мир вокруг.</p>
                     
-                    <div class="school-motto">
-                        <strong>Девиз Школы:</strong> «Fortis fortuna adiuvat» – «Удача помогает сильным»
+                    <h3>Цели:</h3>
+                    <ul>
+                        <li>Помочь людям любого возраста и профессии — от студентов до предпринимателей — раскрыть свои сильные стороны и двигаться к личному успеху.</li>
+                        <li>Дать опору в виде универсальных жизненных ценностей, актуальных в XXI веке, чтобы человек знал, зачем он живёт и к чему идёт.</li>
+                        <li>Повышать устойчивость и эффективность лидеров, команд и организаций в условиях глобальных перемен.</li>
+                        <li>Развивать духовный интеллект, эмоциональную зрелость и креативное мышление — как основу лидерства нового времени.</li>
+                        <li>Содействовать глубинным личным и социальным изменениям, чтобы человек мог жить осмысленно, свободно, с радостью и пользой для других.</li>
+                    </ul>
+                    
+                    <div class="signature">
+                        <div class="signature-name">Александр Островский</div>
+                        <div class="signature-title">Руководитель Meneghetti School for Business Psychology and Leadership</div>
                     </div>
-                    
-                    <button class="btn">
-                        <span class="btn-text">Узнать больше</span>
-                        <svg class="btn-arrow" width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 6H15M15 6L10 1M15 6L10 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
                 </div>
             </div>
         </div>
@@ -730,13 +737,16 @@
                 <div class="contact-form">
                     <form class="contact-form" id="contactForm">
                         <div class="form-group">
-                            <input type="text" name="name" placeholder="Ваше имя" required>
+                            <input type="text" name="name" placeholder="Ваше имя *" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" name="phone" placeholder="Телефон">
+                            <input type="tel" name="phone" placeholder="Телефон *" required>
                         </div>
                         <div class="form-group">
-                            <textarea name="message" placeholder="Сообщение" rows="5" required></textarea>
+                            <input type="email" name="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Сообщение *" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn">Отправить сообщение</button>
                     </form>

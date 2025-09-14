@@ -528,4 +528,151 @@ function psych_school_enqueue_scripts() {
 }
 add_action('wp_enqueue_scripts', 'psych_school_enqueue_scripts');
 
+/**
+ * Перенаправление на страницу-заглушку для всех страниц кроме главной
+ */
+function psych_school_redirect_to_coming_soon() {
+    // Не перенаправляем на главной странице
+    if (is_front_page() || is_home()) {
+        return;
+    }
+    
+    // Не перенаправляем если это уже страница-заглушка
+    if (is_page_template('page-coming-soon.php')) {
+        return;
+    }
+    
+    // Не перенаправляем для администраторов
+    if (current_user_can('manage_options')) {
+        return;
+    }
+    
+    // Перенаправляем на страницу-заглушку
+    $coming_soon_page = get_pages(array(
+        'meta_key' => '_wp_page_template',
+        'meta_value' => 'page-coming-soon.php',
+        'numberposts' => 1
+    ));
+    
+    if (!empty($coming_soon_page)) {
+        wp_redirect(get_permalink($coming_soon_page[0]->ID));
+        exit;
+    }
+}
+// Временно отключаем перенаправление для тестирования
+// add_action('template_redirect', 'psych_school_redirect_to_coming_soon');
 
+/**
+ * Показываем страницу-заглушку для всех страниц кроме главной
+ */
+function psych_school_show_coming_soon() {
+    // Не показываем заглушку на главной странице
+    if (is_front_page() || is_home()) {
+        return;
+    }
+    
+    // Не показываем заглушку для администраторов
+    if (current_user_can('manage_options')) {
+        return;
+    }
+    
+    // Показываем страницу-заглушку
+    include(get_template_directory() . '/page-coming-soon.php');
+    exit;
+}
+add_action('template_redirect', 'psych_school_show_coming_soon');
+
+/**
+ * Обработка формы обратной связи
+ */
+function psych_school_handle_contact_form() {
+    // Проверяем, что это AJAX запрос и форма обратной связи
+    if (!wp_verify_nonce($_POST['nonce'], 'contact_form_nonce')) {
+        wp_die('Ошибка безопасности');
+    }
+
+    // Получаем данные формы
+    $name = sanitize_text_field($_POST['name']);
+    $phone = sanitize_text_field($_POST['phone']);
+    $message = sanitize_textarea_field($_POST['message']);
+    $email = sanitize_email($_POST['email'] ?? '');
+
+    // Валидация
+    $errors = array();
+    
+    if (empty($name)) {
+        $errors[] = 'Имя обязательно для заполнения';
+    }
+    
+    if (empty($message)) {
+        $errors[] = 'Сообщение обязательно для заполнения';
+    }
+    
+    if (!empty($email) && !is_email($email)) {
+        $errors[] = 'Неверный формат email';
+    }
+
+    // Если есть ошибки, возвращаем их
+    if (!empty($errors)) {
+        wp_send_json_error(array(
+            'message' => implode(', ', $errors)
+        ));
+    }
+
+    // Отправляем email
+    $to = get_option('admin_email');
+    $subject = 'Новое сообщение с сайта ' . get_bloginfo('name');
+    
+    $email_message = "Новое сообщение с сайта:\n\n";
+    $email_message .= "Имя: " . $name . "\n";
+    $email_message .= "Телефон: " . $phone . "\n";
+    if (!empty($email)) {
+        $email_message .= "Email: " . $email . "\n";
+    }
+    $email_message .= "Сообщение:\n" . $message . "\n\n";
+    $email_message .= "Дата: " . current_time('d.m.Y H:i') . "\n";
+    $email_message .= "IP: " . $_SERVER['REMOTE_ADDR'] . "\n";
+
+    $headers = array('Content-Type: text/plain; charset=UTF-8');
+    
+    $sent = wp_mail($to, $subject, $email_message, $headers);
+
+    if ($sent) {
+        // Отправляем автоответ пользователю
+        if (!empty($email)) {
+            $user_subject = 'Ваше сообщение получено - ' . get_bloginfo('name');
+            $user_message = "Здравствуйте, " . $name . "!\n\n";
+            $user_message .= "Спасибо за ваше сообщение. Мы получили его и свяжемся с вами в ближайшее время.\n\n";
+            $user_message .= "Ваше сообщение:\n" . $message . "\n\n";
+            $user_message .= "С уважением,\n";
+            $user_message .= "Команда " . get_bloginfo('name');
+            
+            wp_mail($email, $user_subject, $user_message, $headers);
+        }
+
+        wp_send_json_success(array(
+            'message' => 'Сообщение успешно отправлено! Мы свяжемся с вами в ближайшее время.'
+        ));
+    } else {
+        wp_send_json_error(array(
+            'message' => 'Произошла ошибка при отправке сообщения. Попробуйте позже.'
+        ));
+    }
+}
+
+// AJAX обработчики
+add_action('wp_ajax_contact_form', 'psych_school_handle_contact_form');
+add_action('wp_ajax_nopriv_contact_form', 'psych_school_handle_contact_form');
+
+/**
+ * Добавляем nonce для форм в head
+ */
+function psych_school_add_form_nonce() {
+    echo '<script type="text/javascript">';
+    echo 'var contactFormAjax = {';
+    echo '    "ajaxurl": "' . admin_url('admin-ajax.php') . '",';
+    echo '    "nonce": "' . wp_create_nonce('contact_form_nonce') . '"';
+    echo '};';
+    echo '</script>';
+}
+add_action('wp_head', 'psych_school_add_form_nonce');

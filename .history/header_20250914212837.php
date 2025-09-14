@@ -8,7 +8,8 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     
     <?php wp_head(); ?>
 </head>
@@ -86,7 +87,7 @@
                                     <li><a href="#">Аудитория</a></li>
                                     <li><a href="#">Теория и методика</a></li>
                                     <li><a href="#">Интегральная онтопсихология</a></li>
-                                    <li><a href="<?php echo esc_url(home_url('/how-ontopsychology')); ?>">Как работает интегральная онтопсихология</a></li>
+                                    <li><a href="#">Как работает интегральная онтопсихология</a></li>
                                     <li><a href="#">Принципы (Наши приоритеты)</a></li>
                                     <li><a href="#">Основатели</a></li>
                                     <li><a href="#">Преподаватели</a></li>
@@ -170,7 +171,7 @@
                 <li><a href="#">Миссия, Цели, Задачи</a></li>
                 <li><a href="#">Аудитория</a></li>
                 <li><a href="#">Теория и методика</a></li>
-                <li><a href="<?php echo esc_url(home_url('/how-ontopsychology')); ?>">Как работает интегральная онтопсихология</a></li>
+                <li><a href="#">Интегральная онтопсихология</a></li>
                 <li><a href="#">Принципы (Наши приоритеты)</a></li>
                 <li><a href="#">Основатели</a></li>
                 <li><a href="#">Преподаватели</a></li>

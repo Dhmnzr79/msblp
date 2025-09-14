@@ -101,6 +101,7 @@ body {
     font-size: clamp(16px, 1.2vw, 18px);
     line-height: 1.6;
     margin-block: 0 1em;
+    max-inline-size: 65ch; /* ограничиваем длину строки для удобства */
   }
   ul,ol {
     margin-block: 0 1em;
@@ -2383,6 +2384,29 @@ body.nav-open {
         right: 28px;
     }
     
+    /* Coming Soon Mobile */
+    .coming-soon-title {
+        font-size: 2rem;
+    }
+    
+    .coming-soon-description {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .coming-soon-features {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .coming-soon-features .feature-item {
+        padding: 0.5rem 1rem;
+    }
+    
+    .coming-soon-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
     
     .btn-outline {
         width: 100%;
@@ -2480,9 +2504,155 @@ body.nav-open {
 
 /* ====== СТРАНИЦА "КАК РАБОТАЕТ ИНТЕГРАЛЬНАЯ ОНТОПСИХОЛОГИЯ" ====== */
 
-/* Большая карточка на всю высоту */
-.card-feature {
+/* Медиа-блоки с поддержанием соотношения сторон */
+.media-ratio-4x5 {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f5f0f1;
+    padding-top: 125%; /* 4:5 соотношение */
+}
+
+.media-ratio-16x9 {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f5f0f1;
+    padding-top: 56.25%; /* 16:9 соотношение */
+}
+
+.media-ratio-4x5 img,
+.media-ratio-16x9 img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
     height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Приглушенный текст */
+.text-muted {
+    color: #555;
+}
+
+/* Секция 1: фото слева (5/12), текст справа (7/12) */
+.how-s1-media {
+    grid-column: 1 / span 5;
+}
+
+.how-s1-text {
+    grid-column: 6 / span 7;
+}
+
+/* Секция 2: широкое фото слева (7/12), текст справа (5/12) */
+.how-s2-media {
+    grid-column: 1 / span 7;
+}
+
+.how-s2-text {
+    grid-column: 8 / span 5;
+}
+
+/* Заголовок секции */
+.how-section-header {
+    grid-column: 1 / -1;
+    margin-bottom: 32px;
+}
+
+/* Карточки */
+.how-cards-col {
+    display: grid;
+    row-gap: 24px;
+}
+
+.how-cards-col-1 {
+    grid-column: 1 / span 4;
+}
+
+.how-cards-col-2 {
+    grid-column: 5 / span 4;
+}
+
+.how-cards-feature {
+    grid-column: 9 / span 4;
+}
+
+/* Большая карточка с медиа */
+.feature-card {
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.feature-card .media-ratio-16x9 {
+    border-radius: 0;
+}
+
+.feature-card-content {
+    padding: 32px;
+}
+
+.feature-card-content a {
+    color: #d61f2c;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.feature-card-content a:hover {
+    text-decoration: underline;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    /* Секция 1–2: 6/12 + 6/12 */
+    .how-s1-media,
+    .how-s2-media {
+        grid-column: 1 / span 6;
+    }
+    
+    .how-s1-text,
+    .how-s2-text {
+        grid-column: 7 / span 6;
+    }
+    
+    /* Секция 3: левая колонка (6/12) + правая (6/12) */
+    .how-cards-col-1 {
+        grid-column: 1 / span 6;
+    }
+    
+    .how-cards-col-2 {
+        grid-column: 7 / span 6;
+    }
+    
+    .how-cards-feature {
+        grid-column: 1 / -1;
+        margin-top: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Секция 1–2: стек */
+    .how-s1-media,
+    .how-s1-text,
+    .how-s2-media,
+    .how-s2-text {
+        grid-column: 1 / -1;
+    }
+    
+    .how-s1-text,
+    .how-s2-text {
+        margin-top: 24px;
+    }
+    
+    /* Секция 3: все карточки столбцом */
+    .how-cards-col-1,
+    .how-cards-col-2,
+    .how-cards-feature {
+        grid-column: 1 / -1;
+    }
 }
 
 

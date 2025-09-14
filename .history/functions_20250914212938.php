@@ -528,4 +528,336 @@ function psych_school_enqueue_scripts() {
 }
 add_action('wp_enqueue_scripts', 'psych_school_enqueue_scripts');
 
+/**
+ * Перенаправление на страницу-заглушку для всех страниц кроме главной
+ */
+function psych_school_redirect_to_coming_soon() {
+    // Не перенаправляем на главной странице
+    if (is_front_page() || is_home()) {
+        return;
+    }
+    
+    // Не перенаправляем если это уже страница-заглушка
+    if (is_page_template('page-coming-soon.php')) {
+        return;
+    }
+    
+    // Не перенаправляем для администраторов
+    if (current_user_can('manage_options')) {
+        return;
+    }
+    
+    // Перенаправляем на страницу-заглушку
+    $coming_soon_page = get_pages(array(
+        'meta_key' => '_wp_page_template',
+        'meta_value' => 'page-coming-soon.php',
+        'numberposts' => 1
+    ));
+    
+    if (!empty($coming_soon_page)) {
+        wp_redirect(get_permalink($coming_soon_page[0]->ID));
+        exit;
+    }
+}
+// Временно отключаем перенаправление для тестирования
+// add_action('template_redirect', 'psych_school_redirect_to_coming_soon');
 
+/**
+ * Показываем страницу-заглушку для всех страниц кроме главной
+ */
+function psych_school_show_coming_soon() {
+    // Не показываем заглушку на главной странице
+    if (is_front_page() || is_home()) {
+        return;
+    }
+    
+    // Не показываем заглушку для администраторов
+    if (current_user_can('manage_options')) {
+        return;
+    }
+    
+    // Показываем страницу-заглушку
+    include(get_template_directory() . '/page-coming-soon.php');
+    exit;
+}
+add_action('template_redirect', 'psych_school_show_coming_soon');
+
+/**
+ * Обработка формы обратной связи
+ */
+function psych_school_handle_contact_form() {
+    // Проверяем, что это AJAX запрос и форма обратной связи
+    if (!wp_verify_nonce($_POST['nonce'], 'contact_form_nonce')) {
+        wp_die('Ошибка безопасности');
+    }
+
+    // Получаем данные формы
+    $name = sanitize_text_field($_POST['name']);
+    $phone = sanitize_text_field($_POST['phone']);
+    $message = sanitize_textarea_field($_POST['message']);
+    $email = sanitize_email($_POST['email'] ?? '');
+
+    // Валидация
+    $errors = array();
+    
+    if (empty($name)) {
+        $errors[] = 'Имя обязательно для заполнения';
+    }
+    
+    if (empty($message)) {
+        $errors[] = 'Сообщение обязательно для заполнения';
+    }
+    
+    if (!empty($email) && !is_email($email)) {
+        $errors[] = 'Неверный формат email';
+    }
+
+    // Если есть ошибки, возвращаем их
+    if (!empty($errors)) {
+        wp_send_json_error(array(
+            'message' => implode(', ', $errors)
+        ));
+    }
+
+    // Отправляем email
+    $to = get_option('psych_school_contact_email') ?: get_option('admin_email');
+    $subject = 'Новое сообщение с сайта ' . get_bloginfo('name');
+    
+    $email_message = "Новое сообщение с сайта:\n\n";
+    $email_message .= "Имя: " . $name . "\n";
+    $email_message .= "Телефон: " . $phone . "\n";
+    if (!empty($email)) {
+        $email_message .= "Email: " . $email . "\n";
+    }
+    $email_message .= "Сообщение:\n" . $message . "\n\n";
+    $email_message .= "Дата: " . current_time('d.m.Y H:i') . "\n";
+    $email_message .= "IP: " . $_SERVER['REMOTE_ADDR'] . "\n";
+
+    $headers = array('Content-Type: text/plain; charset=UTF-8');
+    
+    $sent = wp_mail($to, $subject, $email_message, $headers);
+
+    if ($sent) {
+        // Отправляем автоответ пользователю
+        if (!empty($email)) {
+            $user_subject = 'Ваше сообщение получено - ' . get_bloginfo('name');
+            $user_message = "Здравствуйте, " . $name . "!\n\n";
+            $user_message .= "Спасибо за ваше сообщение. Мы получили его и свяжемся с вами в ближайшее время.\n\n";
+            $user_message .= "Ваше сообщение:\n" . $message . "\n\n";
+            $user_message .= "С уважением,\n";
+            $user_message .= "Команда " . get_bloginfo('name');
+            
+            wp_mail($email, $user_subject, $user_message, $headers);
+        }
+
+        wp_send_json_success(array(
+            'message' => 'Сообщение успешно отправлено! Мы свяжемся с вами в ближайшее время.'
+        ));
+    } else {
+        wp_send_json_error(array(
+            'message' => 'Произошла ошибка при отправке сообщения. Попробуйте позже.'
+        ));
+    }
+}
+
+// AJAX обработчики
+add_action('wp_ajax_contact_form', 'psych_school_handle_contact_form');
+add_action('wp_ajax_nopriv_contact_form', 'psych_school_handle_contact_form');
+
+/**
+ * Добавляем nonce для форм в head
+ */
+function psych_school_add_form_nonce() {
+    echo '<script type="text/javascript">';
+    echo 'var contactFormAjax = {';
+    echo '    "ajaxurl": "' . admin_url('admin-ajax.php') . '",';
+    echo '    "nonce": "' . wp_create_nonce('contact_form_nonce') . '"';
+    echo '};';
+    echo '</script>';
+}
+add_action('wp_head', 'psych_school_add_form_nonce');
+
+/**
+ * Добавляем аналитику в head
+ */
+function psych_school_add_analytics() {
+    $google_analytics_id = get_option('psych_school_google_analytics_id', '');
+    $yandex_metrika_id = get_option('psych_school_yandex_metrika_id', '');
+    
+    if (!empty($google_analytics_id)) {
+        echo "<!-- Google Analytics -->\n";
+        echo "<script async src=\"https://www.googletagmanager.com/gtag/js?id=" . esc_attr($google_analytics_id) . "\"></script>\n";
+        echo "<script>\n";
+        echo "  window.dataLayer = window.dataLayer || [];\n";
+        echo "  function gtag(){dataLayer.push(arguments);}\n";
+        echo "  gtag('js', new Date());\n";
+        echo "  gtag('config', '" . esc_js($google_analytics_id) . "', {\n";
+        echo "    'anonymize_ip': true,\n";
+        echo "    'cookie_flags': 'SameSite=None;Secure'\n";
+        echo "  });\n";
+        echo "</script>\n";
+    }
+    
+    if (!empty($yandex_metrika_id)) {
+        echo "<!-- Yandex.Metrika counter -->\n";
+        echo "<script type=\"text/javascript\" >\n";
+        echo "(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n";
+        echo "m[i].l=1*new Date();\n";
+        echo "for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}\n";
+        echo "k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})\n";
+        echo "(window, document, \"script\", \"https://mc.yandex.ru/metrika/tag.js\", \"ym\");\n";
+        echo "ym(" . esc_js($yandex_metrika_id) . ", \"init\", {\n";
+        echo "  clickmap:true,\n";
+        echo "  trackLinks:true,\n";
+        echo "  accurateTrackBounce:true,\n";
+        echo "  webvisor:true\n";
+        echo "});\n";
+        echo "</script>\n";
+        echo "<noscript><div><img src=\"https://mc.yandex.ru/watch/" . esc_attr($yandex_metrika_id) . "\" style=\"position:absolute; left:-9999px;\" alt=\"\" /></div></noscript>\n";
+    }
+}
+add_action('wp_head', 'psych_school_add_analytics');
+
+/**
+ * Настройки темы в админке
+ */
+function psych_school_admin_menu() {
+    add_theme_page(
+        'Настройки темы',
+        'Настройки темы',
+        'manage_options',
+        'psych-school-settings',
+        'psych_school_settings_page'
+    );
+}
+add_action('admin_menu', 'psych_school_admin_menu');
+
+/**
+ * Страница настроек темы
+ */
+function psych_school_settings_page() {
+    if (isset($_POST['submit'])) {
+        update_option('psych_school_google_analytics_id', sanitize_text_field($_POST['google_analytics_id']));
+        update_option('psych_school_yandex_metrika_id', sanitize_text_field($_POST['yandex_metrika_id']));
+        update_option('psych_school_contact_email', sanitize_email($_POST['contact_email']));
+        update_option('psych_school_contact_phone', sanitize_text_field($_POST['contact_phone']));
+        update_option('psych_school_contact_address', sanitize_text_field($_POST['contact_address']));
+        echo '<div class="notice notice-success"><p>Настройки сохранены!</p></div>';
+    }
+    
+    $google_analytics_id = get_option('psych_school_google_analytics_id', '');
+    $yandex_metrika_id = get_option('psych_school_yandex_metrika_id', '');
+    $contact_email = get_option('psych_school_contact_email', '');
+    $contact_phone = get_option('psych_school_contact_phone', '');
+    $contact_address = get_option('psych_school_contact_address', '');
+    ?>
+    <div class="wrap">
+        <h1>Настройки темы</h1>
+        <form method="post" action="">
+            <table class="form-table">
+                <tr>
+                    <th scope="row">Google Analytics ID</th>
+                    <td>
+                        <input type="text" name="google_analytics_id" value="<?php echo esc_attr($google_analytics_id); ?>" class="regular-text" />
+                        <p class="description">Введите ID Google Analytics (например: G-XXXXXXXXXX)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Яндекс.Метрика ID</th>
+                    <td>
+                        <input type="text" name="yandex_metrika_id" value="<?php echo esc_attr($yandex_metrika_id); ?>" class="regular-text" />
+                        <p class="description">Введите ID Яндекс.Метрики (например: 12345678)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Email для связи</th>
+                    <td>
+                        <input type="email" name="contact_email" value="<?php echo esc_attr($contact_email); ?>" class="regular-text" />
+                        <p class="description">Email для получения сообщений с формы обратной связи</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Телефон</th>
+                    <td>
+                        <input type="text" name="contact_phone" value="<?php echo esc_attr($contact_phone); ?>" class="regular-text" />
+                        <p class="description">Контактный телефон</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Адрес</th>
+                    <td>
+                        <input type="text" name="contact_address" value="<?php echo esc_attr($contact_address); ?>" class="regular-text" />
+                        <p class="description">Адрес организации</p>
+                    </td>
+                </tr>
+            </table>
+            <?php submit_button(); ?>
+        </form>
+    </div>
+    <?php
+}
+
+/**
+ * Добавляем schema markup для SEO
+ */
+function psych_school_add_schema_markup() {
+    if (is_front_page()) {
+        $schema = array(
+            "@context" => "https://schema.org",
+            "@type" => "EducationalOrganization",
+            "name" => get_bloginfo('name'),
+            "description" => get_bloginfo('description'),
+            "url" => home_url('/'),
+            "logo" => get_template_directory_uri() . '/assets/svg/logo.svg',
+            "address" => array(
+                "@type" => "PostalAddress",
+                "streetAddress" => get_option('psych_school_contact_address', ''),
+                "addressLocality" => "Москва",
+                "addressCountry" => "RU"
+            ),
+            "contactPoint" => array(
+                "@type" => "ContactPoint",
+                "telephone" => get_option('psych_school_contact_phone', ''),
+                "contactType" => "customer service",
+                "availableLanguage" => "Russian"
+            ),
+            "sameAs" => array(
+                // Добавьте ссылки на социальные сети, если есть
+            )
+        );
+        
+        echo '<script type="application/ld+json">' . json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</script>' . "\n";
+    }
+}
+add_action('wp_head', 'psych_school_add_schema_markup');
+
+/**
+ * Добавляем мета-теги для SEO
+ */
+function psych_school_add_meta_tags() {
+    if (is_front_page()) {
+        echo '<meta name="description" content="Высшая школа бизнес-психологии и международного лидерства им. Антонио Менегетти. Программы обучения, консультирование, развитие лидерских качеств.">' . "\n";
+        echo '<meta name="keywords" content="бизнес-психология, лидерство, обучение, психология, менеджмент, коучинг, консультирование">' . "\n";
+        echo '<meta property="og:title" content="' . get_bloginfo('name') . '">' . "\n";
+        echo '<meta property="og:description" content="Высшая школа бизнес-психологии и международного лидерства им. Антонио Менегетти">' . "\n";
+        echo '<meta property="og:type" content="website">' . "\n";
+        echo '<meta property="og:url" content="' . home_url('/') . '">' . "\n";
+        echo '<meta property="og:image" content="' . get_template_directory_uri() . '/assets/images/main-bg.jpg">' . "\n";
+        echo '<meta property="og:site_name" content="' . get_bloginfo('name') . '">' . "\n";
+        echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
+        echo '<meta name="twitter:title" content="' . get_bloginfo('name') . '">' . "\n";
+        echo '<meta name="twitter:description" content="Высшая школа бизнес-психологии и международного лидерства им. Антонио Менегетти">' . "\n";
+        echo '<meta name="twitter:image" content="' . get_template_directory_uri() . '/assets/images/main-bg.jpg">' . "\n";
+    }
+}
+add_action('wp_head', 'psych_school_add_meta_tags');
+
+/**
+ * Добавляем каноническую ссылку
+ */
+function psych_school_add_canonical() {
+    if (is_front_page()) {
+        echo '<link rel="canonical" href="' . home_url('/') . '">' . "\n";
+    }
+}
+add_action('wp_head', 'psych_school_add_canonical');

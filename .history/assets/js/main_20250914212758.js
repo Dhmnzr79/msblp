@@ -281,40 +281,15 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const img = entry.target;
-                        
-                        // Создаем новый объект Image для предзагрузки
-                        const imageLoader = new Image();
-                        
-                        imageLoader.onload = function() {
-                            img.src = img.dataset.src;
-                            img.classList.remove('lazy');
-                            img.classList.add('loaded');
-                        };
-                        
-                        imageLoader.onerror = function() {
-                            // Если изображение не загрузилось, убираем класс lazy
-                            img.classList.remove('lazy');
-                            img.classList.add('loaded');
-                        };
-                        
-                        imageLoader.src = img.dataset.src;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
                         imageObserver.unobserve(img);
                     }
                 });
-            }, {
-                rootMargin: '50px 0px', // Загружаем изображения за 50px до их появления
-                threshold: 0.01
             });
 
             document.querySelectorAll('img[data-src]').forEach(img => {
                 imageObserver.observe(img);
-            });
-        } else {
-            // Fallback для браузеров без поддержки IntersectionObserver
-            document.querySelectorAll('img[data-src]').forEach(img => {
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                img.classList.add('loaded');
             });
         }
     }
