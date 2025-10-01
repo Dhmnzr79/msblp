@@ -2681,7 +2681,6 @@ body.nav-open {
 }
 
 @media (max-width: 480px) {
-    .card { min-height: 160px; }
     .partners-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;

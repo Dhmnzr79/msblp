@@ -318,9 +318,7 @@ a:hover {
     transition: var(--transition);
     display: flex;
     flex-direction: column; /* top + bottom alignment */
-    justify-content: space-between; /* header at top, link at bottom */
     height: auto;
-    min-height: 200px;
 }
 
 .card:hover {
@@ -331,6 +329,7 @@ a:hover {
  
 .card h3 { margin: 0 0 12px; font-size: 20px; font-weight: 600; }
 .card-link {
+    margin-top: auto; /* push link to bottom */
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -2607,7 +2606,6 @@ body.nav-open {
 
 .card-feature--bg h3 { font-size: 26px; color: #fff; }
 .card-feature--bg p { color: #fff; }
-.card-feature--bg .card-link { color: #fff; }
 
 .about-content h2 {
     font-size: 22px;
@@ -2681,7 +2679,6 @@ body.nav-open {
 }
 
 @media (max-width: 480px) {
-    .card { min-height: 160px; }
     .partners-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;

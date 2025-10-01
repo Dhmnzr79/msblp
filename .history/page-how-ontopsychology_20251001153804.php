@@ -75,7 +75,7 @@ get_header(); ?>
                             </div>
                         </div>
                         <div>
-                            <article class="card card-feature card-feature--bg">
+                            <article class="card card-feature">
                                 <h3>Интегральная работа с образами</h3>
                                 <p>Сновидения, символы и метафоры, образы личного пространства, образы интуиции, образы художественного творчества, рекламы, массовой культуры</p>
                                 <a class="card-link" href="#">Подробнее</a>

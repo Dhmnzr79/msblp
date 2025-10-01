@@ -34,7 +34,7 @@ Text Domain: psych-school
     --border-radius: 8px;
     --transition: all 0.3s ease;
     
-    
+    /* Макет */
     --container-width: 1400px;
     --grid-columns: 12;
     --grid-gap: 30px;
@@ -119,35 +119,35 @@ a:hover {
 }
 
 @layer utilities {
-  
+  /* Простой контейнер */
   .container {
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 20px;
   }
   
-  
+  /* Простая адаптивная сетка */
   .grid {
     display: grid;
     gap: 20px;
   }
   
-  
+  /* 2 колонки */
   .grid-2 {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  
+  /* 3 колонки */
   .grid-3 {
     grid-template-columns: repeat(3, 1fr);
   }
   
-  
+  /* 4 колонки */
   .grid-4 {
     grid-template-columns: repeat(4, 1fr);
   }
   
-  
+  /* Flexbox утилиты */
   .flex {
     display: flex;
   }
@@ -168,7 +168,7 @@ a:hover {
     justify-content: center;
   }
   
-  
+  /* Отступы */
   .section {
     padding: 60px 0;
   }
@@ -182,7 +182,7 @@ a:hover {
   }
 }
 
- 
+/* Тестовый блок с кнопками */
 .buttons-test-section {
     background: var(--bg-color);
     padding: 60px 0;
@@ -196,7 +196,7 @@ a:hover {
     flex-wrap: wrap;
 }
 
- 
+/* Основная кнопка */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -243,7 +243,7 @@ a:hover {
     stroke: var(--white);
 }
 
- 
+/* Дополнительная кнопка */
 .btn-secondary {
     display: inline-flex;
     align-items: center;
@@ -310,17 +310,12 @@ a:hover {
 
 
 
- 
+/* Карточки */
 .card {
     background: var(--white);
     border-radius: var(--border-radius);
     padding: 20px;
     transition: var(--transition);
-    display: flex;
-    flex-direction: column; /* top + bottom alignment */
-    justify-content: space-between; /* header at top, link at bottom */
-    height: auto;
-    min-height: 200px;
 }
 
 .card:hover {
@@ -328,22 +323,7 @@ a:hover {
     box-shadow: 0 5px 20px rgba(0,0,0,0.15);
 }
 
- 
-.card h3 { margin: 0 0 12px; font-size: 20px; font-weight: 600; }
-.card-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--blue-color);
-    text-decoration: none;
-    font-weight: 600;
-}
-.card-link:hover { text-decoration: none; }
-
-.page-template-page-how-ontopsychology .grid.grid-2 > div { display: flex; }
-.page-template-page-how-ontopsychology .grid.grid-2 > div > .card { flex: 1; }
-
- 
+/* Секции */
 .section {
     padding: 40px 0;
 }
@@ -360,7 +340,7 @@ a:hover {
     margin: 0;
 }
 
- 
+/* Шапка сайта */
 .site-header {
     background: var(--white);
     box-shadow: var(--shadow);
@@ -370,7 +350,7 @@ a:hover {
     transition: var(--transition);
 }
 
- 
+/* Первая строка шапки */
 .header-top {
     background: var(--white);
     border-bottom: 1px solid #eee;
@@ -395,7 +375,7 @@ a:hover {
     gap: 1.5rem;
 }
 
- 
+/* Вторая строка шапки */
 .header-main {
     background: var(--white);
 }
@@ -444,7 +424,7 @@ a:hover {
     }
 }
 
- 
+/* Навигация */
 .main-navigation {
     margin-left: auto;
     margin-right: 0;
@@ -491,7 +471,7 @@ a:hover {
     width: 100%;
 }
 
- 
+/* Выпадающие меню */
 .sub-menu {
     position: absolute;
     top: 100%;
@@ -511,13 +491,13 @@ a:hover {
     padding: 0.5rem 0;
 }
 
- 
+/* Вложенные подменю (третий уровень) открываются вправо */
 .sub-menu .sub-menu {
     top: 0;
     left: 100%;
 }
 
- 
+/* Когда у правого края открываем влево */
 .sub-menu--left {
     left: auto;
     right: 100%;
@@ -554,7 +534,7 @@ a:hover {
     display: none;
 }
 
- 
+/* Второй уровень выпадающего меню */
 .sub-menu .sub-menu {
     top: 0;
     left: 100%;
@@ -573,7 +553,7 @@ a:hover {
 
 
 
- 
+/* Контакты в шапке */
 .contact-item {
     display: flex;
     align-items: center;
@@ -582,7 +562,7 @@ a:hover {
     color: var(--text-color);
 }
 
- 
+/* Мобильное меню */
 .menu-toggle {
     display: none;
     background: none;
@@ -603,7 +583,7 @@ a:hover {
 
 
 
- 
+/* Подвал */
 .site-footer {
     background: #1a1943;
     color: var(--white);
@@ -723,7 +703,7 @@ a:hover {
 
 
 
- 
+/* Записи */
 .posts-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -795,7 +775,7 @@ a:hover {
     color: var(--secondary-color);
 }
 
- 
+/* Сообщения */
 .message {
     position: fixed;
     top: 2rem;
@@ -854,7 +834,7 @@ a:hover {
     }
 }
 
- 
+/* Главная страница */
 .hero-section {
     padding: 6rem 0;
     background-position: center center;
@@ -865,7 +845,7 @@ a:hover {
     overflow: hidden;
 }
 
- 
+/* Плюсы школы */
 .school-advantages {
     display: flex;
     gap: 2rem;
@@ -903,7 +883,7 @@ a:hover {
     line-height: 1.4;
 }
 
- 
+/* Адаптивность для плюсов школы */
 @media (max-width: 480px) {
     .school-advantages {
         flex-direction: column;
@@ -1001,7 +981,7 @@ a:hover {
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 
- 
+/* О школе */
 .about-section {
     background: var(--neutral-color);
 }
@@ -1051,7 +1031,7 @@ a:hover {
     font-weight: 500;
 }
 
- 
+/* Карточки курсов */
 .course-card {
     flex: 0 0 calc((100% - 2*var(--gap)) / 3);
     background: var(--white);
@@ -1116,12 +1096,12 @@ a:hover {
     fill: var(--blue-color);
 }
 
- 
+/* Слайдер курсов */
 .courses-slider {
     position: relative;
 }
 
- 
+/* О школе */
 .about-school-section {
     padding-top: 0;
 }
@@ -1204,7 +1184,7 @@ a:hover {
     max-width: 90%;
 }
 
- 
+/* Что мы на самом деле делаем */
 .what-we-do-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -1236,7 +1216,7 @@ a:hover {
     grid-row: 1 / 3;
     display: flex;
     flex-direction: column;
-    
+    /* резерв под подпись на десктопе */
     --caption-space: 44px;
 }
 
@@ -1247,7 +1227,7 @@ a:hover {
     border-radius: 12px;
 }
 
- 
+/* Подпись под фото в блоке "Что мы делаем" */
 .what-we-do-caption {
     margin-top: 8px;
     font-size: 16px;
@@ -1258,7 +1238,7 @@ a:hover {
 .what-we-do-caption__name { font-weight: 700; font-size: 18px; }
 .what-we-do-caption__role { display: block; margin-top: 5px; }
 
- 
+/* Адаптивность */
 @media (max-width: 1024px) {
     .what-we-do-grid {
         grid-template-columns: 1fr 1fr;
@@ -1287,14 +1267,14 @@ a:hover {
         height: auto;
         --caption-space: 0px;
     }
-    .what-we-do-image img { width: 100%; object-position: top; }
+    .what-we-do-image img { max-width: 100%; width: 100%; height: auto; object-position: top; }
     
     .card-item {
         padding: 24px;
     }
 }
 
- 
+/* Преимущества */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1326,7 +1306,7 @@ a:hover {
 
 
 
- 
+/* Адаптивность для преимуществ */
 @media (max-width: 1024px) {
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1396,7 +1376,7 @@ a:hover {
 
 
 
- 
+/* Слайдер преподавателей */
 :root {
     --gap: 16px;
     --card-radius: 14px;
@@ -1406,13 +1386,13 @@ a:hover {
 .teachers-section {
 }
 
- 
+/* Обёртка для позиционирования стрелок над слайдером */
 .slider-wrap {
     position: relative;
     margin: 50px auto 40px;
 }
 
- 
+/* Стрелки — над слайдером, прижаты вправо */
 .slider-controls {
     position: absolute;
     top: -56px;
@@ -1460,17 +1440,17 @@ a:hover {
     stroke: var(--blue-color);
 }
 
- 
+/* Для левой стрелки двигаем SVG при ховере влево */
 .slider-btn.left:hover svg {
     transform: translateX(-2px);
 }
 
- 
+/* Для правой стрелки двигаем SVG вправо */
 .slider-btn.right:hover svg {
     transform: translateX(2px);
 }
 
- 
+/* Слайдер */
 .slider {
     overflow: hidden;
 }
@@ -1487,11 +1467,11 @@ a:hover {
     touch-action: pan-y;
 }
 
- 
+/* Карточка */
 .teacher-card {
     flex: 0 0 calc((100% - 2*var(--gap)) / 3);
     background: #fff;
-    
+    /* border: 1px solid #e9e9f2; */
     border-radius: var(--card-radius);
     overflow: hidden;
     padding: 30px;
@@ -1553,7 +1533,7 @@ a:hover {
     line-height: 1.4;
 }
 
- 
+/* Пагинация (мобилка) */
 .slider-dots {
     display: none;
     margin-top: 12px;
@@ -1577,7 +1557,7 @@ a:hover {
     transform: scale(1.2);
 }
 
- 
+/* ====== Адаптив ====== */
 @media (max-width: 960px) {
     .teacher-card {
         flex: 0 0 calc((100% - var(--gap)) / 2) !important;
@@ -1614,9 +1594,9 @@ a:hover {
     }
 }
 
- 
+/* Слайдер отзывов */
 
- 
+/* Карточка отзыва */
 .testimonial-card {
     flex: 0 0 calc((100% - 2*var(--gap)) / 3);
     background: #fff;
@@ -1686,7 +1666,7 @@ a:hover {
     font-weight: 600;
 }
 
- 
+/* Статистика */
 .statistics-section {
 }
 
@@ -1720,7 +1700,7 @@ a:hover {
 
 
 
- 
+/* Сертификаты */
 .certificates-section {
     background-color: #38264F;
     padding-bottom: 80px;
@@ -1747,7 +1727,7 @@ a:hover {
     height: auto;
 }
 
- 
+/* Мобильная версия галереи */
 @media (max-width: 480px) {
     .certificates-gallery {
         overflow-x: auto;
@@ -1760,7 +1740,7 @@ a:hover {
     }
 }
 
- 
+/* Адаптив для статистики */
 @media (max-width: 960px) {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1773,7 +1753,7 @@ a:hover {
     }
 }
 
- 
+/* Отзывы */
 
 .testimonials-slider {
     display: grid;
@@ -1819,7 +1799,7 @@ a:hover {
 
 
 
- 
+/* Контакты */
 .contact-section {
     background: var(--primary-color);
     color: var(--white);
@@ -1884,7 +1864,7 @@ a:hover {
     min-height: 120px;
 }
 
- 
+/* Адаптив для контактов */
 @media (max-width: 480px) {
     .contact-content {
         flex-direction: column;
@@ -1900,7 +1880,7 @@ a:hover {
     }
 }
 
- 
+/* Навигация слайдеров */
 .video-review-slider-nav,
 .doctor-slider-nav {
     display: flex;
@@ -1926,7 +1906,7 @@ a:hover {
     justify-content: center;
 }
 
- 
+/* Анимированные стрелки слайдера */
 .slider-arrow {
     width: 50px;
     height: 50px;
@@ -1947,7 +1927,7 @@ a:hover {
     transition: stroke 0.3s ease, transform 0.3s ease;
 }
 
- 
+/* Ховер эффекты для стрелок */
 .slider-arrow:hover {
     transform: scale(1.1);
     background: rgba(0, 132, 254, 0.12);
@@ -1957,17 +1937,17 @@ a:hover {
     stroke: var(--blue-color);
 }
 
- 
+/* Для левой стрелки двигаем SVG при ховере влево */
 .slider-arrow.left:hover svg {
     transform: translateX(-2px);
 }
 
- 
+/* Для правой стрелки двигаем SVG вправо */
 .slider-arrow.right:hover svg {
     transform: translateX(2px);
 }
 
- 
+/* WhatsApp Widget */
 .whatsapp-widget {
     position: fixed;
     bottom: 20px;
@@ -2015,7 +1995,7 @@ a:hover {
     white-space: nowrap;
 }
 
- 
+/* Tooltip */
 .whatsapp-tooltip {
     position: absolute;
     bottom: 100%;
@@ -2135,7 +2115,7 @@ a:hover {
     transform: translateY(0);
 }
 
- 
+/* Arrow */
 .whatsapp-tooltip::after {
     content: '';
     position: absolute;
@@ -2179,7 +2159,7 @@ a:hover {
     }
 }
 
- 
+/* Новое мобильное меню */
 :root {
     --hdr-h: 56px;
     --bg: #ffffff;
@@ -2202,7 +2182,7 @@ body.nav-open {
     overflow: hidden;
 }
 
- 
+/* Header */
 .site-header {
     position: sticky;
     top: 0;
@@ -2283,7 +2263,7 @@ body.nav-open {
     top: 6px;
 }
 
- 
+/* Overlay + mobile nav */
 .nav-overlay {
     position: fixed;
     inset: 0;
@@ -2355,7 +2335,7 @@ body.nav-open {
     background: var(--bg);
 }
 
- 
+/* FAIL-SAFE PANELS (no transforms, no opacity; show/hide via [hidden]) */
 .nav-panel {
     list-style: none;
     margin: 0;
@@ -2398,7 +2378,7 @@ body.nav-open {
     background: #f3f4f6;
 }
 
- 
+/* Mobile Responsive */
 @media (max-width: 480px) {
     .whatsapp-widget {
         bottom: 16px;
@@ -2431,13 +2411,13 @@ body.nav-open {
     }
 }
 
- 
+/* Адаптивность */
 @media (max-width: 480px) {
     .container {
         padding: 0 15px;
     }
     
-    
+    /* Типографика */
     h1 { 
         font-size: 2rem !important;
         line-height: 1.3;
@@ -2445,12 +2425,12 @@ body.nav-open {
     h2 { font-size: 1.75rem; }
     h3 { font-size: 1.25rem; }
     
-    
+    /* Hero секция */
     .hero-section {
         padding: 3rem 0 !important;
     }
     
-    
+    /* Сетка - все в одну колонку */
     .grid-2,
     .grid-3,
     .grid-4 {
@@ -2469,7 +2449,7 @@ body.nav-open {
     
 
     
-    
+    /* Шапка */
     .header-top {
         display: none;
     }
@@ -2491,7 +2471,7 @@ body.nav-open {
         height: 40px;
     }
     
-    
+    /* Подвал */
     .footer-content {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -2504,8 +2484,8 @@ body.nav-open {
     }
 }
 
- 
-@media (min-width: 481px) and (max-width: 1024px) {
+/* Планшеты */
+@media (max-width: 1024px) {
     .container {
         padding: 0 20px;
     }
@@ -2519,16 +2499,16 @@ body.nav-open {
     }
 }
 
- 
+/* ====== ОТСТУПЫ ДЛЯ СТРАНИЦ (КРОМЕ ГЛАВНОЙ) ====== */
 
- 
+/* Отступы для секций на страницах (кроме главной) */
 .page-section {
     padding: 60px 0;
 }
 
- 
+/* ====== СТРУКТУРА СТРАНИЦ ====== */
 
- 
+/* Заголовок страницы */
 .page-header {
     text-align: center;
     margin-bottom: 3rem;
@@ -2540,11 +2520,11 @@ body.nav-open {
     margin: 0;
 }
 
- 
+/* Основной контент страницы */
 .page-content {
 }
 
- 
+/* Блоки контента */
 .content-block {
     margin-bottom: 3rem;
 }
@@ -2553,7 +2533,7 @@ body.nav-open {
     margin-bottom: 0;
 }
 
- 
+/* Списки на странице миссии */
 .page-template-page-mission .content-block ul {
     font-size: 18px;
 }
@@ -2565,7 +2545,7 @@ body.nav-open {
     font-size: 18px;
 }
 
- 
+/* Выравнивание фото по правому краю в правом блоке */
 .page-section .grid-2 .about-image:last-child {
     text-align: right;
 }
@@ -2574,56 +2554,40 @@ body.nav-open {
     margin-left: auto;
 }
 
- 
+/* Мобильные стили для фото на страницах */
 @media (max-width: 768px) {
     .page-section .about-image img {
         width: 100% !important;
         max-width: 100% !important;
     }
     
-    
+    /* Заголовок "Жизни и ведет к креативным трансформациям..." на мобилке */
     .page-section .about-content h2.long-title {
         font-size: 20px !important;
     }
 }
 
- 
+/* ====== СТРАНИЦА "КАК РАБОТАЕТ ИНТЕГРАЛЬНАЯ ОНТОПСИХОЛОГИЯ" ====== */
 
- 
+/* Большая карточка на всю высоту */
 .card-feature {
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
 }
-
-.card-feature--bg {
-    background-image: url('./assets/images/bg-4.jpg');
-    background-size: cover;
-    background-position: center;
-    padding: 40px;
-    color: #fff;
-}
-
-.card-feature--bg h3 { font-size: 26px; color: #fff; }
-.card-feature--bg p { color: #fff; }
-.card-feature--bg .card-link { color: #fff; }
 
 .about-content h2 {
-    font-size: 22px;
-    line-height: 1.5;
+    font-size: 26px;
 }
 
 .section-content h2 {
     font-size: 26px;
 }
 
- 
+/* Заголовки имен основателей */
 .page-template-page-founders .section-content h2:first-child {
     font-size: 44px;
 }
 
- 
+/* ====== СЕКЦИЯ ПАРТНЕРОВ ====== */
 .partners-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -2672,7 +2636,7 @@ body.nav-open {
     text-align: center;
 }
 
- 
+/* Адаптив для партнеров */
 @media (max-width: 768px) {
     .partners-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -2681,7 +2645,6 @@ body.nav-open {
 }
 
 @media (max-width: 480px) {
-    .card { min-height: 160px; }
     .partners-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;

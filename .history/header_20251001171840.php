@@ -87,7 +87,7 @@
                                     <li><a href="<?php echo esc_url(home_url('/theory')); ?>">Теория и методика</a></li>
                                     <li><a href="#">Интегральная онтопсихология</a></li>
                                     <li><a href="<?php echo esc_url(home_url('/how-ontopsychology')); ?>">Как работает интегральная онтопсихология</a></li>
-                                    <li><a href="<?php echo esc_url(home_url('/leader-address')); ?>">Обращение руководителя</a></li>
+                                    <li><a href="<?php echo esc_url(home_url('/обращение-руководителя')); ?>">Обращение руководителя</a></li>
                                     <li><a href="#">Принципы (Наши приоритеты)</a></li>
                                     <li><a href="<?php echo esc_url(home_url('/founders')); ?>">Основатели</a></li>
                                     <li><a href="#">Преподаватели</a></li>

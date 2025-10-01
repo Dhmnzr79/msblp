@@ -61,7 +61,7 @@
             </div>
             
             <div class="slider-wrap" id="courses-slider">
-                
+                <!-- Стрелки -->
                 <div class="slider-controls">
                     <button class="slider-btn left" data-dir="prev" aria-label="Предыдущие">
                         <svg viewBox="0 0 24 24">
@@ -75,11 +75,11 @@
                     </button>
                 </div>
 
-                
+                <!-- Слайдер -->
                 <div class="slider">
                     <div class="slider-viewport">
                         <div class="slider-track">
-                        
+                                                         <!-- Карточка курса 1 -->
                              <div class="course-card">
                                  <div class="course-image">
                                      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/kurs01.jpg" alt="Денежный тренинг">
@@ -111,7 +111,7 @@
                                 </div>
                             </div>
 
-                        
+                                                         <!-- Карточка курса 2 -->
                              <div class="course-card">
                                  <div class="course-image">
                                      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/kurs02.jpg" alt="Психология бизнеса">
@@ -143,7 +143,7 @@
                                 </div>
                             </div>
 
-                        
+                                                         <!-- Карточка курса 3 -->
                              <div class="course-card">
                                  <div class="course-image">
                                      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/kurs03.jpg" alt="Интегральная психология">
@@ -178,7 +178,7 @@
                     </div>
                 </div>
 
-                
+                <!-- Точки (показываются только на мобиле через CSS) -->
                 <div class="slider-dots" aria-label="Пагинация" role="tablist"></div>
             </div>
         </div>
@@ -218,7 +218,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Что мы на самом деле делаем</h2>
-                <p>Не просто обучаем, а формируем интеллектуальную элиту общества – лидеров, которые не только знают реальность такой, какова она есть, но способны ею управлять.</p>
+                <p>Не просто обучаем, а формируем интеллектуальную элиту общества – лидеров, которые не только знают реальность такой, какова она есть, но способны ею управлятью</p>
             </div>
             
             <div class="what-we-do-grid">
@@ -244,10 +244,6 @@
                 
                 <div class="what-we-do-image">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/bg03.jpg" alt="Что мы делаем">
-                    <p class="what-we-do-caption">
-                        <strong class="what-we-do-caption__name">Островский Александр</strong>
-                        <span class="what-we-do-caption__role">Руководитель "Высшей школы бизнес-психологии и лидерства им. Антонио Менегетти"</span>
-                    </p>
                 </div>
             </div>
         </div>
@@ -293,7 +289,7 @@
             </div>
             
             <div class="slider-wrap" id="teachers-slider">
-                
+                <!-- Стрелки -->
                 <div class="slider-controls">
                     <button class="slider-btn left" data-dir="prev" aria-label="Предыдущие">
                         <svg viewBox="0 0 24 24">
@@ -307,7 +303,7 @@
                     </button>
                 </div>
 
-                
+                <!-- Слайдер -->
                 <div class="slider">
                     <div class="slider-viewport">
                         <div class="slider-track">
@@ -465,7 +461,7 @@
                     </div>
                 </div>
 
-                
+                <!-- Точки (показываются только на мобиле через CSS) -->
                 <div class="slider-dots" aria-label="Пагинация" role="tablist"></div>
             </div>
         </div>
