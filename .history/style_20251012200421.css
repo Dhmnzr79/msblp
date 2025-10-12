@@ -148,32 +148,7 @@ a:hover {
 }
 
 .grid-12 {
-  display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 2rem;
-}
-
-/* 12-колоночная сетка - классы для колонок */
-.grid-col-1 { grid-column: span 1; }
-.grid-col-2 { grid-column: span 2; }
-.grid-col-3 { grid-column: span 3; }
-.grid-col-4 { grid-column: span 4; }
-.grid-col-5 { grid-column: span 5; }
-.grid-col-6 { grid-column: span 6; }
-.grid-col-7 { grid-column: span 7; }
-.grid-col-8 { grid-column: span 8; }
-.grid-col-9 { grid-column: span 9; }
-.grid-col-10 { grid-column: span 10; }
-.grid-col-11 { grid-column: span 11; }
-.grid-col-12 { grid-column: span 12; }
-
-/* Адаптивность для мобилки */
-@media (max-width: 767px) {
-  .grid-col-1, .grid-col-2, .grid-col-3, .grid-col-4, 
-  .grid-col-5, .grid-col-6, .grid-col-7, .grid-col-8, 
-  .grid-col-9, .grid-col-10, .grid-col-11, .grid-col-12 {
-    grid-column: span 12;
-  }
 }
 
 .grid-2L-left {
@@ -1179,26 +1154,6 @@ a:hover {
     justify-content: center;
 }
 
-.content-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.image-bg-block {
-    background-size: cover;
-    background-position: center;
-    padding: 2rem;
-    color: white;
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
-.image-bg-kurs-4 {
-    background-image: url('../assets/images/kurs-bg-4.jpg');
-}
-
 .about-content .btn {
     margin-top: 40px;
     width: auto;
@@ -1223,10 +1178,22 @@ a:hover {
 }
 
 .about-content li {
+    position: relative;
+    padding-left: 24px;
     margin-bottom: 16px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
+.about-content li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    background: var(--blue-color);
+    border-radius: 50%;
+}
 
 .school-motto {
     font-weight: 600;
@@ -2613,6 +2580,12 @@ body.nav-open {
     font-size: 18px;
 }
 
+.about-content li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 16px;
+    font-size: 18px;
+}
 
  
 .page-section .grid-2 .about-image:last-child {

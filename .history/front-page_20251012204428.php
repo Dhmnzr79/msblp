@@ -5,7 +5,8 @@
     <!-- Hero секция -->
     <section class="hero-section" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/images/main-bg.jpg');">
         <div class="container">
-            <div class="hero-content">
+            <div class="grid grid-12">
+                <div class="hero-content grid-col-6">
                     <h1>Высшая школа бизнес-психологии и лидерства им. Антонио Менегетти</h1>
                     
                     <!-- Плюсы школы -->
@@ -46,6 +47,9 @@
                             </svg>
                         </button>
                     </div>
+                </div>
+
+            </div>
         </div>
     </section>
 

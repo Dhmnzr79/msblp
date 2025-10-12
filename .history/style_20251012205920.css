@@ -1185,20 +1185,6 @@ a:hover {
     justify-content: center;
 }
 
-.image-bg-block {
-    background-size: cover;
-    background-position: center;
-    padding: 2rem;
-    color: white;
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
-.image-bg-kurs-4 {
-    background-image: url('../assets/images/kurs-bg-4.jpg');
-}
-
 .about-content .btn {
     margin-top: 40px;
     width: auto;
