@@ -16,7 +16,7 @@ get_header(); ?>
                         </div>
 
                         <div class="v2-course-col v2-course-col--text">
-                            <h1>Курс креативных трансформаций по онтологии</h1>
+                            <h2>Курс креативных трансформаций по онтологии</h2>
                             <p>В основе Коучинга Креативных Трансформаций лежит понимание, что при решении любой проблемы в личной жизни и в бизнесе, при любых изменениях и кризисах, необходимо опираться на внутренний критерий (мудрость психики), поскольку оптимальное решение, цель развития и шаги к цели уже содержатся в креативном бессознательном предпринимателя - источнике интуиции, мудрости и оптимальных решений.</p>
                             
                             <p>Проблемы, кризисы, потери возникают тогда, когда человек теряет связь со своим креативным бессознательным (или «Высшим Я»), ориентируется на общепринятые ценности, убеждения, правила. Коучинг креативных трансформаций позволяет человеку восстановить контакт со своим «Высшим Я» - критерием непогрешимости, неисчерпаемым источником мудрости и ресурсов.</p>
@@ -88,8 +88,13 @@ get_header(); ?>
                     </div>
                 </div>
 
-                <div class="v2-content v2-content--comparison">
-                    <h2 class="v2-section-title">Отличие Коучинга Креативных Трансформаций от традиционных консультаций бизнес-психологов</h2>
+                <div class="v2-content-block">
+                    <div class="v2-section-title">
+                        <h2>Отличие Коучинга Креативных Трансформаций от традиционных консультаций бизнес-психологов</h2>
+                    </div>
+                </div>
+
+                <div class="v2-content-block">
                     <div class="v2-grid v2-grid--2">
                         <div class="v2-course-col v2-course-col--list">
                             <h3>Обычные психологические и коучинговые подходы ограничиваются:</h3>
@@ -113,7 +118,7 @@ get_header(); ?>
                 </div>
             </div>
 
-            <div class="v2-content">
+            <div class="v2-content-block">
                 <div class="v2-grid v2-grid--2">
                     <div class="v2-course-col v2-course-col--media">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/kurs-bg-2.jpg" alt="Курс креативных трансформаций" />
@@ -131,7 +136,7 @@ get_header(); ?>
                 </div>
             </div>
 
-            <div class="v2-content">
+            <div class="v2-content-block">
                 <div class="v2-grid v2-grid--2">
                     <div class="v2-course-col v2-course-col--text">
                         <h2>Как проходит работа</h2>
@@ -142,7 +147,7 @@ get_header(); ?>
                 </div>
             </div>
 
-            <div class="v2-content">
+            <div class="v2-content-block">
                 <div class="v2-grid v2-grid--2">
                     <div class="v2-course-col v2-course-col--list">
                         <h3>На уровне личности:</h3>
@@ -166,7 +171,7 @@ get_header(); ?>
                 </div>
             </div>
 
-            <div class="v2-content">
+            <div class="v2-content-block">
                 <div class="v2-grid v2-grid--2">
                     <div class="v2-course-col v2-course-col--text v2-align-start">
                         <p>Сессии проходят не реже 1 раза в 10 дней. На встрече прорабатываются несколько из описанных выше аспектов. Устраняются внутренние и внешние блоки, ограничения и препятствия, формируются новые смыслы и ценности, состояния, убеждения, сценарии, поведение для достижения поставленной цели.</p>
@@ -177,7 +182,7 @@ get_header(); ?>
                 </div>
             </div>
 
-            <div class="v2-content">
+            <div class="v2-content-block">
                 <div class="v2-grid v2-grid--2">
                     <div class="v2-course-col v2-course-col--media">
                         <div class="v2-bg-block v2-bg-block--kurs-4">

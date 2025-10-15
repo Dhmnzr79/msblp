@@ -8,15 +8,15 @@ get_header(); ?>
 <main id="primary" class="site-main">
     <section class="v2-section">
         <div class="v2-container">
-            <div class="v2-wrapper">
-                <div class="v2-content v2-content--hero">
+            <div class="v2-content">
+                <div class="v2-content-block">
                     <div class="v2-grid v2-grid--2">
                         <div class="v2-course-col v2-course-col--media">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/kurs-bg-1.jpg" alt="Курс креативных трансформаций" />
                         </div>
 
                         <div class="v2-course-col v2-course-col--text">
-                            <h1>Курс креативных трансформаций по онтологии</h1>
+                            <h2>Курс креативных трансформаций по онтологии</h2>
                             <p>В основе Коучинга Креативных Трансформаций лежит понимание, что при решении любой проблемы в личной жизни и в бизнесе, при любых изменениях и кризисах, необходимо опираться на внутренний критерий (мудрость психики), поскольку оптимальное решение, цель развития и шаги к цели уже содержатся в креативном бессознательном предпринимателя - источнике интуиции, мудрости и оптимальных решений.</p>
                             
                             <p>Проблемы, кризисы, потери возникают тогда, когда человек теряет связь со своим креативным бессознательным (или «Высшим Я»), ориентируется на общепринятые ценности, убеждения, правила. Коучинг креативных трансформаций позволяет человеку восстановить контакт со своим «Высшим Я» - критерием непогрешимости, неисчерпаемым источником мудрости и ресурсов.</p>
@@ -31,10 +31,15 @@ get_header(); ?>
                     </div>
                 </div>
 
-                <div class="v2-content v2-content--features">
-                    <h2 class="v2-section-title">Это позволяет человеку:</h2>
-                    <div class="v2-grid v2-grid--2">
-                        <div class="v2-course-col v2-course-col--list v2-align-start">
+                <div class="content-block">
+                    <div class="section-content">
+                        <h2>Это позволяет человеку:</h2>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <div class="grid grid-2">
+                        <div class="about-content" style="align-self: start;">
                             <ul>
                                 <li>Распространение онтологических, трансперсональных и экзистенциальных концепций среди социальных операторов, которые своей жизнью и работой, своим лидерством формируют мир, развивают и совершенствуют широкий социальный контекст от семьи и бизнеса, до сообществ и государств.</li>
                                 
@@ -42,7 +47,7 @@ get_header(); ?>
                             </ul>
                         </div>
 
-                        <div class="v2-course-col v2-course-col--list">
+                        <div class="about-content">
                             <ul>
                                 <li>Консультирование и помощь по широкому кругу вопросов - от решения частных проблем в человеческой жизни и в бизнесе, до целостного развития людей, организаций и социальных групп на основе универсальных жизненных ценностей.</li>
                                 
@@ -54,31 +59,38 @@ get_header(); ?>
                     </div>
                 </div>
 
-                <div class="v2-content v2-content--principles">
-                    <h2 class="v2-section-title">Принципы Курса Креативных Трансформаций</h2>
-                    <div class="v2-grid v2-grid--12">
-                        <div class="v2-col-4">
+                <div class="content-block">
+                    <div class="section-content">
+                        <h2>Принципы Курса Креативных Трансформаций</h2>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <div class="grid grid-12">
+                        <div class="grid-2L-left">
                             <h3>Целостность</h3>
                             <p>Комплексное развитие личности в основных сферах личной жизни и устранение «тонких мест» в бизнесе для обеспечения его жизнеспособности, эффективности, роста.</p>
                         </div>
-                        <div class="v2-col-8">
-                            <div class="v2-course-col--icons">
-                                <div class="v2-icon-block">
+                        <div class="grid-2L-right">
+                            <div class="grid grid-2">
+                                <div>
                                     <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/kurs-icon-02.svg" alt="Методичность" width="48" height="48" />
                                     <h4>Методичность</h4>
                                     <p>Интегральная синемалогия (cinemalogia) - психологический разбор кинофильма с ведущим</p>
                                 </div>
-                                <div class="v2-icon-block">
+                                <div>
                                     <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/kurs-icon-03.svg" alt="Результативность" width="48" height="48" />
                                     <h4>Результативность</h4>
                                     <p>Только поверенные временем работающие технологии, которые на 100% приводят к нужному результату.</p>
                                 </div>
-                                <div class="v2-icon-block">
+                            </div>
+                            <div class="grid grid-2">
+                                <div>
                                     <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/kurs-icon-04.svg" alt="Практичность" width="48" height="48" />
                                     <h4>Практичность</h4>
                                     <p>Делаем только то, что нужно и актуально сегодня для решения проблемы и выхода на новый уровень развития, без ненужного копания в прошлом и поиска виноватых.</p>
                                 </div>
-                                <div class="v2-icon-block">
+                                <div>
                                     <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/kurs-icon-01.svg" alt="Транслируемость" width="48" height="48" />
                                     <h4>Транслируемость</h4>
                                     <p>Возможность самостоятельно использовать знания, навыки, техники для проработки сложных моментов в бизнесе и личной жизни, помощи своему окружению, развития своей команды</p>
@@ -88,10 +100,15 @@ get_header(); ?>
                     </div>
                 </div>
 
-                <div class="v2-content v2-content--comparison">
-                    <h2 class="v2-section-title">Отличие Коучинга Креативных Трансформаций от традиционных консультаций бизнес-психологов</h2>
-                    <div class="v2-grid v2-grid--2">
-                        <div class="v2-course-col v2-course-col--list">
+                <div class="content-block">
+                    <div class="section-content">
+                        <h2>Отличие Коучинга Креативных Трансформаций от традиционных консультаций бизнес-психологов</h2>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <div class="grid grid-2">
+                        <div class="about-image">
                             <h3>Обычные психологические и коучинговые подходы ограничиваются:</h3>
                             <ol>
                                 <li>Диагностикой проблемы: «Давайте поймем, что тут у вас...»</li>
@@ -100,7 +117,7 @@ get_header(); ?>
                                 <li>Составлением рационального плана действий без учета бессознательного сопротивления и самосаботажа, обуславливания прошлым негативным опытом, влияния отдельных людей и социальных групп</li>
                             </ol>
                         </div>
-                        <div class="v2-course-col v2-course-col--list">
+                        <div class="about-content">
                             <h3>Это не работает, потому что:</h3>
                             <ol>
                                 <li>Нет ответа на главный вопрос: «Как устранить проблему, чтобы она не возникала вновь?».</li>
@@ -113,12 +130,12 @@ get_header(); ?>
                 </div>
             </div>
 
-            <div class="v2-content">
-                <div class="v2-grid v2-grid--2">
-                    <div class="v2-course-col v2-course-col--media">
+            <div class="content-block">
+                <div class="grid grid-2">
+                    <div class="about-image">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/kurs-bg-2.jpg" alt="Курс креативных трансформаций" />
                     </div>
-                    <div class="v2-course-col v2-course-col--list">
+                    <div class="about-content">
                         <h2>Почему Коучинг Креативных трансформаций эффективней традиционных подходов:</h2>
                         <ul>
                             <li>Не копаемся в прошлом и не ищем виновных. Находим оптимальное решение для быстрого устранения препятствий и выхода на путь роста.</li>
@@ -131,20 +148,20 @@ get_header(); ?>
                 </div>
             </div>
 
-            <div class="v2-content">
-                <div class="v2-grid v2-grid--2">
-                    <div class="v2-course-col v2-course-col--text">
+            <div class="content-block">
+                <div class="grid grid-2">
+                    <div class="about-image">
                         <h2>Как проходит работа</h2>
                     </div>
-                    <div class="v2-course-col v2-course-col--text">
+                    <div class="about-content">
                         <p>В зависимости от запроса и на основе результатов глубинной диагностики составляется индивидуальная траектория развития личности и бизнеса (трансформационный модуль продолжительностью от 1 до 3 месяцев). Коучинговые сессии являются частью трансформационного модуля и направленны на проработку:</p>
                     </div>
                 </div>
             </div>
 
-            <div class="v2-content">
-                <div class="v2-grid v2-grid--2">
-                    <div class="v2-course-col v2-course-col--list">
+            <div class="content-block">
+                <div class="grid grid-2">
+                    <div class="content-text">
                         <h3>На уровне личности:</h3>
                         <ol>
                             <li>Смыслов и ценностей жизни, целей и планов деятельности</li>
@@ -153,8 +170,8 @@ get_header(); ?>
                             <li>Эмоций, состояний, поведения, самоопределения новых форм самореализации</li>
                         </ol>
                     </div>
-                    <div class="v2-course-col v2-course-col--list">
-                        <h3>На уровне бизнеса:</h3>
+                    <div class="about-content">
+                        <h3>На уровне личности:</h3>
                         <ol>
                             <li>Жизнеспособности бизнес-модели</li>
                             <li>Эффективности бизнес-системы (орг.структуры, финансов, маркетинга, продаж)</li>
@@ -166,25 +183,25 @@ get_header(); ?>
                 </div>
             </div>
 
-            <div class="v2-content">
-                <div class="v2-grid v2-grid--2">
-                    <div class="v2-course-col v2-course-col--text v2-align-start">
+            <div class="content-block">
+                <div class="grid grid-2">
+                    <div class="content-text" style="align-self: start;">
                         <p>Сессии проходят не реже 1 раза в 10 дней. На встрече прорабатываются несколько из описанных выше аспектов. Устраняются внутренние и внешние блоки, ограничения и препятствия, формируются новые смыслы и ценности, состояния, убеждения, сценарии, поведение для достижения поставленной цели.</p>
                     </div>
-                    <div class="v2-course-col v2-course-col--text">
+                    <div class="about-content">
                         <p>Между сессиями выполняются специальные задания и упражнения, делаются конкретные шаги для достижения результатов, даётся обратная связь и рекомендации консультанта. Также предлагаются к просмотру, анализу и последующему обсуждению специально подобранные кинофильмы, которые являются жизненными и бизнес-кейсами, и позволяют увидеть со стороны победные стратегии, а также ошибки, совершаемые главными героями с тем, чтобы быть более эффективными в своей жизни и бизнесе.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="v2-content">
-                <div class="v2-grid v2-grid--2">
-                    <div class="v2-course-col v2-course-col--media">
-                        <div class="v2-bg-block v2-bg-block--kurs-4">
+            <div class="content-block">
+                <div class="grid grid-2">
+                    <div class="about-image">
+                        <div class="image-bg-block image-bg-kurs-4">
                             <h2>Результаты, которые получают наши выпускники</h2>
                         </div>
                     </div>
-                    <div class="v2-course-col v2-course-col--list">
+                    <div class="about-content">
                         <ul>
                             <li>Смысл и ясную стратегию жизнедеятельности, долгосрочные цели, четкий план и конкретные шаги к желаемому результату</li>
                             <li>Наполненное состояние, сильный образ «Я», высокую самооценку</li>
