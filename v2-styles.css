@@ -52,7 +52,7 @@ Author: MSBPL Team
 .v2-content h2 {
     font-size: 32px;
     line-height: 1.3;
-    margin: 0 0 1.5em 0;
+    margin: 0 0 1em 0;
 }
 
 .v2-content h3 {
@@ -243,6 +243,15 @@ Author: MSBPL Team
     background: #fff;
     padding: 30px;
     border-radius: 5px;
+}
+
+.v2-card-white--centered {
+    text-align: center;
+}
+
+.v2-content .v2-card-white--centered p {
+    font-size: 22px !important;
+    line-height: 1.6;
 }
 
 .v2-text-24 {
