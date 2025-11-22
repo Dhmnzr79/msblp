@@ -125,9 +125,9 @@
                             <li class="menu-item-has-children">
                                 <a href="#">Консультирование</a>
                                 <ul class="sub-menu">
-                                    <li><a href="#">Индивидуальное консультирование и коучинг</a></li>
-                                    <li><a href="#">Управленческий консалтинг и трекинг</a></li>
-                                    <li><a href="#">Развивающие корпоративные мероприятия</a></li>
+                                    <li><a href="<?php echo esc_url(psych_school_get_page_url_by_template('page-course-individual-consulting-coaching.php')); ?>">Индивидуальное консультирование и коучинг</a></li>
+                                    <li><a href="<?php echo esc_url(psych_school_get_page_url_by_template('page-course-management-consulting-tracking.php')); ?>">Управленческий консалтинг и трекинг</a></li>
+                                    <li><a href="<?php echo esc_url(psych_school_get_page_url_by_template('page-course-corporate-events.php')); ?>">Развивающие корпоративные мероприятия</a></li>
                                 </ul>
                             </li>
                             
@@ -204,9 +204,9 @@
 
             <!-- Консультирование -->
             <ul class="nav-panel" id="consulting" data-level="1" data-title="Консультирование" hidden>
-                <li><a href="#">Индивидуальное консультирование и коучинг</a></li>
-                <li><a href="#">Управленческий консалтинг и трекинг</a></li>
-                <li><a href="#">Развивающие корпоративные мероприятия</a></li>
+                <li><a href="<?php echo esc_url(psych_school_get_page_url_by_template('page-course-individual-consulting-coaching.php')); ?>">Индивидуальное консультирование и коучинг</a></li>
+                <li><a href="<?php echo esc_url(psych_school_get_page_url_by_template('page-course-management-consulting-tracking.php')); ?>">Управленческий консалтинг и трекинг</a></li>
+                <li><a href="<?php echo esc_url(psych_school_get_page_url_by_template('page-course-corporate-events.php')); ?>">Развивающие корпоративные мероприятия</a></li>
             </ul>
 
             <!-- Публикации -->

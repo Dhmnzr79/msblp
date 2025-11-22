@@ -103,6 +103,10 @@ Author: MSBPL Team
     grid-template-columns: repeat(12, 1fr);
 }
 
+.v2-grid--align-center {
+    align-items: center;
+}
+
 @media (max-width: 767px) {
     .v2-grid--2,
     .v2-grid--3,
@@ -274,6 +278,7 @@ Author: MSBPL Team
 .v2-course-col--list {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 }
 
 .v2-course-col--list ul {
@@ -540,6 +545,10 @@ Author: MSBPL Team
     background-image: linear-gradient(to bottom, rgba(44, 90, 160, 0), rgba(44, 90, 160, 1)), url('assets/images/kurs-kreativnykh-tranformacii-02.jpg');
 }
 
+.v2-results-image--integral {
+    background-image: linear-gradient(to bottom, rgba(44, 90, 160, 0), rgba(44, 90, 160, 1)), url('assets/images/integralnaya-rabota-03.jpg');
+}
+
 .v2-content .v2-results-title {
     position: relative;
     z-index: 3;
@@ -628,10 +637,23 @@ Author: MSBPL Team
     .v2-results-image {
         padding: 30px 20px;
         min-height: 300px;
+        background-position: top;
     }
     
     .v2-results-title {
         font-size: 24px;
+    }
+    
+    /* Кнопки на всю ширину на мобильных */
+    .v2-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Контейнеры с кнопками растягиваются на всю ширину */
+    .v2-course-col--text,
+    .v2-course-col--list {
+        width: 100%;
     }
 }
 
@@ -731,9 +753,22 @@ Author: MSBPL Team
     
     .v2-results-image {
         width: 100%;
+        background-position: top;
     }
     
     .v2-course-col--media-right img {
+        width: 100%;
+    }
+    
+    /* Кнопки на всю ширину на мобильных */
+    .v2-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Контейнеры с кнопками растягиваются на всю ширину */
+    .v2-course-col--text,
+    .v2-course-col--list {
         width: 100%;
     }
     

@@ -17,7 +17,7 @@ get_header(); ?>
                         <div class="about-image">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/osrt-2.jpg" alt="Руководитель школы" />
                             <p class="what-we-do-caption">
-                                <strong class="what-we-do-caption__name">Островский Александр</strong>
+                                <strong class="what-we-do-caption__name">Островский Александр Валентинович</strong>
                                 <span class="what-we-do-caption__role">Руководитель "Высшей школы бизнес-психологии и лидерства им. Антонио Менегетти"</span>
                             </p>
                         </div>

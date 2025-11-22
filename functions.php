@@ -531,4 +531,21 @@ function psych_school_enqueue_scripts() {
 }
 add_action('wp_enqueue_scripts', 'psych_school_enqueue_scripts');
 
+/**
+ * Получить ссылку на страницу по названию шаблона
+ */
+function psych_school_get_page_url_by_template($template_name) {
+    $pages = get_pages(array(
+        'meta_key' => '_wp_page_template',
+        'meta_value' => $template_name,
+        'number' => 1
+    ));
+    
+    if (!empty($pages)) {
+        return get_permalink($pages[0]->ID);
+    }
+    
+    return '#';
+}
+
 
