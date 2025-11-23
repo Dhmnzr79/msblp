@@ -90,7 +90,7 @@
                                     <li><a href="<?php echo esc_url(home_url('/leader-address')); ?>">Обращение руководителя</a></li>
                                     <li><a href="#">Принципы (Наши приоритеты)</a></li>
                                     <li><a href="<?php echo esc_url(home_url('/founders')); ?>">Основатели</a></li>
-                                    <li><a href="#">Преподаватели</a></li>
+                                    <li><a href="<?php echo esc_url(psych_school_get_page_url_by_template('page-prepodavateli.php')); ?>">Преподаватели</a></li>
                                     <li><a href="#">Сведения об образовательной организации</a></li>
                                 </ul>
                             </li>
@@ -175,7 +175,7 @@
                 <li><a href="#">Принципы (Наши приоритеты)</a></li>
                 <li><a href="<?php echo esc_url(home_url('/founders')); ?>">Основатели</a></li>
                 <li><a href="<?php echo esc_url(home_url('/leader-address')); ?>">Обращение руководителя</a></li>
-                <li><a href="#">Преподаватели</a></li>
+                <li><a href="<?php echo esc_url(psych_school_get_page_url_by_template('page-prepodavateli.php')); ?>">Преподаватели</a></li>
                 <li><a href="#">Сведения об образовательной организации</a></li>
             </ul>
 
