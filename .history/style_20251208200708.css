@@ -1748,7 +1748,6 @@ a:hover {
  
 .statistics-section {
     /* Стили для секции статистики */
-    display: block;
 }
 
 .stats-grid {
@@ -2606,7 +2605,6 @@ body.nav-open {
  
 .page-content {
     /* Контент страницы */
-    display: block;
 }
 
  

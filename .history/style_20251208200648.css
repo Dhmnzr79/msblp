@@ -984,7 +984,6 @@ a:hover {
     
     h2 {
         /* Заголовки в контактной форме */
-        display: block;
     }
     
     .contact-content {
@@ -1462,7 +1461,6 @@ a:hover {
 
 .teachers-section {
     /* Стили для секции преподавателей */
-    display: block;
 }
 
  
@@ -1748,7 +1746,6 @@ a:hover {
  
 .statistics-section {
     /* Стили для секции статистики */
-    display: block;
 }
 
 .stats-grid {
@@ -2606,7 +2603,6 @@ body.nav-open {
  
 .page-content {
     /* Контент страницы */
-    display: block;
 }
 
  
