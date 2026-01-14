@@ -25,20 +25,64 @@ get_header(); ?>
                     ));
 
                     if ($teachers->have_posts()) :
+                        // Сортируем преподавателей по имени файла изображения
+                        $teachers_array = array();
+                        while ($teachers->have_posts()) : $teachers->the_post();
+                            $thumbnail_id = get_post_thumbnail_id();
+                            $image_url = '';
+                            if ($thumbnail_id) {
+                                $image_url = wp_get_attachment_image_url($thumbnail_id, 'full');
+                            }
+                            
+                            // Извлекаем имя файла из URL
+                            $image_filename = '';
+                            if ($image_url) {
+                                $image_filename = basename($image_url);
+                            }
+                            
+                            $teachers_array[] = array(
+                                'post' => get_post(),
+                                'image_filename' => $image_filename
+                            );
+                        endwhile;
+                        wp_reset_postdata();
+                        
+                        // Сортируем по имени файла (prep01.jpg, prep02.jpg, prep03.jpg, prep04.jpg)
+                        usort($teachers_array, function($a, $b) {
+                            $order = array('prep01.jpg', 'prep02.jpg', 'prep03.jpg', 'prep04.jpg');
+                            $a_index = array_search($a['image_filename'], $order);
+                            $b_index = array_search($b['image_filename'], $order);
+                            
+                            // Если файл не найден в списке, ставим в конец
+                            if ($a_index === false) $a_index = 999;
+                            if ($b_index === false) $b_index = 999;
+                            
+                            return $a_index - $b_index;
+                        });
                         ?>
                         <div class="v2-grid v2-grid--3 v2-teachers-grid">
                             <?php
-                            while ($teachers->have_posts()) : $teachers->the_post();
+                            $prep_images = array('prep01.jpg', 'prep02.jpg', 'prep03.jpg', 'prep04.jpg');
+                            $image_index = 0;
+                            foreach ($teachers_array as $teacher_data) :
+                                $post = $teacher_data['post'];
+                                setup_postdata($post);
                                 $short_description = get_post_meta(get_the_ID(), '_teacher_short_description', true);
                                 $position = get_post_meta(get_the_ID(), '_teacher_position', true);
+                                
+                                // Определяем изображение для текущего преподавателя
+                                $prep_image = '';
+                                if ($image_index < count($prep_images)) {
+                                    $prep_image = $prep_images[$image_index];
+                                } else {
+                                    // Если преподавателей больше 4, используем placeholder
+                                    $prep_image = 'teacher-placeholder.jpg';
+                                }
+                                $image_index++;
                                 ?>
                                 <article class="v2-teacher-card">
                                     <div class="v2-teacher-media">
-                                        <?php if (has_post_thumbnail()) : ?>
-                                            <?php the_post_thumbnail('medium', array('alt' => get_the_title(), 'class' => 'v2-teacher-image')); ?>
-                                        <?php else : ?>
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/teacher-placeholder.jpg" alt="<?php the_title(); ?>" class="v2-teacher-image">
-                                        <?php endif; ?>
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/<?php echo esc_attr($prep_image); ?>" alt="<?php the_title(); ?>" class="v2-teacher-image">
                                     </div>
                                     <div class="v2-teacher-body">
                                         <h3 class="v2-teacher-name"><?php the_title(); ?></h3>
@@ -59,7 +103,8 @@ get_header(); ?>
                                     </div>
                                 </article>
                                 <?php
-                            endwhile;
+                            endforeach;
+                            wp_reset_postdata();
                             ?>
                         </div>
                         <?php

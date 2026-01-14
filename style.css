@@ -132,20 +132,25 @@ a:hover {
     gap: 20px;
   }
   
-  
-  .grid-2 {
-    grid-template-columns: repeat(2, 1fr);
+  /* Сетки: mobile-first + стандартные брейки проекта */
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
   }
-  
-  
-  .grid-3 {
-    grid-template-columns: repeat(3, 1fr);
+
+  /* >= 768px: базовая многоколоночность */
+  @media (min-width: 768px) {
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
   }
-  
-  
-.grid-4 {
-  grid-template-columns: repeat(4, 1fr);
-}
+
+  /* >= 1280px: полноценная 3/4-колоночная раскладка */
+  @media (min-width: 1280px) {
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  }
 
 .grid-12 {
   display: grid;
@@ -1226,7 +1231,6 @@ a:hover {
 
 .about-content li {
     margin-bottom: 16px;
-    font-size: 18px;
 }
 
 
@@ -1258,6 +1262,15 @@ a:hover {
     width: 100%;
     height: auto;
     border-radius: 5px;
+    max-width: 90%;
+}
+
+.about-image .image-caption {
+    margin-top: 12px;
+    font-size: 14px;
+    font-style: italic;
+    color: #666;
+    line-height: 1.4;
     max-width: 90%;
 }
 
@@ -1536,14 +1549,19 @@ a:hover {
 
 .slider-viewport {
     overflow: hidden;
+    position: relative;
 }
 
 .slider-track {
     display: flex;
     gap: var(--gap);
-    will-change: transform;
     transition: transform .35s ease;
-    touch-action: pan-y;
+    touch-action: pan-x pinch-zoom;
+    -webkit-overflow-scrolling: touch;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
  
@@ -1670,6 +1688,11 @@ a:hover {
     
     .slider-dots {
         display: flex;
+    }
+    
+    /* Убираем gap на мобилке для слайдера курсов, чтобы карточки занимали 100% */
+    #courses-slider .slider-track {
+        gap: 0;
     }
 }
 
@@ -2263,37 +2286,14 @@ body.nav-open {
     overflow: hidden;
 }
 
- 
-.site-header {
-    position: sticky;
-    top: 0;
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    z-index: 50;
-}
-
-.site-header__inner {
-    height: var(--hdr-h);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 14px;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    font-weight: 700;
-}
-
-.logo-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--brand);
-}
+/*
+  ВАЖНО:
+  Ниже (mobile-nav блок) используется разметкой из header.php.
+  Старые экспериментальные стили "другой шапки" (site-header__inner/logo/logo-dot)
+  удалены, чтобы не конфликтовать с текущей шапкой:
+  - .site-header уже описан выше (реальная разметка: .header-top/.header-main/.logo-link img.logo)
+  - .logo в проекте — это img, и ему нельзя задавать display:flex и т.п.
+*/
 
 .header-actions {
     display: none;
@@ -2511,12 +2511,7 @@ body.nav-open {
         padding: 3rem 0 !important;
     }
     
-    
-    .grid-2,
-    .grid-3,
-    .grid-4 {
-        grid-template-columns: 1fr;
-    }
+    /* grid-2/grid-3/grid-4 теперь mobile-first — отдельное правило не нужно */
     
 
     
@@ -2572,14 +2567,7 @@ body.nav-open {
     .container {
         padding: 0 20px;
     }
-    
-    .grid-4 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .grid-3 {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    /* grid-3/grid-4 управляются стандартными брейками (>=768 и >=1280) */
 }
 
  
@@ -2619,9 +2607,7 @@ body.nav-open {
 }
 
  
-.page-template-page-mission .content-block ul {
-    font-size: 18px;
-}
+
 
 
  
@@ -2631,6 +2617,11 @@ body.nav-open {
 
 .page-section .grid-2 .about-image:last-child img {
     margin-left: auto;
+}
+
+.page-section .grid-2 .about-image:last-child .image-caption {
+    margin-left: auto;
+    text-align: right;
 }
 
  
@@ -2743,6 +2734,10 @@ body.nav-open {
         gap: 15px;
     }
     
+.card-feature--bg {
+    padding: 160px 20px 20px;
+}
+
     .partner-card { padding: 10px; }
     
     .partner-logo {

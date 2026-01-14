@@ -22,7 +22,8 @@ get_header(); ?>
 
                         <!-- Фото справа -->
                         <div class="about-image">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/theory01.jpg" alt="Теория и методика" />
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/theory01.jpg" alt="Б.Г. Ананьев" />
+                            <p class="image-caption">Б.Г. Ананьев, создатель концепции онтопсихологии</p>
                         </div>
                     </div>
                 </div>
@@ -46,7 +47,8 @@ get_header(); ?>
 
                         <!-- Фото справа -->
                         <div class="about-image">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/theory02.jpg" alt="Универсальные ценности" />
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/theory02.jpg" alt="А. Менегетти" />
+                            <p class="image-caption">А. Менегетти, основатель онтопсихологии как научного направления</p>
                         </div>
                     </div>
                 </div>
@@ -56,7 +58,8 @@ get_header(); ?>
                     <div class="grid grid-2">
                         <!-- Фото слева -->
                         <div class="about-image">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/theory03.jpg" alt="Лидеры-протагонисты" />
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/theory03.jpg" alt="А. В. Островский" />
+                            <p class="image-caption">А. В. Островский, создатель школы интегральной онтопсихологии</p>
                         </div>
 
                         <!-- Контент справа -->

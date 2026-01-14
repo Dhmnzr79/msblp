@@ -78,6 +78,10 @@ Author: MSBPL Team
     line-height: 1.5;
 }
 
+.v2-text-no-margin {
+    margin-bottom: 0;
+}
+
 /* ========================================
    V2 - СЕТКИ (GRID)
    ======================================== */
@@ -212,6 +216,18 @@ Author: MSBPL Team
 
 .v2-course-col--text p:last-child {
     margin-bottom: 0;
+}
+
+.v2-course-col--text ol,
+.v2-course-col--text ul {
+    margin: 1em 0;
+    padding-left: 1.5em;
+}
+
+.v2-course-col--text ol li,
+.v2-course-col--text ul li {
+    margin-bottom: 0.5em;
+    line-height: 1.6;
 }
 
 .v2-process-cards .v2-course-col--text,
@@ -508,6 +524,7 @@ Author: MSBPL Team
 .v2-content--comparison {
     /* Стили для блока сравнения - пока без дополнительных стилей */
     display: block;
+    margin-bottom: 40px !important;
 }
 
 .v2-content--steps {
@@ -749,10 +766,10 @@ Author: MSBPL Team
 }
 
 .v2-teacher-card {
-    background: #fff;
+    background: transparent;
     border-radius: 8px;
     overflow: hidden;
-    padding: 30px;
+    padding: 0;
     display: flex;
     flex-direction: column;
     transition: box-shadow 0.3s ease;
@@ -762,23 +779,26 @@ Author: MSBPL Team
 
 .v2-teacher-media {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 0;
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
 
 .v2-teacher-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
     object-fit: cover;
+    display: block;
 }
 
 .v2-teacher-body {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    background: #fff;
+    padding: 25px;
 }
 
 .v2-teacher-name {
@@ -798,8 +818,8 @@ Author: MSBPL Team
     letter-spacing: 0.5px;
 }
 
-.v2-teacher-role {
-    font-size: 18px;
+.v2-teacher-body .v2-teacher-role {
+    font-size: 16px !important;
     margin: 0 0 12px 0;
     color: var(--text-color, #383838);
     line-height: 1.5;
@@ -817,6 +837,11 @@ Author: MSBPL Team
     line-height: 1.6;
     color: var(--text-color, #383838);
     margin-top: 12px;
+}
+
+.v2-teacher-content,
+.v2-teacher-content p {
+    font-size: 16px;
 }
 
 .v2-teacher-content p {
@@ -894,12 +919,17 @@ Author: MSBPL Team
     
     /* Адаптивность для карточек преподавателей */
     .v2-teacher-card {
+        padding: 0;
+    }
+    
+    .v2-teacher-body {
         padding: 20px;
     }
     
     .v2-teacher-image {
-        width: 100px;
-        height: 100px;
+        width: 100%;
+        height: auto;
+        border-radius: 0;
     }
     
     .v2-teacher-name {

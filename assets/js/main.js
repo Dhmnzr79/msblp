@@ -392,14 +392,27 @@
         }
 
         function update() {
-            const gap = parseFloat(getComputedStyle(track).gap) || 0;
             const viewport = wrap.querySelector('.slider-viewport');
             const viewportWidth = viewport.clientWidth;
-
-            const offset = index * (viewportWidth + 0);
+            const gap = parseFloat(getComputedStyle(track).gap) || 0;
+            
+            // На мобилке карточка занимает 100% ширины viewport
+            // На планшете и десктопе нужно учитывать itemsPerView
+            const onMobile = window.matchMedia('(max-width: 680px)').matches;
+            let cardWidth;
+            
+            if (onMobile) {
+                // На мобилке карточка = 100% viewport
+                cardWidth = viewportWidth;
+            } else {
+                // На планшете/десктопе карточка = (viewportWidth - gap * (itemsPerView - 1)) / itemsPerView
+                cardWidth = (viewportWidth - gap * (itemsPerView - 1)) / itemsPerView;
+            }
+            
+            // Offset = индекс * (ширина карточки + gap)
+            const offset = index * (cardWidth + gap);
             track.style.transform = `translate3d(${-offset}px,0,0)`;
 
-            const onMobile = window.matchMedia('(max-width: 680px)').matches;
             if (!onMobile) {
                 prevBtn.disabled = index <= 0;
                 nextBtn.disabled = index >= pages - 1;
@@ -436,42 +449,95 @@
             dots.forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
         }
 
-        // Свайп (мобилка)
-        let startX = 0, currentX = 0, dragging = false, startTransform = 0;
+        // Свайп (мобилка) - простая и надежная версия
+        let touchStartX = 0, touchStartY = 0, isDragging = false, startIndex = 0, lastDx = 0;
 
-        track.addEventListener('pointerdown', (e) => {
+        // Touch события для мобилок
+        track.addEventListener('touchstart', (e) => {
             if (!window.matchMedia('(max-width: 680px)').matches) return;
-            dragging = true;
-            track.setPointerCapture(e.pointerId);
-            startX = e.clientX;
-            const m = /translate3d\((-?\d+\.?\d*)px/.exec(getComputedStyle(track).transform);
-            startTransform = m ? parseFloat(m[1]) : 0;
+            const touch = e.touches[0];
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+            startIndex = index;
+            isDragging = true;
+            lastDx = 0;
             track.style.transition = 'none';
-        });
+        }, { passive: true });
         
-        track.addEventListener('pointermove', (e) => {
-            if (!dragging) return;
-            currentX = e.clientX;
-            const dx = currentX - startX;
-            track.style.transform = `translate3d(${startTransform + dx}px,0,0)`;
-        });
+        track.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const touch = e.touches[0];
+            const dx = touch.clientX - touchStartX;
+            const dy = touch.clientY - touchStartY;
+            const absDx = Math.abs(dx);
+            const absDy = Math.abs(dy);
+            
+            lastDx = dx;
+            
+            // Если движение больше по вертикали - отменяем свайп
+            if (absDy > absDx && absDy > 10) {
+                isDragging = false;
+                track.style.transition = 'transform .35s ease';
+                update();
+                return;
+            }
+            
+            // Горизонтальный свайп
+            if (absDx > 5) {
+                e.preventDefault();
+                
+                const viewport = wrap.querySelector('.slider-viewport');
+                const viewportWidth = viewport.clientWidth;
+                
+                // Рассчитываем offset от стартового индекса
+                const baseOffset = startIndex * viewportWidth;
+                const dragOffset = baseOffset - dx;
+                
+                // Ограничиваем границами
+                const minOffset = 0;
+                const maxOffset = (pages - 1) * viewportWidth;
+                const limitedOffset = Math.max(minOffset, Math.min(maxOffset, dragOffset));
+                
+                track.style.transform = `translate3d(${-limitedOffset}px,0,0)`;
+            }
+        }, { passive: false });
         
-        const endDrag = (e) => {
-            if (!dragging) return;
-            dragging = false;
+        track.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
             track.style.transition = 'transform .35s ease';
-            const dx = (currentX || startX) - startX;
-            const threshold = 40;
-            if (dx < -threshold) go(index + 1);
-            else if (dx > threshold) go(index - 1);
-            else update();
-        };
+            
+            const dx = lastDx;
+            const viewport = wrap.querySelector('.slider-viewport');
+            const threshold = viewport.clientWidth * 0.25;
+            
+            // dx < 0: палец движется влево → следующая карточка
+            // dx > 0: палец движется вправо → предыдущая карточка
+            if (Math.abs(dx) < threshold) {
+                // Недостаточно свайпнули - возвращаемся к текущей
+                go(startIndex);
+            } else if (dx < 0 && startIndex < pages - 1) {
+                // Свайп влево - следующая карточка
+                go(startIndex + 1);
+            } else if (dx > 0 && startIndex > 0) {
+                // Свайп вправо - предыдущая карточка
+                go(startIndex - 1);
+            } else {
+                // На границе - возвращаемся
+                go(startIndex);
+            }
+        }, { passive: true });
         
-        track.addEventListener('pointerup', endDrag);
-        track.addEventListener('pointercancel', endDrag);
-        track.addEventListener('pointerleave', endDrag);
+        track.addEventListener('touchcancel', () => {
+            if (isDragging) {
+                isDragging = false;
+                track.style.transition = 'transform .35s ease';
+                go(startIndex);
+            }
+        }, { passive: true });
 
-        // Пересчёт при ресайзе
+        // Пересчёт при ресайзе с debounce
+        let resizeTimeout;
         const reflow = () => {
             itemsPerView = getItemsPerView();
             pages = calcPages();
@@ -480,7 +546,12 @@
             update();
         };
         
-        window.addEventListener('resize', reflow);
+        const debouncedReflow = () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(reflow, 150);
+        };
+        
+        window.addEventListener('resize', debouncedReflow);
 
         // Инициализация
         reflow();

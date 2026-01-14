@@ -83,8 +83,24 @@ function psych_school_scripts() {
     // Основные стили темы
     wp_enqueue_style('psych-school-style', get_stylesheet_uri(), array(), '1.0.0');
     
-    // V2 стили для новых страниц (изолированные)
-    wp_enqueue_style('psych-school-v2-styles', get_template_directory_uri() . '/v2-styles.css', array(), '1.0.0');
+    // V2 стили — подключаем ТОЛЬКО на V2-шаблонах, чтобы реально изолировать систему
+    $v2_templates = array(
+        'page-course-integral-cinemalogia.php',
+        'page-course-corporate-events.php',
+        'page-integral-ontopsychology.php',
+        'page-course-creative-transformations.php',
+        'page-principles.php',
+        'page-course-leadership-seminar-residence.php',
+        'page-course-intuitive-abilities-training.php',
+        'page-prepodavateli.php',
+        'page-course-management-consulting-tracking.php',
+        'page-how-ontopsychology.php',
+        'page-course-individual-consulting-coaching.php',
+        'page-course-integral-work-with-images.php',
+    );
+    if (is_page_template($v2_templates)) {
+        wp_enqueue_style('psych-school-v2-styles', get_template_directory_uri() . '/v2-styles.css', array(), '1.0.0');
+    }
     
     // Google Fonts
     wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap', array(), null);
