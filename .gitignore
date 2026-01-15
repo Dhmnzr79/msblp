@@ -4,6 +4,7 @@ Thumbs.db
 desktop.ini
 .idea/
 .vscode/
+.history/
 
 # Logs / temp
 *.log
@@ -17,5 +18,6 @@ vendor/
 # Build artifacts (если появятся)
 dist/
 build/
+
 
 
