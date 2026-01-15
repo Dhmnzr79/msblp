@@ -2607,6 +2607,18 @@ body.nav-open {
     margin-bottom: 24px;
 }
 
+.edu-info-layout {
+    display: block;
+}
+
+.edu-info-aside {
+    width: 100%;
+}
+
+.edu-info-main {
+    width: 100%;
+}
+
 .edu-info-nav__list {
     list-style: none;
     margin: 0;
@@ -2665,6 +2677,28 @@ body.nav-open {
 
 @media (min-width: 768px) {
     .edu-info-nav--mobile { display: none; }
+    .edu-info-layout {
+        display: flex;
+        gap: 24px;
+        align-items: flex-start;
+    }
+    /* ~33% / ~66% */
+    .edu-info-aside {
+        flex: 0 0 33.333%;
+        max-width: 33.333%;
+    }
+    .edu-info-main {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+    .edu-info-nav--desktop .edu-info-nav__list {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 8px;
+    }
+    .edu-info-nav--desktop .edu-info-nav__list a {
+        width: 100%;
+    }
 }
 
 @media (max-width: 767px) {

@@ -38,63 +38,94 @@ if ($edu_root_page && (int) $edu_root_page->ID > 0) {
 	$root_id = (int) $edu_root_page->ID;
 }
 
-$edu_list_items = '';
+$edu_pages = array();
 if ($root_id) {
-	$edu_list_items = wp_list_pages(array(
-		'title_li' => '',
-		'child_of' => (int) $root_id,
-		'depth' => 1,
+	$edu_pages = get_pages(array(
+		'parent' => (int) $root_id,
 		'sort_column' => 'menu_order,post_title',
-		'echo' => 0,
+		'sort_order' => 'ASC',
+		'post_status' => 'publish',
 	));
-	$edu_list_items = trim($edu_list_items);
+}
+
+$current_id = ($post && isset($post->ID)) ? (int) $post->ID : 0;
+$is_root_page = ($root_id && $current_id && ((int) $root_id === (int) $current_id));
+$first_child_id = (!empty($edu_pages) && isset($edu_pages[0]->ID)) ? (int) $edu_pages[0]->ID : 0;
+$active_id = ($is_root_page && $first_child_id) ? $first_child_id : $current_id;
+$display_post = ($is_root_page && $first_child_id) ? get_post($first_child_id) : $post;
+
+function msblp_render_edu_nav_items($pages, $active_id) {
+	if (empty($pages)) {
+		return;
+	}
+	foreach ($pages as $p) {
+		$is_active = ((int) $active_id === (int) $p->ID);
+		echo '<li class="edu-info-nav__item' . ($is_active ? ' is-active' : '') . '">';
+		echo '<a class="edu-info-nav__link" href="' . esc_url(get_permalink($p->ID)) . '"' . ($is_active ? ' aria-current="page"' : '') . '>';
+		echo esc_html(get_the_title($p->ID));
+		echo '</a>';
+		echo '</li>';
+	}
 }
 ?>
 
 <main id="primary" class="site-main">
 	<section class="section page-section">
 		<div class="container">
+			<div class="edu-info-layout">
+				<aside class="edu-info-aside">
+					<!-- Навигация по разделу: десктоп (вертикальный список) -->
+					<nav class="edu-info-nav edu-info-nav--desktop" aria-label="Навигация по разделу «Сведения об образовательной организации»">
+						<?php if (!empty($edu_pages)) : ?>
+							<ul class="edu-info-nav__list">
+								<?php msblp_render_edu_nav_items($edu_pages, $active_id); ?>
+							</ul>
+						<?php else : ?>
+							<p class="edu-info-nav__notice">
+								Навигация появится после создания и публикации дочерних страниц у страницы «Сведения об образовательной организации».
+							</p>
+						<?php endif; ?>
+					</nav>
 
-			<!-- Навигация по разделу: десктоп (простой список) -->
-			<nav class="edu-info-nav edu-info-nav--desktop" aria-label="Навигация по разделу «Сведения об образовательной организации»">
-				<?php if ($edu_list_items) : ?>
-					<ul class="edu-info-nav__list">
-						<?php echo $edu_list_items; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					</ul>
-				<?php else : ?>
-					<p class="edu-info-nav__notice">
-						Навигация появится после создания и публикации дочерних страниц у страницы «Сведения об образовательной организации».
-					</p>
-				<?php endif; ?>
-			</nav>
+					<!-- Навигация по разделу: мобилка (details/summary без JS) -->
+					<details class="edu-info-nav edu-info-nav--mobile">
+						<summary class="edu-info-nav__summary">Навигация по разделу</summary>
+						<nav class="edu-info-nav__panel" aria-label="Навигация по разделу «Сведения об образовательной организации»">
+							<?php if (!empty($edu_pages)) : ?>
+								<ul class="edu-info-nav__list">
+									<?php msblp_render_edu_nav_items($edu_pages, $active_id); ?>
+								</ul>
+							<?php else : ?>
+								<p class="edu-info-nav__notice">
+									Навигация появится после создания и публикации дочерних страниц у страницы «Сведения об образовательной организации».
+								</p>
+							<?php endif; ?>
+						</nav>
+					</details>
+				</aside>
 
-			<!-- Навигация по разделу: мобилка (details/summary без JS) -->
-			<details class="edu-info-nav edu-info-nav--mobile">
-				<summary class="edu-info-nav__summary">Навигация по разделу</summary>
-				<nav class="edu-info-nav__panel" aria-label="Навигация по разделу «Сведения об образовательной организации»">
-					<?php if ($edu_list_items) : ?>
-						<ul class="edu-info-nav__list">
-							<?php echo $edu_list_items; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-						</ul>
-					<?php else : ?>
-						<p class="edu-info-nav__notice">
-							Навигация появится после создания и публикации дочерних страниц у страницы «Сведения об образовательной организации».
-						</p>
+				<div class="edu-info-main">
+					<?php if ($display_post) : ?>
+						<?php
+						$original_post = $post;
+						$post = $display_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+						setup_postdata($post);
+						?>
+						<header class="page-header">
+							<h1 class="page-title"><?php the_title(); ?></h1>
+						</header>
+
+						<div class="page-content">
+							<?php the_content(); ?>
+						</div>
+
+						<?php
+						wp_reset_postdata();
+						$post = $original_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+						?>
 					<?php endif; ?>
-				</nav>
-			</details>
-
-			<?php if (have_posts()) : ?>
-				<?php while (have_posts()) : the_post(); ?>
-					<header class="page-header">
-						<h1 class="page-title"><?php the_title(); ?></h1>
-					</header>
-
-					<div class="page-content">
-						<?php the_content(); ?>
-					</div>
-				<?php endwhile; ?>
-			<?php endif; ?>
+				</div>
+			</div>
 		</div>
 	</section>
 </main>
