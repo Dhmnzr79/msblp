@@ -91,7 +91,11 @@
                                     <li><a href="<?php echo esc_url(psych_school_get_page_url_by_template('page-principles.php')); ?>">Наши принципы</a></li>
                                     <li><a href="<?php echo esc_url(home_url('/founders')); ?>">Основатели</a></li>
                                     <li><a href="<?php echo esc_url(psych_school_get_page_url_by_template('page-prepodavateli.php')); ?>">Преподаватели</a></li>
-                                    <li><a href="<?php echo esc_url(psych_school_get_page_url_by_template('page-edu-info.php')); ?>">Сведения об образовательной организации</a></li>
+                                    <?php
+                                    $edu_root_page = get_page_by_title('Сведения об образовательной организации', OBJECT, 'page');
+                                    $edu_root_url = $edu_root_page ? get_permalink($edu_root_page->ID) : psych_school_get_page_url_by_template('page-edu-info.php');
+                                    ?>
+                                    <li><a href="<?php echo esc_url($edu_root_url); ?>">Сведения об образовательной организации</a></li>
                                 </ul>
                             </li>
                             
@@ -177,7 +181,11 @@
                 <li><a href="<?php echo esc_url(home_url('/founders')); ?>">Основатели</a></li>
                 <li><a href="<?php echo esc_url(home_url('/leader-address')); ?>">Обращение руководителя</a></li>
                 <li><a href="<?php echo esc_url(psych_school_get_page_url_by_template('page-prepodavateli.php')); ?>">Преподаватели</a></li>
-                <li><a href="<?php echo esc_url(psych_school_get_page_url_by_template('page-edu-info.php')); ?>">Сведения об образовательной организации</a></li>
+                <?php
+                $edu_root_page = get_page_by_title('Сведения об образовательной организации', OBJECT, 'page');
+                $edu_root_url = $edu_root_page ? get_permalink($edu_root_page->ID) : psych_school_get_page_url_by_template('page-edu-info.php');
+                ?>
+                <li><a href="<?php echo esc_url($edu_root_url); ?>">Сведения об образовательной организации</a></li>
             </ul>
 
             <!-- Программы -->

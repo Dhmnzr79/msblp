@@ -30,6 +30,13 @@ function msblp_get_top_ancestor_id($post_id) {
 
 global $post;
 $root_id = $post ? msblp_get_top_ancestor_id($post->ID) : 0;
+// Пытаемся привязаться именно к корневой странице раздела по названию.
+// Это защищает от ситуации, когда меню ведёт на одну из дочерних страниц,
+// или страницы пока созданы без правильного родителя.
+$edu_root_page = get_page_by_title('Сведения об образовательной организации', OBJECT, 'page');
+if ($edu_root_page && (int) $edu_root_page->ID > 0) {
+	$root_id = (int) $edu_root_page->ID;
+}
 
 $edu_list_items = '';
 if ($root_id) {
