@@ -2616,11 +2616,11 @@ body.nav-open {
     gap: 10px 14px;
 }
 
-.edu-info-nav__item {
+.edu-info-nav__list li {
     margin: 0;
 }
 
-.edu-info-nav__link {
+.edu-info-nav__list a {
     display: inline-block;
     padding: 8px 10px;
     border-radius: 8px;
@@ -2632,11 +2632,18 @@ body.nav-open {
     background: #fff;
 }
 
-.edu-info-nav__item.is-active .edu-info-nav__link,
-.edu-info-nav__link[aria-current="page"] {
+.edu-info-nav__list .current_page_item > a,
+.edu-info-nav__list .current_page_ancestor > a,
+.edu-info-nav__list a[aria-current="page"] {
     border-color: var(--primary-color);
     color: var(--primary-color);
     font-weight: 600;
+}
+
+.edu-info-nav__notice {
+    margin: 0;
+    font-size: 14px;
+    color: #6b7280;
 }
 
 .edu-info-nav--mobile {

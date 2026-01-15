@@ -31,32 +31,16 @@ function msblp_get_top_ancestor_id($post_id) {
 global $post;
 $root_id = $post ? msblp_get_top_ancestor_id($post->ID) : 0;
 
-$edu_pages = array();
+$edu_list_items = '';
 if ($root_id) {
-	$edu_pages = get_pages(array(
-		'parent' => (int) $root_id,
+	$edu_list_items = wp_list_pages(array(
+		'title_li' => '',
+		'child_of' => (int) $root_id,
+		'depth' => 1,
 		'sort_column' => 'menu_order,post_title',
-		'sort_order' => 'ASC',
-		'post_status' => 'publish',
+		'echo' => 0,
 	));
-}
-
-function msblp_render_edu_nav_list($pages, $current_id) {
-	if (empty($pages)) {
-		return;
-	}
-	?>
-	<ul class="edu-info-nav__list">
-		<?php foreach ($pages as $p) : ?>
-			<?php $is_active = ((int) $current_id === (int) $p->ID); ?>
-			<li class="edu-info-nav__item<?php echo $is_active ? ' is-active' : ''; ?>">
-				<a class="edu-info-nav__link" href="<?php echo esc_url(get_permalink($p->ID)); ?>"<?php echo $is_active ? ' aria-current="page"' : ''; ?>>
-					<?php echo esc_html(get_the_title($p->ID)); ?>
-				</a>
-			</li>
-		<?php endforeach; ?>
-	</ul>
-	<?php
+	$edu_list_items = trim($edu_list_items);
 }
 ?>
 
@@ -66,14 +50,30 @@ function msblp_render_edu_nav_list($pages, $current_id) {
 
 			<!-- Навигация по разделу: десктоп (простой список) -->
 			<nav class="edu-info-nav edu-info-nav--desktop" aria-label="Навигация по разделу «Сведения об образовательной организации»">
-				<?php msblp_render_edu_nav_list($edu_pages, $post ? $post->ID : 0); ?>
+				<?php if ($edu_list_items) : ?>
+					<ul class="edu-info-nav__list">
+						<?php echo $edu_list_items; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</ul>
+				<?php else : ?>
+					<p class="edu-info-nav__notice">
+						Навигация появится после создания и публикации дочерних страниц у страницы «Сведения об образовательной организации».
+					</p>
+				<?php endif; ?>
 			</nav>
 
 			<!-- Навигация по разделу: мобилка (details/summary без JS) -->
 			<details class="edu-info-nav edu-info-nav--mobile">
 				<summary class="edu-info-nav__summary">Навигация по разделу</summary>
 				<nav class="edu-info-nav__panel" aria-label="Навигация по разделу «Сведения об образовательной организации»">
-					<?php msblp_render_edu_nav_list($edu_pages, $post ? $post->ID : 0); ?>
+					<?php if ($edu_list_items) : ?>
+						<ul class="edu-info-nav__list">
+							<?php echo $edu_list_items; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						</ul>
+					<?php else : ?>
+						<p class="edu-info-nav__notice">
+							Навигация появится после создания и публикации дочерних страниц у страницы «Сведения об образовательной организации».
+						</p>
+					<?php endif; ?>
 				</nav>
 			</details>
 
