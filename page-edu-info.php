@@ -48,6 +48,52 @@ if ($root_id) {
 	));
 }
 
+$edu_required_order = array(
+	'Основные сведения',
+	'Структура и органы управления образовательной организацией',
+	'Документы',
+	'Образование',
+	'Руководство',
+	'Педагогический состав',
+	'Материально-техническое обеспечение и оснащённость образовательного процесса. Доступная среда',
+	'Платные образовательные услуги',
+	'Финансово-хозяйственная деятельность',
+	'Вакантные места для приёма (перевода) обучающихся',
+	'Стипендии и меры поддержки обучающихся',
+	'Международное сотрудничество',
+	'Организация питания в образовательной организации',
+);
+
+function msblp_normalize_page_title($title) {
+	$title = (string) $title;
+	$title = preg_replace('/\s+/u', ' ', trim($title));
+	$title = mb_strtolower($title, 'UTF-8');
+	return $title;
+}
+
+// Принудительный порядок пунктов навигации по списку требований (если страницы названы соответствующе).
+$edu_pages_by_title = array();
+foreach ($edu_pages as $p) {
+	$edu_pages_by_title[msblp_normalize_page_title(get_the_title($p->ID))] = $p;
+}
+
+$edu_pages_ordered = array();
+$edu_pages_used = array();
+foreach ($edu_required_order as $required_title) {
+	$key = msblp_normalize_page_title($required_title);
+	if (isset($edu_pages_by_title[$key])) {
+		$edu_pages_ordered[] = $edu_pages_by_title[$key];
+		$edu_pages_used[(int) $edu_pages_by_title[$key]->ID] = true;
+	}
+}
+// Если есть дополнительные дочерние страницы — добавляем их в конец.
+foreach ($edu_pages as $p) {
+	if (empty($edu_pages_used[(int) $p->ID])) {
+		$edu_pages_ordered[] = $p;
+	}
+}
+$edu_pages = $edu_pages_ordered;
+
 $current_id = ($post && isset($post->ID)) ? (int) $post->ID : 0;
 $is_root_page = ($root_id && $current_id && ((int) $root_id === (int) $current_id));
 $first_child_id = (!empty($edu_pages) && isset($edu_pages[0]->ID)) ? (int) $edu_pages[0]->ID : 0;
