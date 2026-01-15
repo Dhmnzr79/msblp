@@ -2597,6 +2597,75 @@ body.nav-open {
     display: block;
 }
 
+/* ========================================
+   EDU INFO: простая внутренняя навигация (Pages)
+   - desktop: простой список ссылок
+   - mobile: details/summary (без JS)
+   ======================================== */
+
+.edu-info-nav {
+    margin-bottom: 24px;
+}
+
+.edu-info-nav__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+}
+
+.edu-info-nav__item {
+    margin: 0;
+}
+
+.edu-info-nav__link {
+    display: inline-block;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1.3;
+    background: #fff;
+}
+
+.edu-info-nav__item.is-active .edu-info-nav__link,
+.edu-info-nav__link[aria-current="page"] {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.edu-info-nav--mobile {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 24px;
+    background: #fff;
+}
+
+.edu-info-nav__summary {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.edu-info-nav__panel {
+    margin-top: 12px;
+}
+
+@media (min-width: 768px) {
+    .edu-info-nav--mobile { display: none; }
+}
+
+@media (max-width: 767px) {
+    .edu-info-nav--desktop { display: none; }
+    .edu-info-nav__list { flex-direction: column; gap: 8px; }
+    .edu-info-nav__link { width: 100%; }
+}
+
  
 .content-block {
     margin-bottom: 3rem;
