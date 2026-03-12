@@ -113,6 +113,11 @@
                                         <a href="#">Школа интегральной онтопсихологии</a>
                                         <ul class="sub-menu">
                                             <li><a href="#">Интегральная онтопсихология: теория и практика.</a></li>
+                                            <li>
+                                                <a href="<?php echo esc_url(psych_school_get_page_url_by_template('page-course-integral-cinema-study.php')); ?>">
+                                                    Изучаем онтопсихология через кино.
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="menu-item-has-children">
@@ -138,9 +143,13 @@
                             <li class="menu-item-has-children">
                                 <a href="#">Публикации</a>
                                 <ul class="sub-menu">
-                                    <li><a href="#">Новости</a></li>
-                                    <li><a href="#">Статьи</a></li>
-                                    <li><a href="#">Исследования</a></li>
+                                    <li><a href="#"><?php esc_html_e('Новости', 'psych-school'); ?></a></li>
+                                    <li>
+                                        <a href="<?php echo esc_url(psych_school_get_page_url_by_template('page-blog.php')); ?>">
+                                            <?php esc_html_e('Статьи', 'psych-school'); ?>
+                                        </a>
+                                    </li>
+                                    <li><a href="#"><?php esc_html_e('Исследования', 'psych-school'); ?></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -204,6 +213,11 @@
             <!-- Программы → Школа интегральной онтопсихологии -->
             <ul class="nav-panel" id="io" data-level="2" data-title="Школа интегральной онтопсихологии" hidden>
                 <li><a href="#">Интегральная онтопсихология: теория и практика.</a></li>
+                <li>
+                    <a href="<?php echo esc_url(psych_school_get_page_url_by_template('page-course-integral-cinema-study.php')); ?>">
+                        Изучаем онтопсихология через кино.
+                    </a>
+                </li>
             </ul>
 
             <!-- Программы → Школа лидерства -->
@@ -220,9 +234,13 @@
 
             <!-- Публикации -->
             <ul class="nav-panel" id="publications" data-level="1" data-title="Публикации" hidden>
-                <li><a href="#">Новости</a></li>
-                <li><a href="#">Статьи</a></li>
-                <li><a href="#">Исследования</a></li>
+                <li><a href="#"><?php esc_html_e('Новости', 'psych-school'); ?></a></li>
+                <li>
+                    <a href="<?php echo esc_url(psych_school_get_page_url_by_template('page-blog.php')); ?>">
+                        <?php esc_html_e('Статьи', 'psych-school'); ?>
+                    </a>
+                </li>
+                <li><a href="#"><?php esc_html_e('Исследования', 'psych-school'); ?></a></li>
             </ul>
         </nav>
     </aside>

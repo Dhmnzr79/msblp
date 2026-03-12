@@ -86,6 +86,7 @@ function psych_school_scripts() {
     // V2 стили — подключаем ТОЛЬКО на V2-шаблонах, чтобы реально изолировать систему
     $v2_templates = array(
         'page-course-integral-cinemalogia.php',
+        'page-course-integral-cinema-study.php',
         'page-course-corporate-events.php',
         'page-integral-ontopsychology.php',
         'page-course-creative-transformations.php',
