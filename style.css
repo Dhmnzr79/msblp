@@ -884,7 +884,6 @@ a:hover {
 .blog-card {
     background: #fff;
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -918,10 +917,13 @@ a:hover {
 }
 
 .blog-card-excerpt {
-    font-size: 14px;
     color: var(--text-color);
     margin-bottom: 14px;
     flex: 1;
+}
+
+.blog-card-excerpt p {
+    font-size: 15px;
 }
 
 .blog-card-link {
